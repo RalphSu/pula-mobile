@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bookingRelativelayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <include layout="@layout/loading" />
+
+    <LinearLayout
+        android:id="@+id/bookingTopLinearlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bookingTodayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/bookingTitleGridView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookingTopLinearlayout"
+        android:gravity="center_vertical"
+        android:horizontalSpacing="1dp"
+        android:numColumns="7"
+        android:verticalSpacing="1dp" >
+    </GridView>
+
+    <ViewFlipper
+        android:id="@+id/bookingViewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookingTitleGridView" >
+
+        <GridView
+            android:id="@+id/prevMonthCalendarView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:horizontalSpacing="1dp"
+            android:numColumns="7"
+            android:verticalSpacing="1dp" >
+        </GridView>
+
+        <GridView
+            android:id="@+id/currentMonthCalendarView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:horizontalSpacing="1dp"
+            android:numColumns="7"
+            android:verticalSpacing="1dp" >
+        </GridView>
+
+        <GridView
+            android:id="@+id/nextMonthCalendarView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:horizontalSpacing="1dp"
+            android:numColumns="7"
+            android:verticalSpacing="1dp" >
+        </GridView>
+    </ViewFlipper>
+
+    <LinearLayout
+        android:id="@+id/bookingContentLinearlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/bookingViewFlipper"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</RelativeLayout>

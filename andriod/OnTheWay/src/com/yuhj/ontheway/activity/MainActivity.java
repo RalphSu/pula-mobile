@@ -8,6 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -38,7 +44,7 @@ import com.yuhj.ontheway.fragment.LoginFragment;
  * @version 1.0
  */
 public class MainActivity extends FragmentActivity implements
-		OnCheckedChangeListener {
+		OnCheckedChangeListener, OnTouchListener, OnKeyListener, OnClickListener {
 	private TextView title;
 	private BookingFragment bookingFragment;
 	private HuodongFragment huodongFragment;
@@ -82,7 +88,7 @@ public class MainActivity extends FragmentActivity implements
     }
 
     private void initViews() {
-        bookingFragment = new BookingFragment();
+        bookingFragment = new BookingFragment(this);
         courseFragment = new CourseFragment();
         huodongFragment = new HuodongFragment();
         loginFragment = new LoginFragment();
@@ -147,5 +153,25 @@ public class MainActivity extends FragmentActivity implements
 		}
 
 	}
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        v.performClick();
+//        if (v.getId() == bookingFragment.getId()) {
+//            return bookingFragment.onTouch(v, event);
+//        }
+        return false;
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        // TODO Auto-generated method stub
+        v.getId();
+    }
 
 }
