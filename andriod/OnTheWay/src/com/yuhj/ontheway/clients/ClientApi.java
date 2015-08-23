@@ -315,7 +315,7 @@ public class ClientApi {
     }
 
 	public static boolean getLoginStatus(String username, String password) {
-		String loginUrl = "http://192.168.0.105:8125/app/studentinterface/login?loginId="
+		String loginUrl = "http://121.40.151.183:8080/pula-sys/app/studentinterface/login?loginId="
 				+ username + "&password=" + password;
 		
 		boolean result = false;
@@ -337,7 +337,7 @@ public class ClientApi {
 	}
 
 	public static UserInfoData getUserInfoData(String username, String password) {
-		String getInfoUrl = "http://192.168.0.105:8125/app/studentinterface/info?loginId="
+		String getInfoUrl = "http://121.40.151.183:8080/pula-sys/app/studentinterface/info?loginId="
 				+ username + "&password=" + password;
 
 		UserInfoData userInfo = new UserInfoData();

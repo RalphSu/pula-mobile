@@ -125,7 +125,7 @@ public class BookingFragment extends Fragment implements OnTouchListener {
      * @param clickedDayLayout
      */
     public void notifyCalendarDaySelected(LinearLayout clickedDayLayout) {
-        if (clickedDayLayout.getTag() != null) {
+        if (clickedDayLayout != null && clickedDayLayout.getTag() != null) {
             Date date = (Date) clickedDayLayout.getTag();
             calSelected.setTime(date);
 
@@ -138,11 +138,6 @@ public class BookingFragment extends Fragment implements OnTouchListener {
             gNextAdapter.setSelectedDate(calSelected);
             gNextAdapter.notifyDataSetChanged();
             
-            // ((GridView)viewFlipper.getCurrentView()).getAdapter()
-            String s = calStartDate.get(Calendar.YEAR) + "-"
-                    + NumberHelper.LeftPad_Tow_Zero(calStartDate.get(Calendar.MONTH) + 1);
-
-            btnToday.setText(s);
         }
     }
     
