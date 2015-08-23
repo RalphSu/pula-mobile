@@ -59,11 +59,6 @@ public class MainActivity extends FragmentActivity implements
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
         initViews();
-
-        /*
-         * AseoZdpAseo.initTimer(this);
-         */
-
         group = (RadioGroup) findViewById(R.id.main_tab_bar);
         group.setOnCheckedChangeListener(this);
         fragments = new ArrayList<Fragment>();
@@ -76,13 +71,13 @@ public class MainActivity extends FragmentActivity implements
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.main_framelayout, fragments.get(3));
             transaction.commit();
-            title.setText("登录");
+            //title.setText("登录");
         } else {
             FragmentManager manager = getSupportFragmentManager();
 			FragmentTransaction transaction = manager.beginTransaction();
 			transaction.replace(R.id.main_framelayout, fragments.get(0));
 			transaction.commit();
-			title.setText("预约");
+			//title.setText("预约");
         }
 
     }
@@ -92,7 +87,7 @@ public class MainActivity extends FragmentActivity implements
         courseFragment = new CourseFragment();
         huodongFragment = new HuodongFragment();
         loginFragment = new LoginFragment();
-        title = (TextView) findViewById(R.id.main_title);
+        //title = (TextView) findViewById(R.id.main_title);
     }
 
     @Override
@@ -124,26 +119,26 @@ public class MainActivity extends FragmentActivity implements
 			fragment = fragments.get(0);
 			transaction.replace(R.id.main_framelayout, fragment);
 			transaction.commit();
-			title.setText("预约");
+			//title.setText("预约");
 			break;
 		case 1:
 			fragment = fragments.get(1);
 			transaction.replace(R.id.main_framelayout, fragment);
 			transaction.commit();
-			title.setText("课程");
+			//title.setText("课程");
 			break;
 		case 2:
 		    fragment = fragments.get(2);
 		    transaction.replace(R.id.main_framelayout, fragment);
 		    transaction.commit();
-		    title.setText("活动");
+		    //title.setText("活动");
 			
 			break;
 		case 3:
 		    fragment = fragments.get(3);
 		    transaction.replace(R.id.main_framelayout, fragment);
 		    transaction.commit();
-		    title.setText("登录");
+		    //title.setText("登录");
 		    break;
 		case 4:
 		    break;

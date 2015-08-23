@@ -1,46 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/pula" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/tx_3_title"
-        style="@style/Stylewidthhight_mw"
-        android:layout_height="30dp"
-        android:background="@color/light_blue"
-        android:gravity="center"
-        android:text="@string/tx_3_introduce" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/pula_logo_show" >
+
+      </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/ll"
-        style="@style/Stylewidthhight_mw"
-        android:layout_below="@+id/tx_3_title"
-        android:orientation="vertical" >
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
 
-        <LinearLayout
-            android:id="@+id/lin"
-            style="@style/Stylewidthhight_mm"
-            android:layout_height="wrap_content"
-            android:background="@drawable/pula"
-            android:orientation="vertical" >
-              
-            <LinearLayout
-                style="@style/Stylewidthhight_mw"
-                android:orientation="horizontal" >
+         <ImageView
+            android:id="@+id/img_my_info"
+            style="@style/Stylewidthhight_wm"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp" 
+            android:background="@drawable/my_info"
+            android:contentDescription="@string/nul" />
 
-            </LinearLayout>
-        </LinearLayout>
-
+        <ImageView
+            android:id="@+id/img_my_course"
+            style="@style/Stylewidthhight_wm"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp" 
+            android:layout_marginRight="10dp"
+            android:background="@drawable/my_course"
+            android:contentDescription="@string/nul" />
+        
         
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_3"
-        style="@style/Stylewidthhight_mw"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/ll"
-        android:background="@color/white"
-        android:listSelector="@drawable/seletor_list" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+       <ImageView
+            android:id="@+id/img_my_booking"
+            style="@style/Stylewidthhight_wm"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp" 
+            android:background="@drawable/my_booking"
+            android:contentDescription="@string/nul" />
+
+        <ImageView
+            android:id="@+id/img_my_point"
+            style="@style/Stylewidthhight_wm"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp" 
+            android:layout_marginRight="10dp"
+            android:background="@drawable/my_point"
+            android:contentDescription="@string/nul" />
+        
+    </LinearLayout>
 
 </RelativeLayout>

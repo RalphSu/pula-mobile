@@ -44,8 +44,6 @@ public class CourseDetailH5Activity extends BaseActivity {
         // progress bar
         TextView title = (TextView) view.findViewById(R.id.course_main_title);
         
-        //AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
-        
         // set content data
         title.setText(name);
         rootViewLayout.addView(view);

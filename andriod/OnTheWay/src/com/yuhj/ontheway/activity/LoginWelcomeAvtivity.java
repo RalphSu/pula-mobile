@@ -10,7 +10,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.yuhj.ontheway.R;
@@ -21,62 +23,58 @@ import com.yuhj.ontheway.activity.UserInfoActivity;
 
 
 public class LoginWelcomeAvtivity extends Activity {
-	private ListView list_3;
-	private List_3Adapter adapter;
-	private List<HashMap<String,Object>> dataList;
-	private HashMap<String,Object> map;
 	SharedPreferences preference;
+	private ImageView img_my_info,img_my_course,img_my_booking,img_my_point;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.frame_user_page); 
-		list_3=(ListView) findViewById(R.id.list_3);
+		setContentView(R.layout.frame_user_page);
 		
-		dataList=new ArrayList<HashMap<String,Object>>();
-		for(int i=0;i<3;i++){
-			map=new HashMap<String,Object>();
-			map.put("img_1", StaticStrings.img[i]);
-			map.put("tx_name", StaticStrings.tx_name[i]);
-			map.put("img_2", StaticStrings.img2);
-			dataList.add(map);
-		}
+		img_my_info=(ImageView) findViewById(R.id.img_my_info);
+		img_my_course=(ImageView) findViewById(R.id.img_my_course);
+		img_my_booking=(ImageView) findViewById(R.id.img_my_booking);
+		img_my_point=(ImageView) findViewById(R.id.img_my_point);
 		
-		adapter=new List_3Adapter(LoginWelcomeAvtivity.this,dataList);
-		//向list內添加數據
-		list_3.setAdapter(adapter);
-		//判断本地是否保存有用户信息
-		preference=getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
-		Log.i("preference=",""+ preference.toString());
-		String name=preference.getString("USER_NAME", "");
-		String pwd=preference.getString("PASSWORD", "");
+		img_my_info.setOnClickListener(new OnClickListener() {
 
-		Log.i("preference=",""+ name);
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_info = new Intent(LoginWelcomeAvtivity.this, UserInfoActivity.class);
+	            startActivity(intent_my_info);
 
-		Log.i("preference=",""+ pwd);
+			}
+		});
 		
-		//list的點擊事件
-        list_3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		img_my_course.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Intent intent_coupon = new Intent(LoginWelcomeAvtivity.this, UserInfoActivity.class);
-                    startActivity(intent_coupon);
-                } else if (position == 1) {
-                    Intent intent_coupon = new Intent(LoginWelcomeAvtivity.this, MyCourseActivity.class);
-                    startActivity(intent_coupon);
-                } else if (position == 2) {
-                    Intent intent_mycollect = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
-                    startActivity(intent_mycollect);
-                } else if (position == 3) {
-                    Intent intent_mycollect = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
-                    startActivity(intent_mycollect);
-                }
-            }
-        });
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_course = new Intent(LoginWelcomeAvtivity.this, MyCourseActivity.class);
+	            startActivity(intent_my_course);
+
+			}
+		});
 		
+		img_my_booking.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+	             startActivity(intent_my_booking);
+			}
+		});
+		
+		img_my_point.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_point = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+	            startActivity(intent_my_point);
+			}
+		});
 	}
-
+	
+	
 }

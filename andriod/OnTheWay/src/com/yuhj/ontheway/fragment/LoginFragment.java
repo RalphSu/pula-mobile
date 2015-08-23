@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment {
     private EditText userName, password;
 	private CheckBox rem_pw, auto_login;
 	private Button btn_login;
-	private ImageButton btnQuit;
+	
     private String userNameValue,passwordValue;
 	private SharedPreferences sp;
 	private boolean status = false;
@@ -52,7 +52,7 @@ public class LoginFragment extends Fragment {
 		rem_pw = (CheckBox) view.findViewById(R.id.cb_mima);
 		auto_login = (CheckBox) view.findViewById(R.id.cb_auto);
 		btn_login = (Button) view.findViewById(R.id.btn_login);
-		btnQuit = (ImageButton)view.findViewById(R.id.img_btn);
+		
 				
 		        
 				//判断记住密码多选框的状态
@@ -127,14 +127,14 @@ public class LoginFragment extends Fragment {
 						}
 					}
 				});
-				
+				/*
 				btnQuit.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
 						//finish();
 					}
-				});
+				});*/
        return view;
 }
 

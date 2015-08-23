@@ -9,12 +9,6 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-        <ImageButton 
-            android:id="@+id/img_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/quit"/>
 
         <TextView
             android:id="@+id/tv_zh"

@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="TextView"
         android:textColor="#99CCFF"
-        android:textSize="22sp" />
+        android:textSize="22sp" /> 
 
 </RelativeLayout>

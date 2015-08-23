@@ -42,10 +42,10 @@ public class HuodongDetailActivity extends BaseActivity {
 		View view = LayoutInflater.from(getApplicationContext()).inflate(
 				R.layout.activity_huodong_detail, null);
 		// 生成水平进度条
-		TextView title = (TextView) view.findViewById(R.id.huodong_main_title);
+		//TextView title = (TextView) view.findViewById(R.id.huodong_main_title);
 		//AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
 		// ~~~ 设置数据
-		title.setText(name);
+		//title.setText(name);
 		rootViewLayout.addView(view);
 		progressBar = new ProgressBar(this, null,
 				android.R.attr.progressBarStyleHorizontal);
