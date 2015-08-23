@@ -1,7 +1,13 @@
 package com.yuhj.ontheway.clients;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
@@ -309,7 +315,7 @@ public class ClientApi {
     }
 
 	public static boolean getLoginStatus(String username, String password) {
-		String loginUrl = "http://121.40.151.183:8080/pula-sys/app/studentinterface/login?loginId="
+		String loginUrl = "http://192.168.0.105:8125/app/studentinterface/login?loginId="
 				+ username + "&password=" + password;
 		
 		boolean result = false;
@@ -331,7 +337,7 @@ public class ClientApi {
 	}
 
 	public static UserInfoData getUserInfoData(String username, String password) {
-		String getInfoUrl = "http://121.40.151.183:8080/pula-sys/app/studentinterface/info?loginId="
+		String getInfoUrl = "http://192.168.0.105:8125/app/studentinterface/info?loginId="
 				+ username + "&password=" + password;
 
 		UserInfoData userInfo = new UserInfoData();
@@ -373,4 +379,53 @@ public class ClientApi {
 		}
 		return userInfo;
 	}
-}
+	
+	/**
+	 * 通过 url 联网得到返回字符串
+	 * 1.建立连接
+	 * 2.讲服务端的内容获取到buffer缓冲区中
+	 * 3.讲内容从buffer中拿出来，转换为string，作为函数的返回值
+	 * ------json解析
+	 * ------Gson
+	 */
+	public static String getDataByUrl(String path){
+		HttpURLConnection httpcon=null;
+		InputStream inputS=null;
+		BufferedReader b=null;
+		//解析流的时候需要以下两个对象
+		String line="";
+		StringBuilder sb=new StringBuilder();
+		try {
+			//准备url，把path--->url
+			URL url=new URL(path);
+			//1.建立连接,通过HttpURLConnection打开连接
+			httpcon=(HttpURLConnection) url.openConnection();
+			if (httpcon.getResponseCode() == 200) {
+				//2.将服务端中的内容获取到buffer缓冲区中
+				inputS=httpcon.getInputStream();
+				//把数据流放入缓冲区，并得到一个输出流
+				b = new BufferedReader(new InputStreamReader(inputS));
+				//3.将内容从缓冲区拿出来
+				while ((line=b.readLine())!=null) {
+					sb.append(line);
+				}
+				return sb.toString();
+			}
+		} catch (MalformedURLException e) {
+		} catch (IOException e) {
+		}finally{
+			try {
+				if(httpcon!=null){
+					httpcon.disconnect();
+				}
+				if(b!=null){
+					b.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+}	
+	

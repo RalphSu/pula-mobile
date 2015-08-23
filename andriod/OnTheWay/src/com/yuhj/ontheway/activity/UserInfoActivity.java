@@ -74,14 +74,23 @@ public class UserInfoActivity extends Activity {
 			userInfo = ClientApi.getUserInfoData(userName, passWord);
 			Message msg = new Message();
 			Bundle data = new Bundle();
-
-			data.putString("No", userInfo.getNo());
-			data.putString("Name", userInfo.getName());
-			data.putInt("Points", userInfo.getPoints());
-			data.putInt("Birthday", userInfo.getBirthday());
-			data.putString("parentName", userInfo.getParentName());
-			data.putInt("Phone", userInfo.getPhone());
-
+			
+			if (userInfo != null) {	
+				data.putString("No", userInfo.getNo());
+				data.putString("Name", userInfo.getName());
+				data.putInt("Points", userInfo.getPoints());
+				data.putInt("Birthday", userInfo.getBirthday());
+				data.putString("parentName", userInfo.getParentName());
+				data.putInt("Phone", userInfo.getPhone());
+				
+			} else {
+				data.putString("No"," ");
+				data.putString("Name"," ");
+				data.putInt("Points", 0);
+				data.putInt("Birthday",0);
+				data.putString("parentName"," ");
+				data.putInt("Phone",0);
+			}
 			msg.setData(data);
 			handler.sendMessage(msg);
 		}
