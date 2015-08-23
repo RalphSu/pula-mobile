@@ -10,7 +10,8 @@ public class JSONTools {
 	private String duration_minute;//课时
 	private String name;//课程名字
 	private String branch_name;//分部地址
-	private String teacher_pic_url;//老师图片的获取地址，可以通过老师的ID来转化
+	private String teacher_pic_url;//老师图片的获取地址，可以通过老师的ID来转化	
+	private String cousr_no;//课程 的编号
 	
 	public String getStart_weekday() {
 		return start_weekday;
@@ -20,6 +21,16 @@ public class JSONTools {
 		this.start_weekday = start_weekday;
 	}
 
+	public String getCourse_no() {
+		return cousr_no;
+	}
+
+	public void setCourse_no(String cousr_no) {
+		this.cousr_no = cousr_no;
+	}
+	
+	
+	
 	public String getStart_hour() {
 		return start_hour;
 	}

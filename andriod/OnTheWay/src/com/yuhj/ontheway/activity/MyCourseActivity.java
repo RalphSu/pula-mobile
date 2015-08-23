@@ -212,25 +212,23 @@ public class MyCourseActivity extends Activity {
 
 				my_course_list.setAdapter(adapter);
 				// list列表点击事件
-				/*
-				my_course_list
-						.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				
+				my_course_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 							@Override
 							public void onItemClick(AdapterView<?> parent,
 									View view, int position, long id) {
+								position = position - 1;
 								JSONTools to = list.get(position);
-								Intent intent = new Intent(MyCourseActivity.this,CollectActivity.class);
-								intent.putExtra("deal_h5_url",
-										to.getDeal_h5_url());
-								//intent.putExtra("price", to.getCurrent_price());
-								intent.putExtra("title", to.getTitle());
-								Log.i("title=", to.getTitle());
-								intent.putExtra("s_image_url",
-										to.getS_image_url());
+								Intent intent = new Intent(MyCourseActivity.this,CourseDetailH5Activity.class);
+								
+								//intent.putExtra("SearchId",to.getCourse_no());
+								intent.putExtra("SearchId","1");
+								intent.putExtra("name", to.getName());
 								startActivity(intent);
 							}
-						}); */
+						}); 
+				
 				break;
 		   		
 			
@@ -261,6 +259,7 @@ public class MyCourseActivity extends Activity {
 				tools.setName(json.getString("name"));
 				tools.setBranch_name(json.getString("branchName"));
 				tools.setDuration_minute(json.getString("duration_minute"));
+				tools.setCourse_no(json.optString("course_no"));
 				
 				list.add(tools);				
 			}
@@ -276,7 +275,7 @@ public class MyCourseActivity extends Activity {
 		JSONObject obj;
 		try {
 			obj = new JSONObject(str);
-			JSONArray arr = obj.getJSONArray("deals");
+			JSONArray arr = obj.getJSONArray("records");
 			Log.i("arr=", arr + "");
 			for (int i = 0; i < arr.length(); i++) {
 				tools = new JSONTools();
