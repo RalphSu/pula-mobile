@@ -1,12 +1,15 @@
 package com.yuhj.ontheway.fragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -30,11 +33,14 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.adapter.CalendarGridViewAdapter;
 import com.yuhj.ontheway.adapter.NumberHelper;
+import com.yuhj.ontheway.bean.BookingData;
+import com.yuhj.ontheway.clients.ClientApi;
 
 /**
  * @name JingXuanFragment
@@ -161,8 +167,30 @@ public class BookingFragment extends Fragment implements OnTouchListener {
     private Button btnToday = null;
     private RelativeLayout mainLayout;
     
+    private List<BookingData> bookingData = new ArrayList<BookingData>();
+    
+    class DownData extends AsyncTask<Void, Void, List<BookingData>> {
+
+    @Override
+        protected List<BookingData> doInBackground(Void... arg0) {
+            return ClientApi.getBookingList("", "");
+        }
+
+        @Override
+        protected void onPostExecute(final List<BookingData> result) {
+            super.onPostExecute(result);
+            if (result != null) {
+                bookingData = result;
+            } else {
+                Toast.makeText(BookingFragment.this.getActivity(), "网络异常,请检查", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        new DownData().execute();
+
         generateContentView(inflater, container);
         UpdateStartDateForMonth();
 
@@ -325,12 +353,6 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         iMonthViewCurrentMonth = calStartDate.get(Calendar.MONTH);// 得到当前日历显示的月
         iMonthViewCurrentYear = calStartDate.get(Calendar.YEAR);// 得到当前日历显示的年
 
-        String s = calStartDate.get(Calendar.YEAR)
-                + "-"
-                + NumberHelper.LeftPad_Tow_Zero(calStartDate
-                        .get(Calendar.MONTH) + 1);
-        btnToday.setText(s);
-
         // 星期一是2 星期天是1 填充剩余天数
         int iDay = 0;
         int iFirstDayOfWeek = Calendar.MONDAY;
@@ -347,6 +369,11 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         }
         calStartDate.add(Calendar.DAY_OF_WEEK, -iDay);
 
+        String s = calStartDate.get(Calendar.YEAR)
+                + "-"
+                + NumberHelper.LeftPad_Tow_Zero(calStartDate
+                        .get(Calendar.MONTH) + 1);
+        btnToday.setText(s);
     }
 
     private Calendar getCalendarStartDate() {
@@ -364,6 +391,20 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         return calStartDate;
     }
 
+    public List<BookingData> getBookingData() {
+        return bookingData;
+    }
+
+    public void setBookingData(List<BookingData> bookingData) {
+        this.bookingData = bookingData;
+    }
+
+
+    /**
+     * 
+     * @author Liangfei
+     *
+     */
     public class TitleGridAdapter extends BaseAdapter {
 
         int[] titles = new int[] { R.string.Sun, R.string.Mon, R.string.Tue,
@@ -412,7 +453,6 @@ public class BookingFragment extends Fragment implements OnTouchListener {
                 // 周日
                 txtDay.setBackgroundColor(res.getColor(R.color.title_text_7));
             } else {
-
             }
 
             txtDay.setText((Integer) getItem(position));
