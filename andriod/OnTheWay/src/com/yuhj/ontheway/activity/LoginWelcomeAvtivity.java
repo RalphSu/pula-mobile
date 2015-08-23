@@ -16,6 +16,9 @@ import android.widget.ListView;
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.adapter.List_3Adapter;
 import com.yuhj.ontheway.utils.StaticStrings;
+import com.yuhj.ontheway.activity.MyCourseActivity;
+import com.yuhj.ontheway.activity.UserInfoActivity;
+
 
 public class LoginWelcomeAvtivity extends Activity {
 	private ListView list_3;
@@ -32,7 +35,7 @@ public class LoginWelcomeAvtivity extends Activity {
 		list_3=(ListView) findViewById(R.id.list_3);
 		
 		dataList=new ArrayList<HashMap<String,Object>>();
-		for(int i=0;i<4;i++){
+		for(int i=0;i<3;i++){
 			map=new HashMap<String,Object>();
 			map.put("img_1", StaticStrings.img[i]);
 			map.put("tx_name", StaticStrings.tx_name[i]);
@@ -62,7 +65,7 @@ public class LoginWelcomeAvtivity extends Activity {
                     Intent intent_coupon = new Intent(LoginWelcomeAvtivity.this, UserInfoActivity.class);
                     startActivity(intent_coupon);
                 } else if (position == 1) {
-                    Intent intent_coupon = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+                    Intent intent_coupon = new Intent(LoginWelcomeAvtivity.this, MyCourseActivity.class);
                     startActivity(intent_coupon);
                 } else if (position == 2) {
                     Intent intent_mycollect = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);

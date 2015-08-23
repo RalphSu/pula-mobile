@@ -105,6 +105,14 @@
     <string name="tx_3">账户设置</string>
     <string name="tx_balance">余额</string>
     <string name="user_info">我的个人信息</string>
+    <string name="updating">更新于：</string>
+    <string name="tx_introduce">介绍</string>
+    <string name="msg_login_error">用户未登录 或 密码错误</string>
+    <string name="course_name">课程:</string>
+    <string name="branch_name">分部:</string>   
+    <string name="available_period">有效期:</string>
+    <string name="course_duration_time">时长(分钟):</string>
+    <string name="course_open_time">开课时间:</string>
     
 	<!-- 星期 -->
 	<string name="Mon">一</string>
