@@ -23,4 +23,6 @@
 	<color name="ToDayText">#ffc2a53d</color>
 	
 	<color name="Noteback">#FFCC99</color>
+	
+	<color name="BookingDay">#ff6bd697</color>
 </resources>

@@ -157,6 +157,13 @@ public class CalendarGridViewAdapter extends BaseAdapter {
                 iv.setBackgroundColor(resources.getColor(R.color.calendar_zhe_day));
             }
         }
+
+        // highlight booking date
+        if (bookingFragment.getBookingData() != null) {
+            // TODO highlight the booking event day
+//            iv.setBackgroundColor(resources.getColor(R.color.BookingDay));
+        }
+
         // 设置背景颜色结束
 
         // 日期开始
