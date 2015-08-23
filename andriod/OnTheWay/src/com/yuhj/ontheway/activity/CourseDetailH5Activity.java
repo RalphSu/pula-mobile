@@ -24,7 +24,7 @@ import com.yuhj.ontheway.R;
 @SuppressLint("SetJavaScriptEnabled")
 public class CourseDetailH5Activity extends BaseActivity {
 
-    private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/get?id=%s";
+    private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s";
 
     private WebView webView;
     private ProgressBar progressBar;
