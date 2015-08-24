@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -21,6 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
+import com.yuhj.ontheway.bean.BookingData;
 import com.yuhj.ontheway.bean.CourseData;
 import com.yuhj.ontheway.bean.HuoDongData;
 import com.yuhj.ontheway.bean.JingXuanData;
@@ -38,16 +43,14 @@ import com.yuhj.ontheway.bean.UserInfoData;
  * @date 2014-10-22
  * @version 1.0
  */
+@SuppressWarnings("deprecation")
 public class ClientApi {
 	private static String startId;
 
 	public ClientApi() {
-		// TODO Auto-generated constructor stub
 	}
 
-	@SuppressWarnings("deprecation")
     public static JSONObject ParseJson(final String path, final String encode) {
-		// TODO Auto-generated method stub
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpParams httpParams = httpClient.getParams();
 		// HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
@@ -158,7 +161,6 @@ public class ClientApi {
 				}
 
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("------->"+list.size());
@@ -209,7 +211,6 @@ public class ClientApi {
 					list.add(jingxuanDetailData);
 				}
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return list;
@@ -379,6 +380,48 @@ public class ClientApi {
 		}
 		return userInfo;
 	}
+
+    public static List<BookingData> getBookingList(String studentNo, String closeStatus) {
+        String getBookingUrlTemp = "http://121.40.151.183:8080/pula-sys/app/audition/list?condition.closedStatus=%s&condition.studentNo=%s";
+        String url = String.format(getBookingUrlTemp, closeStatus, studentNo);
+
+        List<BookingData> bookingInfoList = new ArrayList<BookingData>();
+
+        JSONObject json = ParseJson(url, "utf-8");
+        if (json != null) {
+            try {
+                JSONArray records = json.getJSONArray("records");
+                if (records != null) {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject data = records.getJSONObject(i);
+                        BookingData bookingInfo = new BookingData();
+                        bookingInfo.setParentName(data.getString("parent"));
+                        bookingInfo.setComments(data.optString("comments"));
+                        bookingInfo.setId(data.getInt("id"));
+                        bookingInfo.setStudentName(data.optString("student"));
+                        bookingInfo.setContent(data.getString("content"));
+                        bookingInfo.setResultName(data.optString("resultName"));
+                        bookingInfo.setResultId(data.optString("resultId"));
+                        bookingInfo.setOwnerName(data.optString("ownerName"));
+                        bookingInfo.setCreatedTime(new Date(data.getLong("createdTime")));
+                        bookingInfo.setPhone(data.optString("phone"));
+                        bookingInfo.setAge(data.optString("age"));
+
+                        bookingInfo.setPlan1(data.optString("plan1"));
+                        bookingInfo.setPlan2(data.optString("plan2"));
+                        bookingInfo.setPlan3(data.optString("plan3"));
+                        bookingInfo.setPlan4(data.optString("plan4"));
+                        bookingInfo.setPlan5(data.optString("plan4"));
+
+                        bookingInfoList.add(bookingInfo);
+                    }
+                }
+            } catch (Exception e) {
+                Log.e("ClientAPI.getBookingList", "Fail to get booking list!", e);
+            }
+        }
+        return bookingInfoList;
+    }
 	
 	/**
 	 * 通过 url 联网得到返回字符串
