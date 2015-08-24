@@ -5,6 +5,7 @@ package com.yuhj.ontheway.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -23,32 +24,32 @@ import com.yuhj.ontheway.R;
  */
 @SuppressLint("SetJavaScriptEnabled")
 public class CourseDetailH5Activity extends BaseActivity {
-
-    private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s";
-
-    private WebView webView;
-    private ProgressBar progressBar;
+    Handler handler;
+    WebView webView;
+    TextView textView;
+    ProgressBar progressBar;
     private String url;
     private String name;
-    
+    private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s";
+
     @Override
-    @SuppressLint("InflateParams")
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         url = String.format(COURSE_DETIAL_GET, getIntent().getStringExtra("SearchId"));
         name = getIntent().getStringExtra("name");
         LinearLayout rootViewLayout = new LinearLayout(this);
         rootViewLayout.setOrientation(LinearLayout.VERTICAL);
-        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_zhuanti_detail, null);
-        // progress bar
-        TextView title = (TextView) view.findViewById(R.id.course_main_title);
-        
-        // set content data
-        title.setText(name);
+        View view = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.activity_zhuanti_detail, null);
+        // 生成水平进度条
+        //TextView title = (TextView) view.findViewById(R.id.huodong_main_title);
+        //AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
+        // ~~~ 设置数据
+        //title.setText(name);
         rootViewLayout.addView(view);
         progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
-
         webView = new WebView(this);
         rootViewLayout.addView(progressBar);
         rootViewLayout.addView(webView);
@@ -79,6 +80,7 @@ public class CourseDetailH5Activity extends BaseActivity {
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
+                // TODO Auto-generated method stub
                 super.onProgressChanged(view, newProgress);
                 // 这里将textView换成你的progress来设置进度
                 // if (newProgress == 0) {
@@ -94,4 +96,5 @@ public class CourseDetailH5Activity extends BaseActivity {
             }
         });
     }
+
 }
