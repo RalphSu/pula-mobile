@@ -31,6 +31,9 @@ public class List_2_2Adapter extends BaseAdapter {
 
 	Boolean state;
 
+	 
+	String [] week = new String[] {"星期一","星期二","星期三","星期四","星期五","星期六","星期日",};
+	 
 	public List_2_2Adapter(Context context, List<JSONTools> list) {
 		this.context = context;
 		this.list = list;
@@ -57,6 +60,7 @@ public class List_2_2Adapter extends BaseAdapter {
 	public View getView(final int position, View convertView,
 			final ViewGroup parent) {
 		final ViewHolder holder;
+		final int weekday;
 		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.list_2_item, null);
@@ -78,10 +82,13 @@ public class List_2_2Adapter extends BaseAdapter {
         
 		Log.i("msg.obj =", "" + tools.getName());
 		
+			
+		weekday = Integer.parseInt(tools.getStart_weekday());
+		
 		holder.course_name.setText(tools.getName());
 		holder.branch_name.setText(tools.getBranch_name());
 		holder.avaiable_period.setText(tools.getStart_time() + "-" + tools.getEnd_time());
-		holder.open_time.setText(tools.getStart_hour()+":"+tools.getStart_minute()+" "+tools.getStart_weekday());
+		holder.open_time.setText(tools.getStart_hour()+":"+tools.getStart_minute()+" "+  week[weekday]);
         holder.duration_time.setText(tools.getDuration_minute());		
 		String path = tools.getTeacher_pic_url();
 		holder.teacher_pic.setTag(path);

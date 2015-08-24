@@ -129,7 +129,8 @@ public class MyCourseActivity extends Activity {
 		*/
 		new Thread() {
 			public void run() {
-				InputStream is = HttpTools.getInputStream("http://121.40.151.183:8080/pula-sys/app/timecourse/list?condition.studentNo=PD0D00002");
+				Log.i("username=","" + userName);
+				InputStream is = HttpTools.getInputStream("http://121.40.151.183:8080/pula-sys/app/studentinterface/listTimeCourses?studentNo=" + userName);
 				Log.i("is=", "" + is);
 				if (is != null) {
 
@@ -222,8 +223,7 @@ public class MyCourseActivity extends Activity {
 								JSONTools to = list.get(position);
 								Intent intent = new Intent(MyCourseActivity.this,CourseDetailH5Activity.class);
 								
-								//intent.putExtra("SearchId",to.getCourse_no());
-								intent.putExtra("SearchId","1");
+								intent.putExtra("SearchId",to.getCourse_no());
 								intent.putExtra("name", to.getName());
 								startActivity(intent);
 							}
@@ -236,6 +236,7 @@ public class MyCourseActivity extends Activity {
 	  }
    };	
    
+   /*
 	public List<JSONTools> parseJson(String content){
 		
 		
@@ -269,7 +270,9 @@ public class MyCourseActivity extends Activity {
 		}
 		return list;
 	}
-	// 加载list内的数据
+*/
+
+   /*
 	public void PutData(String str) {
 		list = new ArrayList<JSONTools>();
 		JSONObject obj;
@@ -291,9 +294,7 @@ public class MyCourseActivity extends Activity {
 				list.add(tools);
 			}
 			pb.setVisibility(View.GONE);
-			// 将list转码
-
-			// 适配数据
+	
 			adapter = new List_2_2Adapter(MyCourseActivity.this, list);
 			my_course_list.setAdapter(adapter);
 		} catch (JSONException e) {
@@ -301,18 +302,17 @@ public class MyCourseActivity extends Activity {
 		}
 
 	}
-
+*/
+   /*
 	private void getDateFormServise() {
-		// final Api_AllStore tools=new Api_AllStore();
+	
 
 		new Thread() {
 			@Override
 			public void run() {
 				String result = null;
 				try {
-					// String
-					// pp=URIUtil.encodeQuery(tools.getSingle("deal/find_deals?",lim),
-					// "utf-8");
+			
 					result = ClientApi
 							.getDataByUrl("http://121.40.151.183:8080/pula-sys/app/timecourseorder/list?pageIndex=1&condition.studentNo=PD0D00002&_json=1");
 
@@ -325,12 +325,12 @@ public class MyCourseActivity extends Activity {
 					e.printStackTrace();
 				}
 				Message msg = Message.obtain();
-				msg.what = 6;// 刷新
+				msg.what = 6;
 				msg.obj = result;
 				Log.i("", "##############" + result);
 				handler.sendMessage(msg);
 			}
 		}.start();
-	}
+	} */
 }
 
