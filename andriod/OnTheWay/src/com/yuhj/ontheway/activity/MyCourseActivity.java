@@ -1,37 +1,12 @@
 package com.yuhj.ontheway.activity;
 
-import java.util.List;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.widget.Button;
-
-import com.yuhj.ontheway.adapter.List_2_2Adapter;
-import com.yuhj.ontheway.utils.HttpTools;
-import com.yuhj.ontheway.utils.JSONTools;
-import com.yuhj.ontheway.utils.JsonUtils;
-import com.yuhj.ontheway.utils.StaticStrings;
-import com.yuhj.ontheway.utils.RTPullListView.OnRefreshListener;
-import com.yuhj.ontheway.clients.ClientApi;
-import com.yuhj.ontheway.utils.RTPullListView;
-import com.yuhj.ontheway.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -44,7 +19,15 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.adapter.List_2_2Adapter;
+import com.yuhj.ontheway.clients.ClientApi;
+import com.yuhj.ontheway.utils.HttpTools;
+import com.yuhj.ontheway.utils.JSONTools;
+import com.yuhj.ontheway.utils.JsonUtils;
+import com.yuhj.ontheway.utils.RTPullListView;
+import com.yuhj.ontheway.utils.StaticStrings;
 
 public class MyCourseActivity extends Activity {
 	
@@ -68,8 +51,7 @@ public class MyCourseActivity extends Activity {
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.frame_my_course);
 
-		preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS,
-				MODE_PRIVATE);
+        preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
 		userName = preference.getString("USER_NAME", "");
 		
 		

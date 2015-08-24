@@ -98,6 +98,7 @@
     <string name="title_activity_zhuanti_detail">ZhuantiDetailActivity</string>
     <string name="title_activity_zhuanti_detail_image">ZhuantiDetailImageActivity</string>
     <string name="title_activity_huodong_detail">HuodongDetailActivity</string>
+    <string name="title_activity_booking">预约听课</string>
     <string name="tx_3_title">你好，你已登录</string>
     <string name="tx_3_introduce">欢 迎 来 到 普 拉 星 球</string>
     <string name="nul" />
@@ -113,6 +114,8 @@
     <string name="available_period">有效期:</string>
     <string name="course_duration_time">时长(分钟):</string>
     <string name="course_open_time">开课时间:</string>
+    <string name="prevMonth">上一个月</string>
+    <string name="nextMonth">下一个月</string>
     
 	<!-- 星期 -->
 	<string name="Mon">一</string>

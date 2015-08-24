@@ -1,4 +1,4 @@
-package com.yuhj.ontheway;
+package com.yuhj.ontheway.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.yuhj.ontheway.activity.BaseActivity;
-//import com.zdp.aseo.content.AseoZdpAseo;
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.R.layout;
 
 /**
  * @name HuodongDetailActivity

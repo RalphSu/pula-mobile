@@ -16,8 +16,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.yuhj.ontheway.HuodongDetailActivity;
 import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.activity.HuodongDetailActivity;
 import com.yuhj.ontheway.adapter.HuoDongAdapter;
 import com.yuhj.ontheway.bean.HuoDongData;
 import com.yuhj.ontheway.clients.ClientApi;

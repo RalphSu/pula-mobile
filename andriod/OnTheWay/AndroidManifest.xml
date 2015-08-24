@@ -92,8 +92,13 @@
             android:label="@string/title_activity_zhuanti_detail_image" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.HuodongDetailActivity"
+            android:name="com.yuhj.ontheway.activity.HuodongDetailActivity"
             android:label="@string/title_activity_huodong_detail" >
+        </activity>
+        
+        <activity
+            android:name="com.yuhj.ontheway.activity.BookingActivity"
+            android:label="@string/title_activity_booking" >
         </activity>
         
         <activity  android:name="com.yuhj.ontheway.activity.LoginWelcomeAvtivity"></activity>

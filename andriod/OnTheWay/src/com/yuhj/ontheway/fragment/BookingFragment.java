@@ -7,6 +7,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -37,10 +39,12 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.activity.BookingActivity;
 import com.yuhj.ontheway.adapter.CalendarGridViewAdapter;
 import com.yuhj.ontheway.adapter.NumberHelper;
 import com.yuhj.ontheway.bean.BookingData;
 import com.yuhj.ontheway.clients.ClientApi;
+import com.yuhj.ontheway.utils.StaticStrings;
 
 /**
  * @name JingXuanFragment
@@ -144,6 +148,10 @@ public class BookingFragment extends Fragment implements OnTouchListener {
             gNextAdapter.setSelectedDate(calSelected);
             gNextAdapter.notifyDataSetChanged();
             
+            // start detail activity
+            Intent intent = new Intent(getActivity(), BookingActivity.class);
+            intent.putExtra("calSelected", calSelected);
+            startActivity(intent);
         }
     }
     
@@ -167,13 +175,16 @@ public class BookingFragment extends Fragment implements OnTouchListener {
     private Button btnToday = null;
     private RelativeLayout mainLayout;
     
-    private List<BookingData> bookingData = new ArrayList<BookingData>();
+    private SharedPreferences preference;
     
+    private List<BookingData> bookingData = new ArrayList<BookingData>();
+
     class DownData extends AsyncTask<Void, Void, List<BookingData>> {
 
-    @Override
+        @Override
         protected List<BookingData> doInBackground(Void... arg0) {
-            return ClientApi.getBookingList("", "");
+            String no = preference.getString("studentno", "");
+            return ClientApi.getBookingList(no, "");
         }
 
         @Override
@@ -186,9 +197,10 @@ public class BookingFragment extends Fragment implements OnTouchListener {
             }
         }
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        preference = getActivity().getSharedPreferences(StaticStrings.PREFS_SETTINGS, Context.MODE_PRIVATE);
         new DownData().execute();
 
         generateContentView(inflater, container);
