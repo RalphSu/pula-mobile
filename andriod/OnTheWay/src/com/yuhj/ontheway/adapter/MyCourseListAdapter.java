@@ -6,10 +6,11 @@ import java.util.List;
 //import com.anjoyo.activity.MoreActivity;
 
 
+
 import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.bean.MyCourseJsonTools;
 import com.yuhj.ontheway.utils.AsyncImageLoader;
 import com.yuhj.ontheway.utils.HttpTools;
-import com.yuhj.ontheway.utils.JSONTools;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -22,9 +23,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class List_2_2Adapter extends BaseAdapter {
+public class MyCourseListAdapter extends BaseAdapter {
 	private Context context;
-	private List<JSONTools> list;
+	private List<MyCourseJsonTools> list;
 	private LayoutInflater inflater;
 	Bitmap bm;
 	private AsyncImageLoader loder = new AsyncImageLoader();
@@ -34,7 +35,7 @@ public class List_2_2Adapter extends BaseAdapter {
 	 
 	String [] week = new String[] {"星期一","星期二","星期三","星期四","星期五","星期六","星期日",};
 	 
-	public List_2_2Adapter(Context context, List<JSONTools> list) {
+	public MyCourseListAdapter(Context context, List<MyCourseJsonTools> list) {
 		this.context = context;
 		this.list = list;
 		inflater = (LayoutInflater) context
@@ -63,7 +64,7 @@ public class List_2_2Adapter extends BaseAdapter {
 		final int weekday;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.list_2_item, null);
+			convertView = inflater.inflate(R.layout.list_my_course_item, null);
 
 			holder.course_name = (TextView)convertView.findViewById(R.id.tx_course_name);
 			holder.branch_name = (TextView)convertView.findViewById(R.id.tx_branch_name);
@@ -77,7 +78,7 @@ public class List_2_2Adapter extends BaseAdapter {
 		}
 
 		// 取值
-		final JSONTools tools = list.get(position);
+		final MyCourseJsonTools tools = list.get(position);
 		// 赋值
         
 		Log.i("msg.obj =", "" + tools.getName());

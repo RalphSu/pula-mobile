@@ -116,7 +116,7 @@
     <string name="course_open_time">开课时间:</string>
     <string name="prevMonth">上一个月</string>
     <string name="nextMonth">下一个月</string>
-    
+    <string name="booking_plan">预约时间:</string>
 	<!-- 星期 -->
 	<string name="Mon">一</string>
 	<string name="Tue">二</string>

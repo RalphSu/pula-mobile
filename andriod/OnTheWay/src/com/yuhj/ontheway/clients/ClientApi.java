@@ -384,12 +384,15 @@ public class ClientApi {
 	}
 
     public static List<BookingData> getBookingList(String studentNo, String closeStatus) {
+    	
         if (StringUtils.isEmpty(studentNo)) {
             return Collections.emptyList();
         }
+        
         String getBookingUrlTemp = "http://121.40.151.183:8080/pula-sys/app/audition/list?condition.closedStatus=%s&condition.studentNo=%s";
 
-//        String getBookingUrlTemp = "http://192.168.199.167:8080/app/audition/list?condition.closedStatus=%s&condition.studentNo=%s";
+    
+        
         String url = String.format(getBookingUrlTemp, closeStatus, studentNo);
 
         List<BookingData> bookingInfoList = new ArrayList<BookingData>();
@@ -413,12 +416,12 @@ public class ClientApi {
                         bookingInfo.setCreatedTime(new Date(data.getLong("createdTime")));
                         bookingInfo.setPhone(data.optString("phone"));
                         bookingInfo.setAge(data.optString("age"));
-
+                        bookingInfo.setBranchName(data.optString("branchName"));
                         bookingInfo.setPlan1(data.optString("plan1"));
                         bookingInfo.setPlan2(data.optString("plan2"));
                         bookingInfo.setPlan3(data.optString("plan3"));
                         bookingInfo.setPlan4(data.optString("plan4"));
-                        bookingInfo.setPlan5(data.optString("plan4"));
+                        bookingInfo.setPlan5(data.optString("plan5"));
 
                         bookingInfoList.add(bookingInfo);
                     }

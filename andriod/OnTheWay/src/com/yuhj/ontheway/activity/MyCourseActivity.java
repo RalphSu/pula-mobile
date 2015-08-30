@@ -21,11 +21,11 @@ import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
 import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.adapter.List_2_2Adapter;
+import com.yuhj.ontheway.adapter.MyCourseListAdapter;
+import com.yuhj.ontheway.bean.MyCourseJsonTools;
 import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.HttpTools;
-import com.yuhj.ontheway.utils.JSONTools;
-import com.yuhj.ontheway.utils.JsonUtils;
+import com.yuhj.ontheway.utils.MyCourseJsonUtils;
 import com.yuhj.ontheway.utils.RTPullListView;
 import com.yuhj.ontheway.utils.StaticStrings;
 
@@ -33,13 +33,13 @@ public class MyCourseActivity extends Activity {
 	
 	RTPullListView my_course_list;
 	ProgressBar pb;
-	private List<JSONTools>list;
-	private JSONTools tools;	
-	private List<JSONTools>list_2;
+	private List<MyCourseJsonTools>list;
+	private MyCourseJsonTools tools;	
+	private List<MyCourseJsonTools>list_2;
 	String mess;
-	private JsonUtils jj;
+	private MyCourseJsonUtils jj;
 	RTPullListView list_2_2;
-	private List_2_2Adapter adapter;
+	private MyCourseListAdapter adapter;
 	private SharedPreferences preference;
 	private String userName;
 	
@@ -113,6 +113,8 @@ public class MyCourseActivity extends Activity {
 			public void run() {
 				Log.i("username=","" + userName);
 				InputStream is = HttpTools.getInputStream("http://121.40.151.183:8080/pula-sys/app/studentinterface/listTimeCourses?studentNo=" + userName);
+				//InputStream is = HttpTools.getInputStream("http://121.40.151.183:8080/pula-sys/app/studentinterface/listTimeCourses?studentNo=PD0D00002");
+				
 				Log.i("is=", "" + is);
 				if (is != null) {
 
@@ -180,8 +182,8 @@ public class MyCourseActivity extends Activity {
 			my_course_list.onRefreshComplete();
 			switch (msg.what) {
 			case 2:
-				jj = new JsonUtils();
-				list = new ArrayList<JSONTools>();
+				jj = new MyCourseJsonUtils();
+				list = new ArrayList<MyCourseJsonTools>();
 				
 				if(msg.obj != null)
 				{
@@ -191,7 +193,7 @@ public class MyCourseActivity extends Activity {
 				//list_2 = new ArrayList<JSONTools>();
 				pb.setVisibility(View.GONE);
 				
-				adapter = new List_2_2Adapter(MyCourseActivity.this, list);
+				adapter = new MyCourseListAdapter(MyCourseActivity.this, list);
 
 				my_course_list.setAdapter(adapter);
 				// list列表点击事件
@@ -202,10 +204,12 @@ public class MyCourseActivity extends Activity {
 							public void onItemClick(AdapterView<?> parent,
 									View view, int position, long id) {
 								position = position - 1;
-								JSONTools to = list.get(position);
+								MyCourseJsonTools to = list.get(position);
 								Intent intent = new Intent(MyCourseActivity.this,CourseDetailH5Activity.class);
 								
 								intent.putExtra("SearchId",to.getCourse_no());
+								//Log.i("course no  =", "" + to.getCourse_no()); 
+								//intent.putExtra("SearchId","1");
 								intent.putExtra("name", to.getName());
 								startActivity(intent);
 							}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="80dp" >
+    <ImageView
+        android:id="@+id/img_p"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/nul"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/pula_logo_circle"
+        />
+    
+	<TextView
+	    android:id="@+id/text_branch_name"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"
+	    android:text="@string/branch_name"/>
+	
+	<TextView
+	    android:id="@+id/tx_branch_name"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_toRightOf="@+id/text_branch_name"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+		
+	
+	<TextView
+	    android:id="@+id/text_booking_plan_name"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_below="@+id/text_branch_name"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:layout_marginTop="1dp"
+	    android:text="@string/booking_plan"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+	
+    <TextView
+	    android:id="@+id/tx_booking_plan_name1"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_below="@+id/text_booking_plan_name"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:layout_marginTop="1dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:visibility="gone"/>
+    
+     <TextView
+	    android:id="@+id/tx_booking_plan_name2"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_toRightOf="@+id/tx_booking_plan_name1"
+	    android:layout_below="@+id/text_booking_plan_name"
+	    android:layout_marginTop="1dp"
+	    android:layout_marginLeft="5dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:visibility="gone"/>
+     
+	  <TextView
+	    android:id="@+id/tx_booking_plan_name3"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:layout_below="@+id/tx_booking_plan_name1"
+	    android:layout_marginTop="1dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:visibility="gone"/>
+  	
+	  <TextView
+	    android:id="@+id/tx_booking_plan_name4"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_toRightOf="@+id/tx_booking_plan_name3"
+	    android:layout_below="@+id/tx_booking_plan_name1"
+	    android:layout_marginTop="1dp"
+	    android:layout_marginLeft="5dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:visibility="gone"/>  
+		
+	  <TextView
+	    android:id="@+id/tx_booking_plan_name5"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:layout_below="@+id/tx_booking_plan_name3"
+	    android:layout_marginTop="1dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:visibility="gone"/> 
+		
+</RelativeLayout>

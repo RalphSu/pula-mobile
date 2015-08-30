@@ -1,6 +1,6 @@
-package com.yuhj.ontheway.utils;
+package com.yuhj.ontheway.bean;
 
-public class JSONTools {
+public class MyCourseJsonTools {
 
 	private String start_time; //开始时间
 	private String end_time;//结束时间

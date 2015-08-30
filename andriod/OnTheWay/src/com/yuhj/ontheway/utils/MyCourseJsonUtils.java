@@ -7,21 +7,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JsonUtils {
+import com.yuhj.ontheway.bean.MyCourseJsonTools;
+
+public class MyCourseJsonUtils {
 	/**
 	 * ��װ�˽���json�ķ���������list<JSONTOOLS>
 	 */
-	private List<JSONTools>list;
-	private JSONTools tools;
+	private List<MyCourseJsonTools>list;
+	private MyCourseJsonTools tools;
 	//����list�ڵ�����
-	public List<JSONTools> PutData(String str){
-		list=new ArrayList<JSONTools>();
+	public List<MyCourseJsonTools> PutData(String str){
+		list=new ArrayList<MyCourseJsonTools>();
 		JSONObject obj;
 		try {
 			obj = new JSONObject(str);
 			JSONArray arr=obj.getJSONArray("data");
 			for(int i=0;i<arr.length();i++){
-				tools=new JSONTools();
+				tools=new MyCourseJsonTools();
 				JSONObject json=arr.getJSONObject(i);
       				
 				tools.setStart_weekday(json.getJSONObject("course").getString("startWeekDay"));
@@ -32,7 +34,7 @@ public class JsonUtils {
 				tools.setName(json.getJSONObject("course").getString("name"));
 				tools.setBranch_name(json.getJSONObject("course").getString("branchName"));
 				tools.setDuration_minute(json.getJSONObject("course").getString("durationMinute"));
-				tools.setCourse_no(json.getJSONObject("course").getString("no"));
+				tools.setCourse_no(json.getJSONObject("course").getString("id"));
 				list.add(tools);
 			}
 		} catch (JSONException e) {
