@@ -117,6 +117,13 @@
     <string name="prevMonth">上一个月</string>
     <string name="nextMonth">下一个月</string>
     <string name="booking_plan">预约时间:</string>
+    
+    <string name="point_add_del">积分增减:</string>
+    <string name="point_type">积分类型:</string>
+    <string name="create_time">创建时间:</string>
+    
+    
+    
 	<!-- 星期 -->
 	<string name="Mon">一</string>
 	<string name="Tue">二</string>

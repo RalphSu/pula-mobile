@@ -32,6 +32,7 @@ import com.yuhj.ontheway.bean.CourseData;
 import com.yuhj.ontheway.bean.HuoDongData;
 import com.yuhj.ontheway.bean.JingXuanData;
 import com.yuhj.ontheway.bean.JingxuanDetailData;
+import com.yuhj.ontheway.bean.MyPoints;
 import com.yuhj.ontheway.bean.UserInfo;
 import com.yuhj.ontheway.bean.UserInfoData;
 
@@ -390,8 +391,7 @@ public class ClientApi {
         }
         
         String getBookingUrlTemp = "http://121.40.151.183:8080/pula-sys/app/audition/list?condition.closedStatus=%s&condition.studentNo=%s";
-
-    
+ 
         
         String url = String.format(getBookingUrlTemp, closeStatus, studentNo);
 
@@ -433,6 +433,53 @@ public class ClientApi {
         return bookingInfoList;
     }
 	
+    
+  public static List<MyPoints> getMyPointList(String studentNo) {
+    	
+        if (StringUtils.isEmpty(studentNo)) {
+            return Collections.emptyList();
+        }
+        
+        //String getPointUrlTemp = "http://121.40.151.183:8080/pula-sys/app/studentpoints/list?condition.loginId=%s&_json=1";
+     
+        //String url = String.format(getPointUrlTemp,studentNo);
+        
+        //String url = String.format(getPointUrlTemp,"JQ00008");
+        
+        String url = "http://121.40.151.183:8080/pula-sys/app/studentpoints/list?condition.loginId=JQ00008&condition.type=0&_json=1";
+        
+        
+        List<MyPoints> myPointInfoList = new ArrayList<MyPoints>();
+
+        JSONObject json = ParseJson(url, "utf-8");
+        if (json != null) {
+            try {
+            	 Log.e("total records", ""+ json.getString("totalRecords"));
+            	 Log.e("total records", ""+ json.getString("recordsReturned"));
+            	 
+                JSONArray records = json.getJSONArray("records");
+                if (records != null) {
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject data = records.getJSONObject(i);
+                        MyPoints myPointInfo = new MyPoints();            
+                        myPointInfo.setOwnerNo(data.optString("ownerNo"));
+                        myPointInfo.setOwnerName(data.optString("ownerName"));
+                        myPointInfo.setCreatedTime(data.optString("createdTime"));
+                        myPointInfo.setPoints(data.getString("points"));
+                        myPointInfo.setType(data.getString("type"));
+                        myPointInfo.setComments(data.optString("comments"));
+                        myPointInfoList.add(myPointInfo);
+                    }
+                }
+            } catch (Exception e) {
+                Log.e("ClientAPI.getMyPointList", "Fail to get point list!", e);
+            }
+        }
+        return myPointInfoList;
+    }
+  
+    
+    
 	/**
 	 * 通过 url 联网得到返回字符串
 	 * 1.建立连接

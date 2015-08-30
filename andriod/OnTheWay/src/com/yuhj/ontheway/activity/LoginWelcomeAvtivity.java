@@ -70,7 +70,7 @@ public class LoginWelcomeAvtivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent_my_point = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+				Intent intent_my_point = new Intent(LoginWelcomeAvtivity.this, MyPointActivity.class);
 	            startActivity(intent_my_point);
 			}
 		});

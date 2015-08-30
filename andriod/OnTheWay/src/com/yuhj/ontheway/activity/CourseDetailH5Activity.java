@@ -6,6 +6,7 @@ package com.yuhj.ontheway.activity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -30,14 +31,36 @@ public class CourseDetailH5Activity extends BaseActivity {
     ProgressBar progressBar;
     private String url;
     private String name;
-    private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s";
+    
+    private String SearchId;
+    private String courseNo;
+    
+    private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s&no=%s";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        url = String.format(COURSE_DETIAL_GET, getIntent().getStringExtra("SearchId"));
+        
+        SearchId = getIntent().getStringExtra("SearchId");
+        courseNo = getIntent().getStringExtra("courseNo");
+         
+        if(SearchId == null)
+        {
+        	SearchId = "";
+        }
+        
+        if(courseNo == null)
+        {
+        	courseNo = "";
+        }
+        
+        
+        url = String.format(COURSE_DETIAL_GET, SearchId,courseNo);
+        
+        Log.i("H5 URL =", url); 	
+        
         name = getIntent().getStringExtra("name");
         LinearLayout rootViewLayout = new LinearLayout(this);
         rootViewLayout.setOrientation(LinearLayout.VERTICAL);

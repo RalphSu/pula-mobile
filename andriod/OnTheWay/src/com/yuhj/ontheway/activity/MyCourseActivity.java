@@ -207,7 +207,7 @@ public class MyCourseActivity extends Activity {
 								MyCourseJsonTools to = list.get(position);
 								Intent intent = new Intent(MyCourseActivity.this,CourseDetailH5Activity.class);
 								
-								intent.putExtra("SearchId",to.getCourse_no());
+								intent.putExtra("courseNo",to.getCourse_no());
 								//Log.i("course no  =", "" + to.getCourse_no()); 
 								//intent.putExtra("SearchId","1");
 								intent.putExtra("name", to.getName());

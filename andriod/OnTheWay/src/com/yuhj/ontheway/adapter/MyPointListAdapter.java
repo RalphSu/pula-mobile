@@ -4,8 +4,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import com.yuhj.ontheway.R;
-//import com.yuhj.ontheway.bean.MyCourseJsonTools;
-import com.yuhj.ontheway.bean.BookingData;
+import com.yuhj.ontheway.bean.MyPoints;
 import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.AsyncImageLoader;
 import com.yuhj.ontheway.utils.HttpTools;
@@ -21,9 +20,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MyBookingListAdapter extends BaseAdapter {
+public class MyPointListAdapter extends BaseAdapter {
 	private Context context;
-	private List<BookingData> list;
+	private List<MyPoints> list;
 	private LayoutInflater inflater;
 	Bitmap bm;
 	private AsyncImageLoader loder = new AsyncImageLoader();
@@ -31,7 +30,7 @@ public class MyBookingListAdapter extends BaseAdapter {
 	Boolean state;
 
 	 
-	public MyBookingListAdapter(Context context, List<BookingData> list) {
+	public MyPointListAdapter(Context context, List<MyPoints> list) {
 		this.context = context;
 		this.list = list;
 		inflater = (LayoutInflater) context
@@ -60,16 +59,14 @@ public class MyBookingListAdapter extends BaseAdapter {
 		final int weekday;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.list_my_booking_item, null);
+			convertView = inflater.inflate(R.layout.list_my_point_item, null);
 	
-			holder.branch_name = (TextView)convertView.findViewById(R.id.tx_branch_name);
-			holder.plan1 = (TextView)convertView.findViewById(R.id.tx_booking_plan_name1);
-			//holder.plan2 = (TextView)convertView.findViewById(R.id.tx_booking_plan_name2);
-			//holder.plan3 = (TextView)convertView.findViewById(R.id.tx_booking_plan_name3);
-			//holder.plan4 = (TextView)convertView.findViewById(R.id.tx_booking_plan_name4);
-			//holder.plan5 = (TextView)convertView.findViewById(R.id.tx_booking_plan_name5);
-			
+			holder.createdTime = (TextView)convertView.findViewById(R.id.tx_create_time_name);
+			holder.points = (TextView)convertView.findViewById(R.id.tx_point_type_name);
+			holder.type = (TextView)convertView.findViewById(R.id.tx_point_type_name);
+			holder.comments = (TextView)convertView.findViewById(R.id.tx_comments_name);			
 			holder.teacher_pic = (ImageView) convertView.findViewById(R.id.img_p);
+			
 			convertView.setTag(holder);
 			
 		} else {
@@ -77,46 +74,33 @@ public class MyBookingListAdapter extends BaseAdapter {
 		}
 
 		// 取值
-		final BookingData tools = list.get(position);
+		final MyPoints tools = list.get(position);
 		// 赋值
         
-		Log.i("msg.obj =", "" + tools.getBranchName());
 	
-		if(tools.getPlan1() != null)
+		if(tools.getPoints() != null)
 		{	
-		 holder.plan1.setText(tools.getPlan1());
-		 holder.plan1.setVisibility(View.VISIBLE);
-		}
-		/*
-		if(tools.getPlan2() != null)
-		{	
-		 holder.plan2.setText(tools.getPlan2());
-		 holder.plan2.setVisibility(View.VISIBLE);
-		}
-		
-		if(tools.getPlan3() != null)
-		{	
-		 holder.plan3.setText(tools.getPlan3());
-		 holder.plan3.setVisibility(View.VISIBLE);
-		}
-		
-		if(tools.getPlan4() != null)
-		{	
-		 holder.plan4.setText(tools.getPlan4());	
-		 holder.plan4.setVisibility(View.VISIBLE);
+		 holder.points.setText(tools.getPoints());
+		 
 		}
 	
-		if(tools.getPlan5() != null)
+		if(tools.getType() != null)
 		{	
-		 holder.plan5.setText(tools.getPlan5());
-		 holder.plan5.setVisibility(View.VISIBLE);
+		 holder.type.setText(tools.getType());
+		 
 		}
-		*/
 		
-		if(tools.getBranchName() != null)
-		{			
-		 holder.branch_name.setText(tools.getBranchName());
+		if(tools.getComments() != null)
+		{	
+		 holder.type.setText(tools.getComments());
+		 
 		}
+		
+		if(tools.getCreatedTime() != null)
+		{	
+		 holder.createdTime.setText(tools.getCreatedTime());	
+		}
+	
 		/*
 		String path = tools.getTeacher_pic_url();
 			
@@ -152,6 +136,7 @@ public class MyBookingListAdapter extends BaseAdapter {
 
 	public class ViewHolder {
 		private ImageView teacher_pic;		
-		private TextView plan1,plan2,plan3,plan4,plan5,branch_name;
+		private TextView createdTime,points,type,comments;
+		
 	}
 }

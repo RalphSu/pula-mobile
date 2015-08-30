@@ -15,19 +15,19 @@
         />
     
 	<TextView
-	    android:id="@+id/text_branch_name"
+	    android:id="@+id/text_point_name"
 	    style="@style/Stylewidthhight_ww"
 	    android:layout_toRightOf="@+id/img_p"
 	    android:singleLine="true"
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"
-	    android:text="@string/branch_name"/>
+	    android:text="@string/point_add_del"/>
 	
 	<TextView
-	    android:id="@+id/tx_branch_name"
+	    android:id="@+id/tx_point_name"
 	    style="@style/Stylewidthhight_ww"
-	    android:layout_toRightOf="@+id/text_branch_name"
+	    android:layout_toRightOf="@+id/text_point_name"
 	    android:text="@string/nul"
 	    android:singleLine="true"
 		android:ellipsize="marquee"
@@ -36,30 +36,78 @@
 		
 	
 	<TextView
-	    android:id="@+id/text_booking_plan_name"
+	    android:id="@+id/text_point_type_name"
 	    style="@style/Stylewidthhight_ww"
-	    android:layout_below="@+id/text_branch_name"
+	    android:layout_below="@+id/text_point_name"
 	    android:layout_toRightOf="@+id/img_p"
 	    android:layout_marginTop="5dp"
-	    android:text="@string/booking_plan"
+	    android:text="@string/point_type"
 	    android:singleLine="true"
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"/>
 	
-	    <TextView
-	    android:id="@+id/tx_booking_plan_name1"
+	 <TextView
+	    android:id="@+id/tx_point_type_name"
 	    style="@style/Stylewidthhight_ww"
-	    android:layout_below="@+id/text_branch_name"
-	    android:layout_toRightOf="@+id/text_booking_plan_name"
+	    android:layout_below="@+id/text_point_name"
+	    android:layout_toRightOf="@+id/text_point_type_name"
 	    android:layout_marginTop="5dp"
 	    android:text="@string/nul"
 	    android:singleLine="true"
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
-		android:marqueeRepeatLimit="marquee_forever"
-		android:visibility="gone"/>
-	    
+		android:marqueeRepeatLimit="marquee_forever"/>
+	 
+	 <TextView
+	    android:id="@+id/text_comments_name"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_below="@+id/text_point_type_name"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:layout_marginTop="5dp"
+	    android:text="@string/point_type"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+	
+	 <TextView
+	    android:id="@+id/tx_comments_name"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_below="@+id/text_point_type_name"
+	    android:layout_toRightOf="@+id/text_comments_name"
+	    android:layout_marginTop="5dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+	
+	 <TextView
+	    android:id="@+id/text_create_time_name"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_below="@+id/text_comments_name"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:layout_marginTop="5dp"
+	    android:text="@string/create_time"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+	
+	 <TextView
+	    android:id="@+id/tx_create_time_name"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_below="@+id/text_comments_name"
+	    android:layout_toRightOf="@+id/text_create_time_name"
+	    android:layout_marginTop="5dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+	 
+	 
  <!--
     <ImageView
         android:id="@+id/img_p"
