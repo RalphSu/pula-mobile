@@ -120,6 +120,7 @@
     
     <string name="point_add_del">积分增减:</string>
     <string name="point_type">积分类型:</string>
+    <string name="point_comments">积分备注:</string>   
     <string name="create_time">创建时间:</string>
     
     

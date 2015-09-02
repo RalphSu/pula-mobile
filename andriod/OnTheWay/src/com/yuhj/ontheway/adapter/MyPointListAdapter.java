@@ -62,7 +62,7 @@ public class MyPointListAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.list_my_point_item, null);
 	
 			holder.createdTime = (TextView)convertView.findViewById(R.id.tx_create_time_name);
-			holder.points = (TextView)convertView.findViewById(R.id.tx_point_type_name);
+			holder.points = (TextView)convertView.findViewById(R.id.tx_point_name);
 			holder.type = (TextView)convertView.findViewById(R.id.tx_point_type_name);
 			holder.comments = (TextView)convertView.findViewById(R.id.tx_comments_name);			
 			holder.teacher_pic = (ImageView) convertView.findViewById(R.id.img_p);
@@ -92,7 +92,7 @@ public class MyPointListAdapter extends BaseAdapter {
 		
 		if(tools.getComments() != null)
 		{	
-		 holder.type.setText(tools.getComments());
+		 holder.comments.setText(tools.getComments());
 		 
 		}
 		

@@ -440,13 +440,13 @@ public class ClientApi {
             return Collections.emptyList();
         }
         
-        //String getPointUrlTemp = "http://121.40.151.183:8080/pula-sys/app/studentpoints/list?condition.loginId=%s&_json=1";
+        String getPointUrlTemp = "http://121.40.151.183:8080/pula-sys/app/studentpoints/list?condition.loginId=%s&_json=1";
      
-        //String url = String.format(getPointUrlTemp,studentNo);
+        String url = String.format(getPointUrlTemp,studentNo);
         
         //String url = String.format(getPointUrlTemp,"JQ00008");
         
-        String url = "http://121.40.151.183:8080/pula-sys/app/studentpoints/list?condition.loginId=JQ00008&condition.type=0&_json=1";
+        //String url = "http://121.40.151.183:8080/pula-sys/app/studentpoints/list?&_json=1";
         
         
         List<MyPoints> myPointInfoList = new ArrayList<MyPoints>();
@@ -454,9 +454,9 @@ public class ClientApi {
         JSONObject json = ParseJson(url, "utf-8");
         if (json != null) {
             try {
-            	 Log.e("total records", ""+ json.getString("totalRecords"));
-            	 Log.e("total records", ""+ json.getString("recordsReturned"));
-            	 
+            	
+            	 Log.e("total records", ""+ json);
+            	  
                 JSONArray records = json.getJSONArray("records");
                 if (records != null) {
                     for (int i = 0; i < records.length(); i++) {

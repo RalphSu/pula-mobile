@@ -65,7 +65,7 @@
 	    android:layout_below="@+id/text_point_type_name"
 	    android:layout_toRightOf="@+id/img_p"
 	    android:layout_marginTop="5dp"
-	    android:text="@string/point_type"
+	    android:text="@string/point_comments"
 	    android:singleLine="true"
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
