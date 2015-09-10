@@ -4,20 +4,27 @@
 package com.yuhj.ontheway.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.activity.buy.BuyCourseSubmitActivity;
+import com.yuhj.ontheway.utils.StaticStrings;
 
 /**
  * @author Liangfei
@@ -31,51 +38,54 @@ public class CourseDetailH5Activity extends BaseActivity {
     ProgressBar progressBar;
     private String url;
     private String name;
-    
+
     private String SearchId;
     private String courseNo;
-    
+
     private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s&no=%s";
 
+    private SharedPreferences preference;
+    private String userName;
+    private String passWord;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
+        preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
+        userName = preference.getString("USER_NAME", "");
+        passWord = preference.getString("PASSWORD", "");
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
+
         SearchId = getIntent().getStringExtra("SearchId");
         courseNo = getIntent().getStringExtra("courseNo");
-         
-        if(SearchId == null)
-        {
-        	SearchId = "";
+
+        if (SearchId == null) {
+            SearchId = "";
         }
-        
-        if(courseNo == null)
-        {
-        	courseNo = "";
+
+        if (courseNo == null) {
+            courseNo = "";
         }
-        
-        
-        url = String.format(COURSE_DETIAL_GET, SearchId,courseNo);
-        
-        Log.i("H5 URL =", url); 	
-        
+
+        url = String.format(COURSE_DETIAL_GET, SearchId, courseNo);
+
+        Log.i("H5 URL =", url);
+
         name = getIntent().getStringExtra("name");
         LinearLayout rootViewLayout = new LinearLayout(this);
         rootViewLayout.setOrientation(LinearLayout.VERTICAL);
-        View view = LayoutInflater.from(getApplicationContext()).inflate(
-                R.layout.activity_zhuanti_detail, null);
-        // 生成水平进度条
-        //TextView title = (TextView) view.findViewById(R.id.huodong_main_title);
-        //AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
-        // ~~~ 设置数据
-        //title.setText(name);
+        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_zhuanti_detail, null);
         rootViewLayout.addView(view);
+
         progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         webView = new WebView(this);
         rootViewLayout.addView(progressBar);
         rootViewLayout.addView(webView);
+
+        addBuyNowButton(rootViewLayout);
+
         setContentView(rootViewLayout);
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -103,19 +113,35 @@ public class CourseDetailH5Activity extends BaseActivity {
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                // TODO Auto-generated method stub
                 super.onProgressChanged(view, newProgress);
-                // 这里将textView换成你的progress来设置进度
-                // if (newProgress == 0) {
-                // textView.setVisibility(View.VISIBLE);
-                // progressBar.setVisibility(View.VISIBLE);
-                // }
                 progressBar.setProgress(newProgress);
                 progressBar.postInvalidate();
-                // if (newProgress == 100) {
-                // textView.setVisibility(View.GONE);
-                // progressBar.setVisibility(View.GONE);
-                // }
+            }
+        });
+    }
+
+
+    private void addBuyNowButton(LinearLayout rootViewLayout) {
+        // check login
+        if (userName == null || passWord == null) {
+            return;
+        }
+        // TODO check whether already bought the course?
+
+        Button btn = new Button(this);
+        btn.setText("马上购买!");
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        btn.setLayoutParams(params);
+        rootViewLayout.addView(btn);
+
+        btn.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // start buy activity
+                Intent intent = new Intent(CourseDetailH5Activity.this, BuyCourseSubmitActivity.class);
+                intent.putExtra("courseNo", courseNo);
+                startActivity(intent);
             }
         });
     }
