@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.activity.buy.BuyCourseSubmitActivity;
+import com.yuhj.ontheway.activity.buy.BuyHuodongSubmitActivity;
 import com.yuhj.ontheway.utils.StaticStrings;
 
 /**
@@ -124,7 +124,7 @@ public class HuodongDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // start buy activity
-                Intent intent = new Intent(HuodongDetailActivity.this, BuyCourseSubmitActivity.class);
+                Intent intent = new Intent(HuodongDetailActivity.this, BuyHuodongSubmitActivity.class);
                 intent.putExtra("noticeId", noticeId);
                 startActivity(intent);
             }
