@@ -1,9 +1,9 @@
 package com.yuhj.ontheway.fragment;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,14 +14,12 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.Display;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -41,7 +39,6 @@ import android.widget.ViewFlipper;
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.activity.BookingActivity;
 import com.yuhj.ontheway.adapter.CalendarGridViewAdapter;
-import com.yuhj.ontheway.adapter.NumberHelper;
 import com.yuhj.ontheway.bean.BookingData;
 import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.StaticStrings;
@@ -69,10 +66,11 @@ public class BookingFragment extends Fragment implements OnTouchListener {
     private Animation slideRightIn;
     private Animation slideRightOut;
     private ViewFlipper viewFlipper;
-    private GestureDetector mGesture = null;
+//    private GestureDetector mGesture = null;
 
     public boolean onTouch(View v, MotionEvent event) {
-        return mGesture.onTouchEvent(event);
+//        return mGesture.onTouchEvent(event);
+        return true;
     }
 
     private AnimationListener animationListener=new AnimationListener() {
@@ -88,47 +86,39 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         }
     };
 
-    private class GestureListener extends SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,float velocityY) {
-            try {
-                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
-                    return false;
-                // right to left swipe
-                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE  && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    viewFlipper.setInAnimation(slideLeftIn);
-                    viewFlipper.setOutAnimation(slideLeftOut);
-                    setNextViewItem();
-                    //CreateGirdView();
-                    return true;
-
-                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    viewFlipper.setInAnimation(slideRightIn);
-                    viewFlipper.setOutAnimation(slideRightOut);
-                    viewFlipper.showPrevious();
-                    setPrevViewItem();
-                    //CreateGirdView();
-                    return true;
-
-                }
-            } catch (Exception e) {
-                // nothing
-            }
-            return false;
-        }
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            // ListView lv = getListView();
-            //得到当前选中的是第几个单元格
-            int pos = ((GridView)viewFlipper.getCurrentView()).pointToPosition((int) e.getX(), (int) e.getY());
-            LinearLayout txtDay = (LinearLayout) ((GridView)viewFlipper.getCurrentView()).findViewById(pos + 5000);
-            notifyCalendarDaySelected(txtDay);
-
-            Log.i("TEST", "onSingleTapUp -  pos=" + pos);
-
-            return false;
-        }
-    }
+//    private class GestureListener extends SimpleOnGestureListener {
+//        @Override
+//        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,float velocityY) {
+//            try {
+//                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+//                    return false;
+//                // right to left swipe
+//                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE  && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+//                    setNextViewItem();
+//                    return true;
+//
+//                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+//                    setPrevViewItem();
+//                    return true;
+//                }
+//            } catch (Exception e) {
+//                // nothing
+//            }
+//            return false;
+//        }
+//        @Override
+//        public boolean onSingleTapUp(MotionEvent e) {
+//            // ListView lv = getListView();
+//            //得到当前选中的是第几个单元格
+//            int pos = ((GridView)viewFlipper.getCurrentView()).pointToPosition((int) e.getX(), (int) e.getY());
+//            LinearLayout txtDay = (LinearLayout) ((GridView)viewFlipper.getCurrentView()).findViewById(pos + 5000);
+//            notifyCalendarDaySelected(txtDay);
+//
+//            Log.i("TEST", "onSingleTapUp -  pos=" + pos);
+//
+//            return false;
+//        }
+//    }
 
     /**
      * Called when a calendar day grid was clicked
@@ -136,17 +126,17 @@ public class BookingFragment extends Fragment implements OnTouchListener {
      */
     public void notifyCalendarDaySelected(LinearLayout clickedDayLayout) {
         if (clickedDayLayout != null && clickedDayLayout.getTag() != null) {
-            Date date = (Date) clickedDayLayout.getTag();
-            calSelected.setTime(date);
+            DateTime date = (DateTime) clickedDayLayout.getTag();
+            calSelected = date;
 
             gCurrentAdapter.setSelectedDate(calSelected);
             gCurrentAdapter.notifyDataSetChanged();
 
-            gPrevAdapter.setSelectedDate(calSelected);
-            gPrevAdapter.notifyDataSetChanged();
+//            gPrevAdapter.setSelectedDate(calSelected);
+//            gPrevAdapter.notifyDataSetChanged();
 
-            gNextAdapter.setSelectedDate(calSelected);
-            gNextAdapter.notifyDataSetChanged();
+//            gNextAdapter.setSelectedDate(calSelected);
+//            gNextAdapter.notifyDataSetChanged();
             
             // start detail activity
             Intent intent = new Intent(getActivity(), BookingActivity.class);
@@ -162,17 +152,18 @@ public class BookingFragment extends Fragment implements OnTouchListener {
     // 基本变量
     private Context mContext = null;
     private GridView title_gView;
-    private GridView gPrevView;// 上一个月
+//    private GridView gPrevView;// 上一个月
     private GridView gCurrentView;// 当前月
     private GridView gNextView;// 下一个月
-    private Calendar calStartDate = Calendar.getInstance();// 当前显示的日历
-    private Calendar calSelected = Calendar.getInstance(); // 选择的日历
-    private Calendar calToday = Calendar.getInstance(); // 今日
+    private DateTime calCurrentMonthFirstDay = DateTime.now();// day 1 of current caleander's month
+    private DateTime calSelected = DateTime.now(); // 选择的日历
     private CalendarGridViewAdapter gCurrentAdapter;
-    private CalendarGridViewAdapter gPrevAdapter;
+//    private CalendarGridViewAdapter gPrevAdapter;
     private CalendarGridViewAdapter gNextAdapter;
     // 顶部按钮
     private Button btnToday = null;
+    private Button btnPrevMonth = null;
+    private Button btnNextMonth = null;
     private RelativeLayout mainLayout;
     
     private SharedPreferences preference;
@@ -204,7 +195,7 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         new DownData().execute();
 
         generateContentView(inflater, container);
-        UpdateStartDateForMonth();
+
 
         slideLeftIn = AnimationUtils.loadAnimation(this.getActivity(), R.anim.slide_left_in);
         slideLeftOut = AnimationUtils.loadAnimation(this.getActivity(), R.anim.slide_left_out);
@@ -216,15 +207,11 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         slideRightIn.setAnimationListener(animationListener);
         slideRightOut.setAnimationListener(animationListener);
 
-        mGesture = new GestureDetector(this.mContext, new GestureListener());
+//        mGesture = new GestureDetector(this.mContext, new GestureListener());
 
         return mainLayout;
     }
 
-    //
-    private int iMonthViewCurrentMonth = 0; // 当前视图月
-    private int iMonthViewCurrentYear = 0; // 当前视图年
-    private int iFirstDayOfWeek = Calendar.MONDAY;
     /** 底部菜单文字 **/
     String[] menu_toolbar_name_array;
 
@@ -238,7 +225,8 @@ public class BookingFragment extends Fragment implements OnTouchListener {
 
         setTitleGirdView();
 
-        calStartDate = getCalendarStartDate();
+        calCurrentMonthFirstDay = DateTime.now();// when create, by default is the current month
+
         viewFlipper = (ViewFlipper) mainLayout.findViewById(R.id.bookingViewFlipper);
         CreateGirdView();
 
@@ -255,18 +243,26 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         btnToday = (Button)layTopControls.findViewById(R.id.bookingTodayButton);
         // 创建一个当前月按钮（中间的按钮）
         btnToday.setBackgroundResource(Color.TRANSPARENT);
-
-        // 当前月的点击事件的监听
-        btnToday.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View arg0) {
-                setToDayViewItem();
+        
+        btnPrevMonth = (Button)layTopControls.findViewById(R.id.bookingPrevMonthButton);
+        btnPrevMonth.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setPrevViewItem();
+            }
+        });
+        
+        btnNextMonth = (Button)layTopControls.findViewById(R.id.bookingNextMonthButton);
+        btnNextMonth.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNextViewItem();
             }
         });
     }
 
     @SuppressWarnings("deprecation")
     private void setTitleGirdView() {
-
         title_gView = (GridView) mainLayout.findViewById(R.id.bookingTitleGridView);
         title_gView.setVerticalSpacing(0);// 垂直间隔
         title_gView.setHorizontalSpacing(0);// 水平间隔
@@ -283,34 +279,27 @@ public class BookingFragment extends Fragment implements OnTouchListener {
     }
 
     private void CreateGirdView() {
+        updateCalendarTitle();
+        
+        // pre month calendar
+//        gPrevAdapter = new CalendarGridViewAdapter(this.getActivity(), calCurrentMonthFirstDay.minusMonths(1), this);
+//        gPrevView = createCalendarView(R.id.prevMonthCalendarView, gPrevAdapter);
 
-        Calendar prevCalendar = Calendar.getInstance(); // 临时
-        Calendar currentCalendar = Calendar.getInstance(); // 临时
-        Calendar nextCalendar = Calendar.getInstance(); // 临时
-        prevCalendar.setTime(calStartDate.getTime());
-        currentCalendar.setTime(calStartDate.getTime());
-        nextCalendar.setTime(calStartDate.getTime());
+        // current month calendar 
+        gCurrentAdapter = new CalendarGridViewAdapter(this.getActivity(), calCurrentMonthFirstDay, this);
+        gCurrentView = createCalendarView(R.id.currentMonthCalendarView, gCurrentAdapter);
 
-        // pre month
-        gPrevAdapter = new CalendarGridViewAdapter(this.getActivity(), prevCalendar, this);
-        prevCalendar.add(Calendar.MONTH, -1);
-        gPrevView = createCalendarView(prevCalendar, R.id.prevMonthCalendarView, gPrevAdapter);
+        // next month calendar
+        gNextAdapter = new CalendarGridViewAdapter(this.getActivity(), calCurrentMonthFirstDay.plusMonths(1), this);
+        gNextView = createCalendarView(R.id.nextMonthCalendarView, gNextAdapter);
 
-        gCurrentAdapter = new CalendarGridViewAdapter(this.getActivity(), currentCalendar, this);
-        gCurrentView = createCalendarView(prevCalendar, R.id.currentMonthCalendarView, gCurrentAdapter);
-
-        nextCalendar.add(Calendar.MONTH, 1);
-        gNextAdapter = new CalendarGridViewAdapter(this.getActivity(), nextCalendar, this);
-        gNextView = createCalendarView(prevCalendar, R.id.nextMonthCalendarView, gNextAdapter);
-
-        gCurrentView.setOnTouchListener(this);
-        gPrevView.setOnTouchListener(this);
-        gNextView.setOnTouchListener(this);
-
+//        gCurrentView.setOnTouchListener(this);
+//        gPrevView.setOnTouchListener(this);
+//        gNextView.setOnTouchListener(this);
     }
 
     @SuppressWarnings("deprecation")
-    private GridView createCalendarView(Calendar tempSelected1, int id, CalendarGridViewAdapter adapter) {
+    private GridView createCalendarView(int id, CalendarGridViewAdapter adapter) {
         GridView gview = (GridView)viewFlipper.findViewById(id);
         
         gview.setAdapter(adapter);// 设置菜单Adapter
@@ -325,82 +314,23 @@ public class BookingFragment extends Fragment implements OnTouchListener {
         return gview;
     }
 
-    // 上一个月
     private void setPrevViewItem() {
-        iMonthViewCurrentMonth--;// 当前选择月--
-        // 如果当前月为负数的话显示上一年
-        if (iMonthViewCurrentMonth == -1) {
-            iMonthViewCurrentMonth = 11;
-            iMonthViewCurrentYear--;
-        }
-        calStartDate.set(Calendar.DAY_OF_MONTH, 1); // 设置日为当月1日
-        calStartDate.set(Calendar.MONTH, iMonthViewCurrentMonth); // 设置月
-        calStartDate.set(Calendar.YEAR, iMonthViewCurrentYear); // 设置年
+        calCurrentMonthFirstDay = calCurrentMonthFirstDay.minusMonths(1);
+        viewFlipper.setInAnimation(slideLeftIn);
+        viewFlipper.setOutAnimation(slideLeftOut);
+        CreateGirdView();
     }
 
-    // 当月
-    private void setToDayViewItem() {
-        calSelected.setTimeInMillis(calToday.getTimeInMillis());
-        calSelected.setFirstDayOfWeek(iFirstDayOfWeek);
-        calStartDate.setTimeInMillis(calToday.getTimeInMillis());
-        calStartDate.setFirstDayOfWeek(iFirstDayOfWeek);
-    }
-
-    // 下一个月
     private void setNextViewItem() {
-        iMonthViewCurrentMonth++;
-        if (iMonthViewCurrentMonth == 12) {
-            iMonthViewCurrentMonth = 0;
-            iMonthViewCurrentYear++;
-        }
-        calStartDate.set(Calendar.DAY_OF_MONTH, 1);
-        calStartDate.set(Calendar.MONTH, iMonthViewCurrentMonth);
-        calStartDate.set(Calendar.YEAR, iMonthViewCurrentYear);
+        viewFlipper.setInAnimation(slideLeftIn);
+        viewFlipper.setOutAnimation(slideLeftOut);
+        calCurrentMonthFirstDay = calCurrentMonthFirstDay.plusMonths(1);
+        CreateGirdView();
     }
 
-    // 根据改变的日期更新日历
-    // 填充日历控件用
-    private void UpdateStartDateForMonth() {
-        calStartDate.set(Calendar.DATE, 1); // 设置成当月第一天
-        iMonthViewCurrentMonth = calStartDate.get(Calendar.MONTH);// 得到当前日历显示的月
-        iMonthViewCurrentYear = calStartDate.get(Calendar.YEAR);// 得到当前日历显示的年
-
-        // 星期一是2 星期天是1 填充剩余天数
-        int iDay = 0;
-        int iFirstDayOfWeek = Calendar.MONDAY;
-        int iStartDay = iFirstDayOfWeek;
-        if (iStartDay == Calendar.MONDAY) {
-            iDay = calStartDate.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY;
-            if (iDay < 0)
-                iDay = 6;
-        }
-        if (iStartDay == Calendar.SUNDAY) {
-            iDay = calStartDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY;
-            if (iDay < 0)
-                iDay = 6;
-        }
-        calStartDate.add(Calendar.DAY_OF_WEEK, -iDay);
-
-        String s = calStartDate.get(Calendar.YEAR)
-                + "-"
-                + NumberHelper.LeftPad_Tow_Zero(calStartDate
-                        .get(Calendar.MONTH) + 1);
+    private void updateCalendarTitle() {
+        String s = calCurrentMonthFirstDay.getYear() + "-" + calCurrentMonthFirstDay.getMonthOfYear();
         btnToday.setText(s);
-    }
-
-    private Calendar getCalendarStartDate() {
-        calToday.setTimeInMillis(System.currentTimeMillis());
-        calToday.setFirstDayOfWeek(iFirstDayOfWeek);
-
-        if (calSelected.getTimeInMillis() == 0) {
-            calStartDate.setTimeInMillis(System.currentTimeMillis());
-            calStartDate.setFirstDayOfWeek(iFirstDayOfWeek);
-        } else {
-            calStartDate.setTimeInMillis(calSelected.getTimeInMillis());
-            calStartDate.setFirstDayOfWeek(iFirstDayOfWeek);
-        }
-
-        return calStartDate;
     }
 
     public List<BookingData> getBookingData() {
@@ -410,7 +340,6 @@ public class BookingFragment extends Fragment implements OnTouchListener {
     public void setBookingData(List<BookingData> bookingData) {
         this.bookingData = bookingData;
     }
-
 
     /**
      * 

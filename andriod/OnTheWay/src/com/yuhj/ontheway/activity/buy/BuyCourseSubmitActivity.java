@@ -32,7 +32,7 @@ public class BuyCourseSubmitActivity extends BaseActivity {
 
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_buycoursesubmit, null);
         TextView tipView = (TextView) view.findViewById(R.id.buycourse_tip);
-        tipView.setText("课程购买马上开通，敬请期待！");
+        tipView.setText("课程购买即将开通，敬请期待！");
         
         setContentView(view);
     }

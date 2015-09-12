@@ -15,6 +15,7 @@
 	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Core-2.4.0.jar"/>
 	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Favorite-2.4.0.jar"/>
 	<classpathentry kind="lib" path="libs/ShareSDK-Wechat-Moments-2.4.0.jar"/>
+	<classpathentry kind="lib" path="libs/joda-time-2.8.2.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
