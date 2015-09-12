@@ -1,82 +1,147 @@
 package com.yuhj.ontheway.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.adapter.List_3Adapter;
+import com.yuhj.ontheway.bean.UserInfoData;
+import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.StaticStrings;
-import com.yuhj.ontheway.activity.MyCourseActivity;
-import com.yuhj.ontheway.activity.UserInfoActivity;
-
 
 public class LoginWelcomeAvtivity extends Activity {
-	SharedPreferences preference;
-	private ImageView img_my_info,img_my_course,img_my_booking,img_my_point;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.frame_user_page);
-		
-		img_my_info=(ImageView) findViewById(R.id.img_my_info);
-		img_my_course=(ImageView) findViewById(R.id.img_my_course);
-		img_my_booking=(ImageView) findViewById(R.id.img_my_booking);
-		img_my_point=(ImageView) findViewById(R.id.img_my_point);
-		
-		img_my_info.setOnClickListener(new OnClickListener() {
+    private SharedPreferences preference;
+    private ImageView img_my_info, img_my_course, img_my_booking, img_my_point;
+    
+    private String userName;
+    private String passWord;
 
-			@Override
-			public void onClick(View v) {
-				Intent intent_my_info = new Intent(LoginWelcomeAvtivity.this, UserInfoActivity.class);
-	            startActivity(intent_my_info);
 
-			}
-		});
-		
-		img_my_course.setOnClickListener(new OnClickListener() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        preference=getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
+        userName=preference.getString("USER_NAME", "");
+        passWord=preference.getString("PASSWORD", "");
 
-			@Override
-			public void onClick(View v) {
-				Intent intent_my_course = new Intent(LoginWelcomeAvtivity.this, MyCourseActivity.class);
-	            startActivity(intent_my_course);
+        setContentView(R.layout.frame_user_page);
 
-			}
-		});
-		
-		img_my_booking.setOnClickListener(new OnClickListener() {
+        img_my_info = (ImageView) findViewById(R.id.img_my_info);
+        img_my_course = (ImageView) findViewById(R.id.img_my_course);
+        img_my_booking = (ImageView) findViewById(R.id.img_my_booking);
+        img_my_point = (ImageView) findViewById(R.id.img_my_point);
 
-			@Override
-			public void onClick(View v) {
-				 //Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MyBookingActivity.class);
-				
-				Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);				 
-	            startActivity(intent_my_booking);
-			}
-		});
-		
-		img_my_point.setOnClickListener(new OnClickListener() {
+        img_my_info.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				Intent intent_my_point = new Intent(LoginWelcomeAvtivity.this, MyPointActivity.class);
-	            startActivity(intent_my_point);
-			}
-		});
-	}
-	
-	
+            @Override
+            public void onClick(View v) {
+                Intent intent_my_info = new Intent(LoginWelcomeAvtivity.this, MyNoticeActivity.class);
+                startActivity(intent_my_info);
+
+            }
+        });
+
+        img_my_course.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent_my_course = new Intent(LoginWelcomeAvtivity.this, MyCourseActivity.class);
+                startActivity(intent_my_course);
+
+            }
+        });
+
+        img_my_booking.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Intent intent_my_booking = new
+                // Intent(LoginWelcomeAvtivity.this, MyBookingActivity.class);
+
+                Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+                startActivity(intent_my_booking);
+            }
+        });
+
+        img_my_point.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent_my_point = new Intent(LoginWelcomeAvtivity.this, MyPointActivity.class);
+                startActivity(intent_my_point);
+            }
+        });
+        
+        new Thread(runnable).start();
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            StringBuffer buffer = new StringBuffer();
+
+            buffer.append("编号： ").append(data.getString("No")).append("\n");
+            buffer.append("姓名： ").append(data.getString("Name")).append("\n");
+            buffer.append("生日： ").append(data.getString("Birthday")).append("\n");
+            buffer.append("家长： ").append(data.getString("parentName")).append("\n");
+            buffer.append("电话： ").append(data.getString("mobile")).append("\n");
+
+            TextView textView = (TextView) findViewById(R.id.user_info_text);
+            textView.setText(buffer.toString());
+
+        }
+    };
+    
+    private static final DateTimeFormatter formatter = DateTimeFormat.fullDate();
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+
+            UserInfoData userInfo = new UserInfoData();
+
+            userInfo = ClientApi.getUserInfoData(userName, passWord);
+            Message msg = new Message();
+            Bundle data = new Bundle();
+
+            if (userInfo != null) {
+                data.putString("No", userInfo.getNo());
+                data.putString("Name", userInfo.getName());
+                data.putInt("Points", userInfo.getPoints());
+                String birthdayString = "";
+                if (userInfo.getBirthday() != 0) {
+                    DateTime bday = new DateTime(userInfo.getBirthday());
+                    birthdayString = String.format("%4d-%02d-%02d", bday.getYear(), bday.getMonthOfYear(), bday.getDayOfMonth());
+                }
+                data.putString("Birthday", birthdayString);
+                data.putString("parentName", userInfo.getParentName());
+                data.putString("mobile", userInfo.getMobile());
+
+            } else {
+                data.putString("No", " ");
+                data.putString("Name", " ");
+                data.putInt("Points", 0);
+                data.putInt("Birthday", 0);
+                data.putString("parentName", " ");
+                data.putInt("Phone", 0);
+            }
+            msg.setData(data);
+            handler.sendMessage(msg);
+        }
+    };
+
 }

@@ -73,10 +73,10 @@ public class UserInfoData {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	public int getBirthday() {
+	public long getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(int birthday) {
+	public void setBirthday(long birthday) {
 		this.birthday = birthday;
 	}
 	public int getPhone() {
@@ -116,7 +116,7 @@ public class UserInfoData {
 	private int updatedTime;
 	private int createdTime;
 	private int points;
-    private int birthday;
+    private long birthday;
     private int phone;
     private int zip;
     private String mobile;

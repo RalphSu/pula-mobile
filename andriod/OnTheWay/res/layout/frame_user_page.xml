@@ -10,7 +10,15 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/pula_logo_show" >
 
-      </RelativeLayout>
+        <TextView
+            android:id="@+id/user_info_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -21,24 +29,22 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
-         <ImageView
+        <ImageView
             android:id="@+id/img_my_info"
             style="@style/Stylewidthhight_wm"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp" 
             android:background="@drawable/my_info"
             android:contentDescription="@string/nul" />
 
         <ImageView
             android:id="@+id/img_my_course"
             style="@style/Stylewidthhight_wm"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp" 
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/my_course"
             android:contentDescription="@string/nul" />
-        
-        
     </LinearLayout>
 
     <LinearLayout
@@ -49,23 +55,22 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
-       <ImageView
+        <ImageView
             android:id="@+id/img_my_booking"
             style="@style/Stylewidthhight_wm"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp" 
             android:background="@drawable/my_booking"
             android:contentDescription="@string/nul" />
 
         <ImageView
             android:id="@+id/img_my_point"
             style="@style/Stylewidthhight_wm"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp" 
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/my_point"
             android:contentDescription="@string/nul" />
-        
     </LinearLayout>
 
 </RelativeLayout>
