@@ -73,7 +73,7 @@ public class MyNoticeListAdapter extends BaseAdapter {
 
         holder.noticeName.setText(notice.getNoticeName());
         holder.noticeDate.setText(notice.getNoticeDay() == null ? "" : formatter.print(notice.getNoticeDay()));
-        holder.buyCount.setText("人数: " + notice.getBuyCount());
+        holder.buyCount.setText("预约人数: " + notice.getBuyCount());
 //        holder.buyDate.setText(notice.getBuyDay() == null ? "" : formatter.print(notice.getBuyDay()));
 
         return convertView;
