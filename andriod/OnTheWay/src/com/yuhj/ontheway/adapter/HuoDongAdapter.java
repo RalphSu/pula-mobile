@@ -28,31 +28,26 @@ public class HuoDongAdapter extends BaseAdapter {
 	private Context context;
 	private LruCache<String,Bitmap> lruCache;
 	public void BindData(ArrayList<HuoDongData> data){
-		
 		this.data = data;
 	}
 	
 	public HuoDongAdapter(Context context){
 		this.context=context;
 		lruCache = ImageCache.GetLruCache(context);
-		
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return data.size();
 	}
 
 	@Override
 	public Object getItem(int arg0) {
-		// TODO Auto-generated method stub
 		return data.get(arg0);
 	}
 
 	@Override
 	public long getItemId(int arg0) {
-		// TODO Auto-generated method stub
 		return arg0;
 	}
 
@@ -64,16 +59,16 @@ public class HuoDongAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.huodong_item, null);
             viewHoleder.imageView = (ImageView) view.findViewById(R.id.huodong_imageView);
             viewHoleder.textView = (TextView) view.findViewById(R.id.huodong_item_title);
-
+            viewHoleder.dateView = (TextView) view.findViewById(R.id.huodong_item_date);
 			view.setTag(viewHoleder);
 		}else {
 			viewHoleder = (ViewHoleder) view.getTag();
 		}
         HuoDongData huoDongData = data.get(position);
         viewHoleder.textView.setText(huoDongData.getTitle());
-		viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
+//		viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
 		viewHoleder.imageView.setTag(huoDongData.getIamge());
-		new ImageCache(context, lruCache, viewHoleder.imageView, huoDongData.getIamge(),"OnTheWay",800, 400);
+//		new ImageCache(context, lruCache, viewHoleder.imageView, huoDongData.getIamge(),"OnTheWay",800, 400);
 		
 		return view;
 	}
@@ -81,6 +76,7 @@ public class HuoDongAdapter extends BaseAdapter {
 	private class ViewHoleder{
 		public ImageView imageView;
 		public TextView textView;
+		public TextView dateView;
 		
 	}
 

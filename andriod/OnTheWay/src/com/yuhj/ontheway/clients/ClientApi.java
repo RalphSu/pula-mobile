@@ -373,6 +373,7 @@ public class ClientApi {
 					userInfo.setBirthday(data.optLong("birthday"));
 					userInfo.setPhone(data.optInt("phone"));
 					userInfo.setZip(data.optInt("zip"));
+					userInfo.setBarCode(data.optString("barcode"));
 
 				}
 				

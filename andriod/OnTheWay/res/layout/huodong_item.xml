@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-  >
+    android:background="@color/white" >
 
-    <ImageView
+<!--     <ImageView
         android:id="@+id/huodong_imageView"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:scaleType="fitXY"
-        />
+        /> -->
 
-    <TextView
+<!--     <TextView
         android:id="@+id/huodong_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +19,48 @@
         android:layout_marginBottom="10dp"
         android:textSize="20sp"
         android:text="日客则地区->加德满都"
-        android:textColor="#000000" />
+        android:textColor="#000000" /> -->
+    
+    
+    
+    <ImageView
+        android:id="@+id/huodong_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/nul"
+        android:layout_marginLeft="0dp"
+        android:src="@drawable/pula_logo_circle"
+        />
+    
+    <TextView
+        android:id="@+id/huodong_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/huodong_imageView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#3C3C3C"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/huodong_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/huodong_item_title"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#3C3C3C"
+        android:textSize="15sp" />
+    
+        <ImageView
+        android:id="@+id/huodong_image_click"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/nul"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/right_45"
+        />
 
 </RelativeLayout>

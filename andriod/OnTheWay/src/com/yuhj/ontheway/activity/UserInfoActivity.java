@@ -55,16 +55,16 @@ public class UserInfoActivity extends Activity {
 
 			buffer.append("用户编号： ").append(data.getString("No")).append("\n");
 			buffer.append("用户姓名： ").append(data.getString("Name")).append("\n");
-			buffer.append("用户性别： ").append(data.getInt("genderName")).append("\n");
-			buffer.append("用户生日： ").append(data.getInt("Birthday")).append("\n");
-			buffer.append("用户积分： ").append(data.getInt("Points")).append("\n");
+			buffer.append("用户性别： ").append(data.getString("genderName")).append("\n");
+			buffer.append("用户生日： ").append(data.getString("Birthday")).append("\n");
+//			buffer.append("用户积分： ").append(data.getInt("Points")).append("\n");
 			buffer.append("家长姓名： ").append(data.getString("parentName")).append("\n");
 			buffer.append("联系电话： ").append(data.getString("mobile")).append("\n");
-			buffer.append("家庭电话：").append(data.getInt("Phone")).append("\n");
+//			buffer.append("家庭电话：").append(data.getInt("Phone")).append("\n");
             buffer.append("家庭地址：").append(data.getString("Address")).append("\n");
+            buffer.append("学员卡号：").append(data.getString("BarCode")).append("\n");
 			TextView textView = (TextView) findViewById(R.id.textView);
 			textView.setText(buffer.toString());
-
 		}
 	};
 
@@ -93,6 +93,7 @@ public class UserInfoActivity extends Activity {
 	                data.putString("mobile", userInfo.getMobile());
 	                data.putString("genderName",userInfo.getGenderName());
 	                data.putString("Address",userInfo.getAddress());
+	                data.putString("BarCode", userInfo.getBarCode());
 	                data.putInt("Phone", userInfo.getPhone());
 
 	            } else {
@@ -104,6 +105,7 @@ public class UserInfoActivity extends Activity {
 	                data.putString("mobile", " ");
 	                data.putString("genderName"," ");
 	                data.putString("Address","");
+	                data.putString("BarCode", "");
 	                data.putInt("Phone", 0);
 	            }
 	            msg.setData(data);
