@@ -37,7 +37,6 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.activity.BookingActivity;
 import com.yuhj.ontheway.activity.CurriculumScheduleActivity;
 import com.yuhj.ontheway.adapter.CalendarGridViewAdapter;
 import com.yuhj.ontheway.bean.BookingData;
