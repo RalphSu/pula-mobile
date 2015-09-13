@@ -5,8 +5,7 @@
     tools:context=".JingXuanDetailsActivity" >
 
     <include
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+
         layout="@layout/loading" />
 
     <LinearLayout

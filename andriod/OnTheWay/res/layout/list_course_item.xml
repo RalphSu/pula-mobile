@@ -17,6 +17,7 @@
 	    style="@style/Stylewidthhight_ww"
 	    android:layout_toRightOf="@+id/img_p"
 	    android:singleLine="true"
+	    android:layout_marginTop="6dp"
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"
@@ -26,12 +27,13 @@
 	    android:id="@+id/tx_course_name"
 	    style="@style/Stylewidthhight_ww"
 	    android:layout_toRightOf="@+id/text_course_name"
+	    android:layout_marginTop="6dp"
 	    android:text="@string/nul"
 	    android:singleLine="true"
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"/>
-		
+	<!-- 	
 	<TextView
 	    android:id="@+id/text_branch_name"
 	    style="@style/Stylewidthhight_ww"
@@ -52,11 +54,11 @@
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"/>
-	   	
+	   	 -->
 	<TextView
 	    android:id="@+id/text_course_duraion_name"
 	    style="@style/Stylewidthhight_ww"
-	    android:layout_below="@+id/text_branch_name"
+	    android:layout_below="@+id/text_course_name"
 	    android:layout_toRightOf="@+id/img_p"
 	    android:layout_marginTop="5dp"
 	    android:text="@string/course_duration_time"
@@ -68,7 +70,7 @@
     <TextView
 	    android:id="@+id/tx_course_duraion_name"
 	    style="@style/Stylewidthhight_ww"
-	    android:layout_below="@+id/text_branch_name"
+	    android:layout_below="@+id/text_course_name"
 	    android:layout_toRightOf="@+id/text_course_duraion_name"
 	    android:layout_marginTop="5dp"
 	    android:text="@string/nul"
@@ -100,7 +102,7 @@
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"/>
-    
+    <!-- 
 	  	<TextView
 	    android:id="@+id/text_available_period_name"
 	    style="@style/Stylewidthhight_ww"
@@ -124,7 +126,7 @@
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"/>
-    
+     -->
 		<!--  
         <Button
         android:id="@+id/button"

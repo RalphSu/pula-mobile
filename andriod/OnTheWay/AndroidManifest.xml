@@ -117,6 +117,18 @@
         </activity>
         <activity android:name="com.yuhj.ontheway.activity.buy.BuyHuodongSubmitActivity" >
         </activity>
+        
+        <activity android:name="com.yuhj.ontheway.activity.CurriculumScheduleActivity" >
+        </activity>
+        
+        
+        <activity android:name="com.yuhj.ontheway.activity.BookingDialogActivity" >
+        </activity>
+
+        <activity android:name="com.yuhj.ontheway.activity.RegistedUserBookingDialogActivity" >
+        </activity>
+        
+           
         <activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
             android:screenOrientation="portrait" />

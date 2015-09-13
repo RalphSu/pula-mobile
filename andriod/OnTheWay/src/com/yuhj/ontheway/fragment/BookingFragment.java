@@ -40,6 +40,7 @@ import android.widget.ViewFlipper;
 
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.activity.BookingActivity;
+import com.yuhj.ontheway.activity.CurriculumScheduleActivity;
 import com.yuhj.ontheway.adapter.CalendarGridViewAdapter;
 import com.yuhj.ontheway.adapter.NumberHelper;
 import com.yuhj.ontheway.bean.BookingData;
@@ -149,7 +150,7 @@ public class BookingFragment extends Fragment implements OnTouchListener {
             gNextAdapter.notifyDataSetChanged();
             
             // start detail activity
-            Intent intent = new Intent(getActivity(), BookingActivity.class);
+            Intent intent = new Intent(getActivity(), CurriculumScheduleActivity.class);
             intent.putExtra("calSelected", calSelected);
             startActivity(intent);
         }

@@ -61,8 +61,8 @@ public class LoginFragment extends Fragment {
 		    	 
 		    	  //设置默认是记录密码状态
 		          rem_pw.setChecked(true);
-		       	  userName.setText(sp.getString("USER_NAME", ""));
-		       	  password.setText(sp.getString("PASSWORD", ""));
+		       	  userName.setText(sp.getString("USER_NAME",""));
+		       	  password.setText(sp.getString("PASSWORD",""));
 		       	  
 		       	  		       	  
 		       	  //判断自动登陆多选框状态
@@ -174,6 +174,9 @@ public class LoginFragment extends Fragment {
 	            } else {
 	            	
 	            	 Editor editor = sp.edit();
+	            	 
+					 editor.putString("USER_NAME", "USER_NAME");
+					 editor.putString("PASSWORD", "PASSWORD");
 					 editor.putBoolean("ISCHECK",false);
 					 editor.putBoolean("AUTO_ISCHECK",false);
 					 editor.commit();

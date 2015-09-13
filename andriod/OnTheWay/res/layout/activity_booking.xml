@@ -9,18 +9,23 @@
     <TextView
         android:id="@+id/bookingDate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text=""
+        android:layout_marginTop="30dp"
+        android:text="gohome"
         android:textColor="#99CCFF"
         android:textSize="28sp" />
-
-    <ListView
+    
+     <ListView
         android:id="@+id/bookingList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_below="@+id/bookingDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/index_logo_img"
         android:orientation="vertical" />
+    
+      
+
 
 </RelativeLayout>

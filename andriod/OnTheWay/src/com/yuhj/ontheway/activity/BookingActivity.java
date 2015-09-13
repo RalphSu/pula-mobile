@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -17,11 +18,11 @@ import com.yuhj.ontheway.adapter.BookingTimeSegmentAdapter;
 import com.yuhj.ontheway.adapter.NumberHelper;
 
 /**
- * 预约的页面
+ * 预约信息对话页面
+ * 分登录和未登录两种情况处理
  * 
- * @author Liangfei
- *
  */
+
 public class BookingActivity extends BaseActivity {
 
     private ListView list;
@@ -30,6 +31,8 @@ public class BookingActivity extends BaseActivity {
     @SuppressLint("InflateParams")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_booking);
+        
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_booking, null);
 
         Calendar selected = (Calendar) getIntent().getSerializableExtra("calSelected");
@@ -37,11 +40,16 @@ public class BookingActivity extends BaseActivity {
         TextView title = (TextView) bookingRelative.findViewById(R.id.bookingDate);
         String s = selected.get(Calendar.YEAR) + "-" + NumberHelper.LeftPad_Tow_Zero(selected.get(Calendar.MONTH))
                 + NumberHelper.LeftPad_Tow_Zero(selected.get(Calendar.DATE));
-        title.setText(s);
-
+        
+        
+        Log.e("BookingActivity",s);
+               
         list = (ListView) bookingRelative.findViewById(R.id.bookingList);
         BookingTimeSegmentAdapter adapter = new BookingTimeSegmentAdapter(this);
         list.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        
+        
+        
     }
 }

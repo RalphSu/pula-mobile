@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+				 android:orientation="vertical" 
+				 android:layout_width="fill_parent" 
+				 android:layout_height="wrap_content" 
+					android:layout_gravity="center_horizontal|center_vertical"
+				 >
+ <LinearLayout 
+				 android:orientation="vertical" 
+				 android:layout_width="fill_parent" 
+				 android:layout_height="wrap_content"  
+				 android:gravity="center_horizontal"
+				 android:background="@drawable/alert"
+				 android:layout_marginLeft="20dip" 
+				 android:layout_marginRight="20dip">
+  <TextView android:layout_width="wrap_content" 
+				  android:layout_height="wrap_content" 
+				  android:layout_marginTop="17dip" 
+				  android:textColor="#ffffff" 
+				  android:text="About to call 323" 
+				  android:textStyle="bold" 
+				  android:textSize="16dip"
+				  android:id="@+id/dialog_title"/> 
+  <TextView android:layout_width="wrap_content" 
+				  android:layout_height="wrap_content" 
+				  android:layout_margin="10dip" 
+				  android:gravity="center_horizontal"
+				  android:textSize="16dip"
+				  android:textColor="#ffffff" 
+				  android:text="Are you sure you want to proceed?" 
+				  android:id="@+id/dialog_message"/> 
+				  
+  <LinearLayout 
+				  android:orientation="horizontal" 
+				  android:layout_width="fill_parent" 
+				  android:layout_height="wrap_content" 
+				 android:layout_marginTop="10dip" 
+				android:layout_marginBottom="10dip"
+				android:gravity="center_horizontal"
+				  >
+  <Button android:layout_height="40dip" 
+				  android:layout_width="0dip" 
+				  android:background="@drawable/custom_button1"
+				  android:layout_weight="0.5"
+				  android:layout_gravity="left" 
+				  android:textColor = "@color/white"
+				  android:text="取消"
+				  android:textStyle="bold"
+				  android:layout_marginLeft="10dip"
+				  android:id="@+id/cancel" /> 
+  <Button android:layout_height="40dip" 
+			  android:layout_width="0dip" 
+			  android:background="@drawable/custom_button" 
+			  android:text="返回"
+			  android:textStyle="bold"
+			  android:layout_weight="0.5"
+			  android:textColor="@color/white"
+			  android:layout_marginRight="10dip" 
+			  android:layout_marginBottom="10dip"
+			  android:id="@+id/ok" /> 
+  </LinearLayout>
+  </LinearLayout>
+  </LinearLayout>

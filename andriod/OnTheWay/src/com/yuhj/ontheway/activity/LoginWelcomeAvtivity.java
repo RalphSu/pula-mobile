@@ -61,9 +61,9 @@ public class LoginWelcomeAvtivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				 //Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MyBookingActivity.class);
+				Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MyBookingActivity.class);
 				
-				Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);				 
+				//Intent intent_my_booking = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);				 
 	            startActivity(intent_my_booking);
 			}
 		});
