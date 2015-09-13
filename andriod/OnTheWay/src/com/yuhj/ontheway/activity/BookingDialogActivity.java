@@ -2,6 +2,8 @@ package com.yuhj.ontheway.activity;
 
 import java.util.Calendar;
 
+import org.joda.time.DateTime;
+
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.StaticStrings;
@@ -42,7 +44,7 @@ public class BookingDialogActivity extends BaseActivity
 	private SharedPreferences sp;
 	
 	String date;
-	Calendar selected;
+    DateTime selected;
 	String plan;
 	
 	TextView booking_course_name;
@@ -56,7 +58,7 @@ public class BookingDialogActivity extends BaseActivity
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.booking_dialog);
 		
-		selected = (Calendar) getIntent().getSerializableExtra("calSelected");
+		selected = (DateTime) getIntent().getSerializableExtra("calSelected");
 		
 		date = (String)getIntent().getStringExtra("date");
 		

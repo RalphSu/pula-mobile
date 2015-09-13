@@ -22,7 +22,7 @@ import com.yuhj.ontheway.utils.StaticStrings;
 
 public class LoginWelcomeAvtivity extends Activity {
     private SharedPreferences preference;
-    private ImageView img_my_info, img_my_course, img_my_booking, img_my_point;
+    private ImageView img_pula_logo,img_my_notice, img_my_course, img_my_booking, img_my_point;
 	
     private String userName;
     private String passWord;
@@ -37,12 +37,23 @@ public class LoginWelcomeAvtivity extends Activity {
 
 		setContentView(R.layout.frame_user_page);
 
-        img_my_info = (ImageView) findViewById(R.id.img_my_info);
+		img_pula_logo = (ImageView) findViewById(R.id.img_logo);
+        img_my_notice = (ImageView) findViewById(R.id.img_my_notice);
         img_my_course = (ImageView) findViewById(R.id.img_my_course);
         img_my_booking = (ImageView) findViewById(R.id.img_my_booking);
         img_my_point = (ImageView) findViewById(R.id.img_my_point);
 
-		img_my_info.setOnClickListener(new OnClickListener() {
+        img_pula_logo.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+                Intent intent_my_info = new Intent(LoginWelcomeAvtivity.this, UserInfoActivity.class);
+	            startActivity(intent_my_info);
+
+			}
+		});
+        
+        img_my_notice.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -82,9 +93,10 @@ public class LoginWelcomeAvtivity extends Activity {
 			}
 		});
         
-        new Thread(runnable).start();
+      //  new Thread(runnable).start();
 	}
-
+    
+	/*
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -142,5 +154,5 @@ public class LoginWelcomeAvtivity extends Activity {
             handler.sendMessage(msg);
         }
     };
-
+  */
 }

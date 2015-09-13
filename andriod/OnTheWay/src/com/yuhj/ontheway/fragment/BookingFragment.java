@@ -141,6 +141,7 @@ public class BookingFragment extends Fragment implements OnTouchListener {
             
             // start detail activity
             Intent intent = new Intent(getActivity(), CurriculumScheduleActivity.class);
+
             intent.putExtra("calSelected", calSelected);
             startActivity(intent);
         }

@@ -7,6 +7,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+
+import org.joda.time.DateTime;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -47,7 +50,7 @@ public class CurriculumScheduleActivity extends BaseActivity {
 	ProgressBar pb;
 	private List<MyCourseJsonTools>list;	
 	String date;
-	Calendar selected;
+	DateTime selected;
 	String mess;
 	private MyCourseJsonUtils jj;
 
@@ -64,10 +67,10 @@ public class CurriculumScheduleActivity extends BaseActivity {
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.frame_curriculum_schedule);
 
-		selected = (Calendar) getIntent().getSerializableExtra("calSelected");
+		selected = (DateTime) getIntent().getSerializableExtra("calSelected");
 		
-        date = selected.get(Calendar.YEAR) + "-" + NumberHelper.LeftPad_Tow_Zero(selected.get(Calendar.MONTH))
-                + "-" +  NumberHelper.LeftPad_Tow_Zero(selected.get(Calendar.DATE));
+        date = String.format(Locale.US, BookingTimeSegmentAdapter.DAY_KEY, selected.getYear(),
+                selected.getMonthOfYear(), selected.getDayOfMonth());
         
         
         Log.e("CurriculumScheduleActivity",date);

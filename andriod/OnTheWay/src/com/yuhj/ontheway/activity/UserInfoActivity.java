@@ -58,7 +58,7 @@ public class UserInfoActivity extends Activity {
 			buffer.append("用户积分： ").append(data.getInt("Points")).append("\n");
 			buffer.append("用户生日： ").append(data.getInt("Birthday")).append("\n");
 			buffer.append("家长姓名： ").append(data.getString("parentName")).append("\n");
-			buffer.append("联系电话： ").append(data.getInt("Phone")).append("\n");
+			buffer.append("联系电话： ").append(data.getString("mobile")).append("\n");
 
 			TextView textView = (TextView) findViewById(R.id.textView);
 			textView.setText(buffer.toString());
@@ -77,24 +77,29 @@ public class UserInfoActivity extends Activity {
 			Message msg = new Message();
 			Bundle data = new Bundle();
 			
-			if (userInfo != null) {	
-				data.putString("No", userInfo.getNo());
-				data.putString("Name", userInfo.getName());
-				data.putInt("Points", userInfo.getPoints());
-				data.putLong("Birthday", userInfo.getBirthday());
-				data.putString("parentName", userInfo.getParentName());
-				data.putInt("Phone", userInfo.getPhone());
-				
-			} else {
-				data.putString("No"," ");
-				data.putString("Name"," ");
-				data.putInt("Points", 0);
-				data.putInt("Birthday",0);
-				data.putString("parentName"," ");
-				data.putInt("Phone",0);
-			}
-			msg.setData(data);
-			handler.sendMessage(msg);
+			 if (userInfo != null) {
+	                data.putString("No", userInfo.getNo());
+	                data.putString("Name", userInfo.getName());
+	                data.putInt("Points", userInfo.getPoints());
+	                String birthdayString = "";
+	                if (userInfo.getBirthday() != 0) {
+	                    DateTime bday = new DateTime(userInfo.getBirthday());
+	                    birthdayString = String.format("%4d-%02d-%02d", bday.getYear(), bday.getMonthOfYear(), bday.getDayOfMonth());
+	                }
+	                data.putString("Birthday", birthdayString);
+	                data.putString("parentName", userInfo.getParentName());
+	                data.putString("mobile", userInfo.getMobile());
+
+	            } else {
+	                data.putString("No", " ");
+	                data.putString("Name", " ");
+	                data.putInt("Points", 0);
+	                data.putInt("Birthday", 0);
+	                data.putString("parentName", " ");
+	                data.putString("mobile", " ");
+	            }
+	            msg.setData(data);
+	            handler.sendMessage(msg);
 		}
 	};
 
