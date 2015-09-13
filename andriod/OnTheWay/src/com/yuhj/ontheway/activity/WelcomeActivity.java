@@ -26,6 +26,9 @@ public class WelcomeActivity extends BaseActivity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_welcome);  
   
+        // JodaTimeAndroid.init(this);
+        initJoda();
+        
         /**
 		 * millisInFuture:从开始调用start()到倒计时完成并onFinish()方法被调用的毫秒数
 		 * countDownInterval:接收onTick(long)回调的间隔时间
@@ -46,6 +49,11 @@ public class WelcomeActivity extends BaseActivity {
                 WelcomeActivity.this.finish();  
             }  
         }.start();  
+    }
+
+    private void initJoda() {
+        System.setProperty("org.joda.time.DateTimeZone.Provider", 
+                "com.yuhj.ontheway.utils.FastDateTimeZoneProvider");
     }  
   
 }  

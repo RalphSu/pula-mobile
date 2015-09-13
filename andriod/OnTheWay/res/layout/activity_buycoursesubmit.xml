@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="活动购买即将上线，尽情关注!"
-        android:textColor="#99CCFF"
-        android:textSize="30sp" />
+        android:textColor="#3C3C3C"
+        android:textSize="22sp" />
 
 </RelativeLayout>

@@ -1,17 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/buyhuodongsubmit_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00ffffff"
-    android:orientation="vertical" >
+    android:layout_height="55dp"
+    android:background="@drawable/title_bg">
 
-    <TextView
-        android:id="@+id/buyhuodong_tip"
+    <!-- <TextView
+        android:id="@+id/mywork_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textColor="#3C3C3C"
-        android:textSize="22sp" />
-
+        android:textColor="#99CCFF"
+        android:textSize="22sp" /> -->
+ 
 </RelativeLayout>

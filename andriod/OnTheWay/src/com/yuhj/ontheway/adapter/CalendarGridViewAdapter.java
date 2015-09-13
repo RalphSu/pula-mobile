@@ -1,8 +1,9 @@
 package com.yuhj.ontheway.adapter;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -21,77 +22,55 @@ import com.yuhj.ontheway.fragment.BookingFragment;
 
 public class CalendarGridViewAdapter extends BaseAdapter {
 
-    private Calendar calStartDate = Calendar.getInstance();// 当前显示的日历
-    private Calendar calSelected = Calendar.getInstance(); // 选择的日历
+    private DateTime calStartDate = DateTime.now();// start day of current calendar
 
-    public void setSelectedDate(Calendar cal) {
-        calSelected = cal;
+    private DateTime daySelected = DateTime.now().millisOfDay().setCopy(0); // selected day
+
+    public void setSelectedDate(DateTime cal) {
+        daySelected = cal;
     }
 
-    private Calendar calToday = Calendar.getInstance(); // 今日
-    private int iMonthViewCurrentMonth = 0; // 当前视图月
+    private DateTime today = DateTime.now(); // 今日
+    private int currentMonth = 0; // 当前视图月
 
-    // 根据改变的日期更新日历
-    // 填充日历控件用
-    private void UpdateStartDateForMonth() {
-        calStartDate.set(Calendar.DATE, 1); // 设置成当月第一天
-        iMonthViewCurrentMonth = calStartDate.get(Calendar.MONTH);// 得到当前日历显示的月
+    private void updateStartDateForCalendar() {
+        calStartDate = calStartDate.dayOfMonth().setCopy(1).millisOfDay().setCopy(0);
+        currentMonth = calStartDate.getMonthOfYear();// 得到当前日历显示的月
 
-        // 星期一是2 星期天是1 填充剩余天数
-        int iDay = 0;
-        int iFirstDayOfWeek = Calendar.MONDAY;
-        int iStartDay = iFirstDayOfWeek;
-        if (iStartDay == Calendar.MONDAY) {
-            iDay = calStartDate.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY;
-            if (iDay < 0)
-                iDay = 6;
+        // first column is Sunday
+        int monthStartDayOfWeek = calStartDate.getDayOfWeek();
+        if (monthStartDayOfWeek != 7) {
+            calStartDate = calStartDate.plusDays(-monthStartDayOfWeek);
         }
-        if (iStartDay == Calendar.SUNDAY) {
-            iDay = calStartDate.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY;
-            if (iDay < 0)
-                iDay = 6;
-        }
-        calStartDate.add(Calendar.DAY_OF_WEEK, -iDay);
-
-        calStartDate.add(Calendar.DAY_OF_MONTH, -1);// 周日第一位
-
     }
 
-    ArrayList<java.util.Date> titles;
+    private ArrayList<DateTime> titles;
+    private Activity activity;
+    private Resources resources;
+    private BookingFragment bookingFragment;
 
-    private ArrayList<java.util.Date> getDates() {
+    private ArrayList<DateTime> getDates() {
 
-        UpdateStartDateForMonth();
+        updateStartDateForCalendar();
 
-        ArrayList<java.util.Date> alArrayList = new ArrayList<java.util.Date>();
-
-        for (int i = 1; i <= 42; i++) {
-            alArrayList.add(calStartDate.getTime());
-            calStartDate.add(Calendar.DAY_OF_MONTH, 1);
+        ArrayList<DateTime> alArrayList = new ArrayList<DateTime>();
+        // a calendar contains 6 * 7 tiles
+        for (int i = 0; i <= 41; i++) {
+            alArrayList.add(calStartDate.plusDays(i));
         }
 
         return alArrayList;
     }
 
-    private Activity activity;
-    Resources resources;
-
     // construct
-    public CalendarGridViewAdapter(Activity a, Calendar cal) {
+    private CalendarGridViewAdapter(Activity a, DateTime cal) {
         calStartDate = cal;
         activity = a;
         resources = activity.getResources();
         titles = getDates();
     }
 
-    public CalendarGridViewAdapter(Activity a) {
-        activity = a;
-        resources = activity.getResources();
-    }
-
-    private BookingFragment bookingFragment;
-
-    public CalendarGridViewAdapter(Activity activity2, Calendar currentCalendar, BookingFragment bookingFragment) {
+    public CalendarGridViewAdapter(Activity activity2, DateTime currentCalendar, BookingFragment bookingFragment) {
         this(activity2, currentCalendar);
         this.bookingFragment = bookingFragment;
     }
@@ -100,7 +79,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
         return titles.size();
     }
 
-    public Object getItem(int position) {
+    public DateTime getItem(int position) {
         return titles.get(position);
     }
 
@@ -111,67 +90,52 @@ public class CalendarGridViewAdapter extends BaseAdapter {
     @SuppressWarnings("deprecation")
     public View getView(int position, View convertView, ViewGroup parent) {
         LinearLayout iv = new LinearLayout(activity);
-        iv.setId(position + 5000);
+        iv.setId(position + 5000); //just to make a special id that not-conflict with auto-generated ids
         LinearLayout imageLayout = new LinearLayout(activity);
         imageLayout.setOrientation(0);
         iv.setGravity(Gravity.CENTER);
         iv.setOrientation(1);
         iv.setBackgroundColor(resources.getColor(R.color.white));
 
-        Date myDate = (Date) getItem(position);
-        Calendar calCalendar = Calendar.getInstance();
-        calCalendar.setTime(myDate);
+        DateTime tileDate = getItem(position);
 
-        final int iMonth = calCalendar.get(Calendar.MONTH);
-        final int iDay = calCalendar.get(Calendar.DAY_OF_WEEK);
-
-        // 判断周六周日
+        // set background for Saturday and Sunday
         iv.setBackgroundColor(resources.getColor(R.color.white));
-        if (iDay == 7) {
-            // 周六
+        int dayOfWeek = tileDate.getDayOfWeek();
+        if (dayOfWeek == DateTimeConstants.SATURDAY) {
             iv.setBackgroundColor(resources.getColor(R.color.text_6));
-        } else if (iDay == 1) {
-            // 周日
+        } else if (dayOfWeek == DateTimeConstants.SUNDAY) {
             iv.setBackgroundColor(resources.getColor(R.color.text_7));
         } else {
-
+            // normal day
         }
-        // 判断周六周日结束
 
         TextView txtToDay = new TextView(activity);// 日本老黄历
         txtToDay.setGravity(Gravity.CENTER_HORIZONTAL);
         txtToDay.setTextSize(9);
-        if (equalsDate(calToday.getTime(), myDate)) {
-            // 当前日期
+        if (today.getDayOfYear() == tileDate.getDayOfYear()) {
             iv.setBackgroundColor(resources.getColor(R.color.event_center));
-            txtToDay.setText("TODAY!");
+            txtToDay.setText("今天");
         }
 
         // 设置背景颜色
-        if (equalsDate(calSelected.getTime(), myDate)) {
+        if (daySelected.equals(tileDate)) {
             // 选择的
             iv.setBackgroundColor(resources.getColor(R.color.selection));
         } else {
-            if (equalsDate(calToday.getTime(), myDate)) {
+            if (today.getDayOfYear() == tileDate.getDayOfYear()) {
                 // 当前日期
                 iv.setBackgroundColor(resources.getColor(R.color.calendar_zhe_day));
             }
         }
-
-        // highlight booking date
-        if (bookingFragment.getBookingData() != null) {
-            // TODO highlight the booking event day
-//            iv.setBackgroundColor(resources.getColor(R.color.BookingDay));
-        }
-
         // 设置背景颜色结束
 
         // 日期开始
         TextView txtDay = new TextView(activity);// 日期
         txtDay.setGravity(Gravity.CENTER_HORIZONTAL);
 
-        // 判断是否是当前月
-        if (iMonth == iMonthViewCurrentMonth) {
+        // check if current month : to fill the calendar, some adjacent days of next/prev month would be added
+        if (tileDate.getMonthOfYear() == currentMonth) {
             txtToDay.setTextColor(resources.getColor(R.color.ToDayText));
             txtDay.setTextColor(resources.getColor(R.color.Text));
         } else {
@@ -179,10 +143,10 @@ public class CalendarGridViewAdapter extends BaseAdapter {
             txtToDay.setTextColor(resources.getColor(R.color.noMonth));
         }
 
-        int day = myDate.getDate(); // 日期
+        int day = tileDate.getDayOfMonth(); // 日期
         txtDay.setText(String.valueOf(day));
         txtDay.setId(position + 500);
-        iv.setTag(myDate);
+        iv.setTag(tileDate);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.WRAP_CONTENT);
@@ -211,18 +175,6 @@ public class CalendarGridViewAdapter extends BaseAdapter {
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
-    }
-
-    @SuppressWarnings("deprecation")
-    private Boolean equalsDate(Date date1, Date date2) {
-
-        if (date1.getYear() == date2.getYear() && date1.getMonth() == date2.getMonth()
-                && date1.getDate() == date2.getDate()) {
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
 }

@@ -1,5 +1,7 @@
 package com.yuhj.ontheway.activity;
 
+import org.joda.time.DateTime;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -79,7 +81,7 @@ public class UserInfoActivity extends Activity {
 				data.putString("No", userInfo.getNo());
 				data.putString("Name", userInfo.getName());
 				data.putInt("Points", userInfo.getPoints());
-				data.putInt("Birthday", userInfo.getBirthday());
+				data.putLong("Birthday", userInfo.getBirthday());
 				data.putString("parentName", userInfo.getParentName());
 				data.putInt("Phone", userInfo.getPhone());
 				

@@ -1,6 +1,7 @@
 package com.yuhj.ontheway.adapter;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.utils.ImageCache;
 
 /**
  * 
@@ -22,18 +22,31 @@ import com.yuhj.ontheway.utils.ImageCache;
 public class BookingTimeSegmentAdapter extends BaseAdapter {
     private ArrayList<String> data;
     private Context context;
+    
+    private final Map<String, Map<String, String>> courses;
+    public static final String SEG5 = "19:00-20:00";
+    public static final String SEG4 = "16:00-17:30";
+    public static final String SEG3 = "14:30-15:30";
+    public static final String SEG2 = "13:00-14:00";
+    public static final String SEG1 = "09:00-10:30";
+    public static final String DAY_KEY = "%4d-%02d-%02d";
+    
+    private String today;
 
     // private LruCache<String, Bitmap> lruCache;
 
-    public BookingTimeSegmentAdapter(Context context) {
+    public BookingTimeSegmentAdapter(Context context, Map<String, Map<String, String>> courses, String day) {
         this.context = context;
 //        lruCache = ImageCache.GetLruCache(context);
         data = new ArrayList<String>();
-        data.add("09:00 - 10:30");
-        data.add("13:00 - 14:00");
-        data.add("14:30 - 15:30");
-        data.add("16:00 - 17:00");
-        data.add("19:00 - 20:00");
+        data.add(SEG1);
+        data.add(SEG2);
+        data.add(SEG3);
+        data.add(SEG4);
+        data.add(SEG5);
+        
+        this.courses = courses;
+        this.today = day;
     }
 
     @Override
@@ -60,21 +73,37 @@ public class BookingTimeSegmentAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.booking_day_item, null);
             viewHoleder.imageView = (ImageView) view.findViewById(R.id.bookingDay_imageView);
             viewHoleder.titleView = (TextView) view.findViewById(R.id.bookingDay_item_title);
+            viewHoleder.contentView = (TextView) view.findViewById(R.id.bookingDay_item_course);
             view.setTag(viewHoleder);
         } else {
             viewHoleder = (ViewHoleder) view.getTag();
         }
         String zhuantiData = data.get(position);
-        viewHoleder.imageView.setImageResource(R.drawable.pula_logo_circle);
+//        viewHoleder.imageView.setImageResource(R.drawable.pula_logo_circle);
         viewHoleder.titleView.setText(zhuantiData);
+        if (position % 2 == 0) {
+            viewHoleder.titleView.setBackgroundColor(0xFFEC8B);
+        } else {
+            viewHoleder.titleView.setBackgroundColor(0xFFC125);
+        }
+
+        if (courses.containsKey(today)) {
+            Map<String, String> segs = courses.get(today);
+            if (segs.containsKey(zhuantiData)) {
+                viewHoleder.titleView.setBackgroundColor(0X66cccc);
+                viewHoleder.contentView.setText(segs.get(zhuantiData));
+            }
+        }
 
         view.setTag(viewHoleder);
+        
         return view;
     }
 
     private class ViewHoleder {
         public ImageView imageView;
         public TextView titleView;
+        public TextView contentView;
 
     }
 

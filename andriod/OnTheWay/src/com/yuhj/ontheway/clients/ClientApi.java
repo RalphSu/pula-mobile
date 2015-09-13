@@ -369,7 +369,7 @@ public class ClientApi {
 					userInfo.setGender(data.getInt("gender"));
 					userInfo.setPoints(data.getInt("points"));
 					userInfo.setMobile(data.optString("mobile"));
-					userInfo.setBirthday(data.optInt("brithday"));
+					userInfo.setBirthday(data.optLong("birthday"));
 					userInfo.setPhone(data.optInt("phone"));
 					userInfo.setZip(data.optInt("zip"));
 

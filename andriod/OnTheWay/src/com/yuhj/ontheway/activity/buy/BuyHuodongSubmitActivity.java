@@ -27,8 +27,10 @@ public class BuyHuodongSubmitActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_buycoursesubmit, null);
-        TextView tipView = (TextView) view.findViewById(R.id.buycourse_tip);
-        tipView.setText("活动购买马上开通，敬请期待！");
+        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_buyhuodongsubmit, null);
+        TextView tipView = (TextView) view.findViewById(R.id.buyhuodong_tip);
+         tipView.setText("活动购买即将开通，敬请期待！");
+
+        setContentView(view);
     }
 }
