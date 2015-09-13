@@ -117,7 +117,9 @@
         </activity>
         <activity android:name="com.yuhj.ontheway.activity.buy.BuyHuodongSubmitActivity" >
         </activity>
-         <activity android:name="com.yuhj.ontheway.activity.MyNoticeActivity" >
+        <activity android:name="com.yuhj.ontheway.activity.MyNoticeActivity" >
+        </activity>
+        <activity android:name="com.yuhj.ontheway.activity.MyWorkH5Activity" >
         </activity>
         <activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
