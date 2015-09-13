@@ -367,6 +367,7 @@ public class ClientApi {
 					userInfo.setParentName(data.optString("parentName"));
 					userInfo.setParentCaption(data.optString("parentCaption"));
 					userInfo.setGender(data.getInt("gender"));
+					userInfo.setGenderName(data.optString("genderName"));
 					userInfo.setPoints(data.getInt("points"));
 					userInfo.setMobile(data.optString("mobile"));
 					userInfo.setBirthday(data.optLong("birthday"));

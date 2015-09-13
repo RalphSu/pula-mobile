@@ -97,6 +97,14 @@ public class UserInfoData {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+	
+	public String getGenderName() {
+		return genderName;
+	}
+	public void setGenderName(String genderName) {
+		this.genderName = genderName;
+	}
+	
 	public int getTypeRange() {
 		return typeRange;
 	}
@@ -113,6 +121,7 @@ public class UserInfoData {
 	private String parentName;
 	private String parentCaption;
 	private int gender;
+	private String genderName;
 	private int updatedTime;
 	private int createdTime;
 	private int points;
