@@ -7,6 +7,7 @@ import java.util.List;
 
 
 
+
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.bean.MyCourseJsonTools;
 import com.yuhj.ontheway.utils.AsyncImageLoader;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MyCourseListAdapter extends BaseAdapter {
@@ -72,6 +74,7 @@ public class MyCourseListAdapter extends BaseAdapter {
 			holder.open_time = (TextView)convertView.findViewById(R.id.tx_course_open_time);
 			holder.avaiable_period = (TextView)convertView.findViewById(R.id.tx_available_period_name);
 			holder.teacher_pic = (ImageView) convertView.findViewById(R.id.img_p);
+			holder.progress_status = (ProgressBar)convertView.findViewById(R.id.progressbar_updown);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -125,5 +128,6 @@ public class MyCourseListAdapter extends BaseAdapter {
 	public class ViewHolder {
 		private ImageView teacher_pic;
 		private TextView course_name,branch_name,duration_time,avaiable_period,open_time;
+		private ProgressBar progress_status; 
 	}
 }

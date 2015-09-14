@@ -12,6 +12,64 @@ public class MyCourseJsonTools {
 	private String branch_name;//分部地址
 	private String teacher_pic_url;//老师图片的获取地址，可以通过老师的ID来转化	
 	private String cousr_no;//课程 的编号
+	private int used_count;
+	private int paied_count;
+	
+	private int gongfang_count;
+	private int used_gongfang_count;
+	
+	private int huodong_count;
+	private int used_huodong_count;
+	
+	public int getUsed_count() {
+		return used_count;
+	}
+
+	public void setUsed_count(int used_count) {
+		this.used_count = used_count;
+	}
+
+	public int getPaied_count() {
+		return paied_count;
+	}
+
+	public void setPaied_count(int paied_count) {
+		this.paied_count = paied_count;
+	}
+
+	public int getGongfang_count() {
+		return gongfang_count;
+	}
+
+	public void setGongfang_count(int gongfang_count) {
+		this.gongfang_count = gongfang_count;
+	}
+
+	public int getUsed_gongfang_count() {
+		return used_gongfang_count;
+	}
+
+	public void setUsed_gongfang_count(int used_gongfang_count) {
+		this.used_gongfang_count = used_gongfang_count;
+	}
+
+	public int getHuodong_count() {
+		return huodong_count;
+	}
+
+	public void setHuodong_count(int huodong_count) {
+		this.huodong_count = huodong_count;
+	}
+
+	public int getUsed_huodong_count() {
+		return used_huodong_count;
+	}
+
+	public void setUsed_huodong_count(int used_huodong_count) {
+		this.used_huodong_count = used_huodong_count;
+	}
+
+
 	
 	public String getStart_weekday() {
 		return start_weekday;

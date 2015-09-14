@@ -51,7 +51,7 @@
             style="@style/Stylewidthhight_wm"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/my_info"
+            android:background="@drawable/my_notice"
             android:contentDescription="@string/nul" />
 
         <ImageView
@@ -81,12 +81,12 @@
             android:contentDescription="@string/nul" />
 
         <ImageView
-            android:id="@+id/img_my_point"
+            android:id="@+id/img_my_work"
             style="@style/Stylewidthhight_wm"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/my_point"
+            android:background="@drawable/my_work"
             android:contentDescription="@string/nul" />
     </LinearLayout>
 
