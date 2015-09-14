@@ -20,27 +20,29 @@
             android:id="@+id/bookingPrevMonthButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/prevMonth"
-            android:gravity="center_horizontal"
-             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_horizontal"
+            android:text="@string/prevMonth"
             android:textSize="12sp" />
+
         <Button
             android:id="@+id/bookingTodayButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
             android:gravity="center_horizontal"
             android:textSize="25sp" />
+
         <Button
             android:id="@+id/bookingNextMonthButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
-            android:text="@string/nextMonth"
+            android:layout_marginLeft="5dp"
             android:gravity="center_horizontal"
+            android:text="@string/nextMonth"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -61,7 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bookingTitleGridView" >
 
-<!--         <GridView
+        <!--
+             <GridView
             android:id="@+id/prevMonthCalendarView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -69,7 +72,8 @@
             android:horizontalSpacing="1dp"
             android:numColumns="7"
             android:verticalSpacing="1dp" >
-        </GridView> -->
+        </GridView>
+        -->
 
         <GridView
             android:id="@+id/currentMonthCalendarView"
@@ -100,8 +104,6 @@
         android:layout_marginTop="10dp"
         android:gravity="left"
         android:orientation="horizontal" >
-        
-        
     </LinearLayout>
 
 </RelativeLayout>

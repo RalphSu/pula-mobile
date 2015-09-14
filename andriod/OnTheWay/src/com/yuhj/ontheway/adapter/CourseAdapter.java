@@ -68,12 +68,12 @@ public class CourseAdapter extends BaseAdapter {
             viewHoleder = (ViewHoleder) view.getTag();
         }
         CourseData zhuantiData = data.get(position);
-        viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
+//        viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
         viewHoleder.imageView.setTag(zhuantiData.getImage());
         viewHoleder.titleView.setText(zhuantiData.getName());
         viewHoleder.branchName.setText(zhuantiData.getBranchName());
         viewHoleder.classRoomName.setText(zhuantiData.getClassRoomName());
-        new ImageCache(context, lruCache, viewHoleder.imageView, zhuantiData.getImage(), "OnTheWay", 800, 400);
+//        new ImageCache(context, lruCache, viewHoleder.imageView, zhuantiData.getImage(), "OnTheWay", 800, 400);
 
         return view;
     }

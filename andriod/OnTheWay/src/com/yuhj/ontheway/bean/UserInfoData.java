@@ -1,6 +1,7 @@
 package com.yuhj.ontheway.bean;
 
 public class UserInfoData {
+    
 	public String getAddress() {
 		return address;
 	}
@@ -112,6 +113,23 @@ public class UserInfoData {
 		this.typeRange = typeRange;
 	}
 	
+	public String getBarCode() {
+        return barCode;
+    }
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public int getGender() {
+        return gender;
+    }
+
+    private String barCode;
 	private String address;
 	private String name;
 	private int id;
