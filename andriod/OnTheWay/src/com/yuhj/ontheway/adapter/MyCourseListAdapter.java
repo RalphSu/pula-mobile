@@ -74,7 +74,11 @@ public class MyCourseListAdapter extends BaseAdapter {
 			holder.open_time = (TextView)convertView.findViewById(R.id.tx_course_open_time);
 			holder.avaiable_period = (TextView)convertView.findViewById(R.id.tx_available_period_name);
 			holder.teacher_pic = (ImageView) convertView.findViewById(R.id.img_p);
-			holder.progress_status = (ProgressBar)convertView.findViewById(R.id.progressbar_updown);
+			
+			holder.buy_used = (ProgressBar)convertView.findViewById(R.id.progressbar_buy_used);
+			holder.huodong_used = (ProgressBar)convertView.findViewById(R.id.progressbar_huodong_used);
+			holder.gongfang_used = (ProgressBar)convertView.findViewById(R.id.progressbar_gongfang_used);
+			
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -96,6 +100,15 @@ public class MyCourseListAdapter extends BaseAdapter {
         holder.duration_time.setText(tools.getDuration_minute());		
 		String path = tools.getTeacher_pic_url();
 		holder.teacher_pic.setTag(path);
+		
+
+		holder.buy_used.setMax(tools.getPaid_count());
+		holder.huodong_used.setMax(tools.getHuodong_count());
+		holder.gongfang_used.setMax(tools.getGongfang_count());
+		
+		holder.buy_used.setProgress(tools.getUsed_count());
+		holder.huodong_used.setProgress(tools.getUsed_huodong_count());
+		holder.gongfang_used.setProgress(tools.getUsed_gongfang_count());
 		
 		/*
 		Bitmap bitmap = loder.loadImage(path,
@@ -120,7 +133,7 @@ public class MyCourseListAdapter extends BaseAdapter {
 			holder.teacher_pic.setImageResource(R.drawable.pula_logo_circle);
 		}
 		*/
-		holder.teacher_pic.setImageResource(R.drawable.pula_logo_circle);
+		holder.teacher_pic.setImageResource(R.drawable.pula_logo_rec);
 		
 		return convertView;
 	}
@@ -128,6 +141,7 @@ public class MyCourseListAdapter extends BaseAdapter {
 	public class ViewHolder {
 		private ImageView teacher_pic;
 		private TextView course_name,branch_name,duration_time,avaiable_period,open_time;
-		private ProgressBar progress_status; 
+		private ProgressBar buy_used,huodong_used,gongfang_used;
+		
 	}
 }

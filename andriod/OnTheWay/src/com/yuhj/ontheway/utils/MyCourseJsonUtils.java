@@ -47,6 +47,22 @@ public class MyCourseJsonUtils {
 							.getString("durationMinute"));
 					tools.setCourse_no(json.getJSONObject("course").getString(
 							"no"));
+					
+				    JSONArray order = json.getJSONArray("orders");
+				    JSONObject order_json = order.getJSONObject(0);
+				    tools.setPaid_count(order_json.getInt("paiedCount"));
+				    tools.setGongfang_count(order_json.getInt("gongfangCount"));
+					tools.setHuodong_count(order_json.getInt("huodongCount"));
+					
+					JSONArray order_usage = json.getJSONArray("orderUsages");
+					JSONObject order_usages_json = order_usage.getJSONObject(0);
+					
+					tools.setUsed_count(order_usages_json.getInt("usedCount"));						
+					tools.setUsed_gongfang_count(order_usages_json.getInt("usedGongfangCount"));
+					tools.setUsed_huodong_count(order_usages_json.getInt("usedHuodongCount"));
+				    
+				    
+			
 					list.add(tools);
 				}
 			}

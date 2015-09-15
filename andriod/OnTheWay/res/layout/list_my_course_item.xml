@@ -11,7 +11,7 @@
         android:layout_marginLeft="5dp"
         android:layout_centerVertical ="true"
         android:contentDescription="@string/nul"
-        android:src="@drawable/pula_logo_circle" />
+        android:src="@drawable/pula_logo_rec" />
 
     <TextView
         android:id="@+id/text_course_name"
@@ -127,7 +127,7 @@
         android:textColor="@color/black" />
     
      <TextView
-        android:id="@+id/progress_name"
+        android:id="@+id/buy_used_name"
         style="@style/Stylewidthhight_ww"
         android:layout_below="@+id/text_available_period_name"
         android:layout_marginTop="5dp"
@@ -135,18 +135,77 @@
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
-        android:text="@string/progress_status"
+        android:text="@string/progress_buy_out_status"
         android:textColor="@color/black" />
 
     <ProgressBar
-        android:id="@+id/progressbar_updown"
+        android:id="@+id/progressbar_buy_used"
         style="@style/tallerBarStyle"
 
-        android:layout_toRightOf="@+id/progress_name"
+        android:layout_toRightOf="@+id/buy_used_name"
         android:layout_marginLeft="5dp"
-        android:layout_alignTop="@+id/progress_name"
+        android:layout_alignTop="@+id/buy_used_name"
         android:layout_marginTop="3dp"
-        android:layout_alignBottom="@+id/progress_name"
+        android:layout_alignBottom="@+id/buy_used_name"
+        android:layout_marginBottom="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:minWidth="120dip"
+        android:progress="50"
+        android:secondaryProgress="0" />
+    
+    
+     <TextView
+        android:id="@+id/huodong_used"
+        style="@style/Stylewidthhight_ww"
+        android:layout_below="@+id/buy_used_name"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/img_p"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="@string/progress_huodong_used"
+        android:textColor="@color/black" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_huodong_used"
+        style="@style/tallerBarStyle"
+
+        android:layout_toRightOf="@+id/huodong_used"
+        android:layout_marginLeft="5dp"
+        android:layout_alignTop="@+id/huodong_used"
+        android:layout_marginTop="3dp"
+        android:layout_alignBottom="@+id/huodong_used"
+        android:layout_marginBottom="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:minWidth="120dip"
+        android:progress="50"
+        android:secondaryProgress="0" />
+    
+     <TextView
+        android:id="@+id/gongfang_used"
+        style="@style/Stylewidthhight_ww"
+        android:layout_below="@+id/huodong_used"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/img_p"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="@string/progress_gongfang_used"
+        android:textColor="@color/black" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_gongfang_used"
+        style="@style/tallerBarStyle"
+
+        android:layout_toRightOf="@+id/gongfang_used"
+        android:layout_marginLeft="5dp"
+        android:layout_alignTop="@+id/gongfang_used"
+        android:layout_marginTop="3dp"
+        android:layout_alignBottom="@+id/gongfang_used"
         android:layout_marginBottom="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
