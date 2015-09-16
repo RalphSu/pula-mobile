@@ -73,7 +73,7 @@ public class CourseImageDetailsAdapter extends BaseAdapter {
 		if (view == null) {
 			viewHolder = new ViewHolder();
 			view = LayoutInflater.from(context).inflate(
-					R.layout.zhuanti_detail_image_item, null);
+					R.layout.course_detail_image_item, null);
 			viewHolder.disCitys = (TextView) view
 					.findViewById(R.id.zhuanti_address);
 			viewHolder.favoriteCount = (TextView) view

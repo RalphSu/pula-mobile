@@ -203,7 +203,13 @@ public class MyCourseActivity extends Activity {
 							@Override
 							public void onItemClick(AdapterView<?> parent,
 									View view, int position, long id) {
+								
+								Log.i("position  =", String.valueOf(position));  
+								
+								System.out.println(position);
+								
 								position = position - 1;
+								
 								MyCourseJsonTools to = list.get(position);
 								Intent intent = new Intent(MyCourseActivity.this,CourseDetailH5Activity.class);
 								

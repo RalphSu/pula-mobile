@@ -60,6 +60,17 @@
 		android:marqueeRepeatLimit="marquee_forever"
 		android:visibility="gone"/>
 	    
+	    <ImageView
+        android:id="@+id/course_image_click"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/nul"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/right_45"
+        />
+	    
+	    
  <!--
     <ImageView
         android:id="@+id/img_p"

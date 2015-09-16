@@ -38,7 +38,7 @@ public class CourseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.zhuanti_fragment, container, false);
+        View view = inflater.inflate(R.layout.course_fragment, container, false);
         LoadingAinm.ininLodingView(view);
         initViews(view);
         new Downdata().execute();

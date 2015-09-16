@@ -58,7 +58,7 @@ public class CourseAdapter extends BaseAdapter {
         ViewHoleder viewHoleder = null;
         if (view == null) {
             viewHoleder = new ViewHoleder();
-            view = LayoutInflater.from(context).inflate(R.layout.zhuanti_item, null);
+            view = LayoutInflater.from(context).inflate(R.layout.course_item, null);
             viewHoleder.imageView = (ImageView) view.findViewById(R.id.course_imageView);
             viewHoleder.titleView = (TextView) view.findViewById(R.id.course_item_title);
             viewHoleder.classRoomName = (TextView) view.findViewById(R.id.course_classroomname);
