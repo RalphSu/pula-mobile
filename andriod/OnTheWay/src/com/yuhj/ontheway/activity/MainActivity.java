@@ -61,11 +61,14 @@ public class MainActivity extends FragmentActivity implements
         initViews();
         group = (RadioGroup) findViewById(R.id.main_tab_bar);
         group.setOnCheckedChangeListener(this);
+        
         fragments = new ArrayList<Fragment>();
-        fragments.add(bookingFragment);
-        fragments.add(courseFragment);
+        
         fragments.add(huodongFragment);
+        fragments.add(courseFragment);
+        fragments.add(bookingFragment);
         fragments.add(loginFragment);
+        
         if (getIntent().getIntExtra("FragmentType", 0) == 3) {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();

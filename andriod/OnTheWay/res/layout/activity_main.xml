@@ -27,18 +27,18 @@
         android:layout_height="75dp"
         android:gravity="center"
         android:orientation="horizontal" >
-        
-        <RadioButton
-            android:id="@+id/main_tab_item_jingxuan"
-            style="@style/main_tab_item"
-            android:checked="true"
-            android:layout_marginLeft="2dp"  
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="3dp"  
-            android:drawableTop="@drawable/main_tab_huodong_bg"/>
 
         <RadioButton
-            android:id="@+id/main_tab_item_zhuanti"
+            android:id="@+id/main_tab_item_hongdong"
+            style="@style/main_tab_item"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="2dp"
+            android:checked="true"
+            android:layout_marginTop="2dp"
+            android:drawableTop="@drawable/main_tab_check_bg" />
+
+        <RadioButton
+            android:id="@+id/main_tab_item_course"
             style="@style/main_tab_item"
             android:layout_marginLeft="2dp"  
             android:layout_marginTop="2dp"  
@@ -55,12 +55,13 @@
             android:background="@drawable/btn_team_add" /> -->
 
         <RadioButton
-            android:id="@+id/main_tab_item_hongdong"
+            android:id="@+id/main_tab_item_booking"
             style="@style/main_tab_item"
-            android:layout_marginLeft="2dp"  
-            android:layout_marginTop="2dp"  
-            android:layout_marginBottom="3dp" 
-            android:drawableTop="@drawable/main_tab_check_bg"/>
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            
+            android:drawableTop="@drawable/main_tab_huodong_bg" />
 
         <RadioButton
             android:id="@+id/main_tab_item_article"
