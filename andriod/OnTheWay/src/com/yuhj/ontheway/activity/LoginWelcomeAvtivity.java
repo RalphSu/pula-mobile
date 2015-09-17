@@ -43,6 +43,12 @@ public class LoginWelcomeAvtivity extends Activity {
         img_my_booking = (ImageView) findViewById(R.id.img_my_booking);
         img_my_point = (ImageView) findViewById(R.id.img_my_work);
 
+        img_my_notice.setImageResource(R.drawable.my_notice);   
+        img_my_course.setImageResource(R.drawable.my_course);  
+        img_my_booking.setImageResource(R.drawable.my_booking);   
+        img_my_point.setImageResource(R.drawable.my_work);  
+        
+        
         img_pula_logo.setOnClickListener(new OnClickListener() {
 
 			@Override

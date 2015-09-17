@@ -204,7 +204,7 @@ public class MyCourseActivity extends Activity {
 							public void onItemClick(AdapterView<?> parent,
 									View view, int position, long id) {
 								
-								Log.i("position  =", String.valueOf(position));  
+							 
 								
 								System.out.println(position);
 								
