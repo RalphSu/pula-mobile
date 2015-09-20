@@ -1,28 +1,79 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent" 
+    android:background="@color/white">
 
+      <TextView
+        android:id="@+id/my_course_chn"
+        android:textColor="#66cc33"  
+        android:textSize="22sp" 
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="@string/my_course_chn"/>     
+   
+     <TextView
+        android:id="@+id/my_course_english"
+        android:layout_toRightOf="@+id/my_course_chn"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textColor="@color/white"
+        android:background="#66cc33"
+        android:textSize="20sp" 
+        android:textStyle="bold"
+        android:text="@string/my_course_eng"/>
+
+     <TextView
+         android:id="@+id/list_head"
+         android:layout_width="fill_parent"
+         android:layout_height="30dp"
+         android:layout_marginLeft="15dp"
+         android:layout_marginRight="15dp"
+         android:layout_below="@+id/my_course_chn"
+         android:layout_marginTop="20dp"
+         android:background="#66cc33"
+          />
+     
     <com.yuhj.ontheway.utils.RTPullListView
         android:id="@+id/my_course_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/expandtab_view"
+        android:layout_below="@+id/list_head"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" 
         android:cacheColorHint="#00000000"
-        android:divider="#C0C0C0"
+        android:divider="#99ff66"
         android:dividerHeight="1dp"
         android:listSelector="#00000000" />
-
-    <WebView
-        android:id="@+id/wv"
-        style="@style/Stylewidthhight_mm"
-        android:layout_below="@+id/expandtab_view"
-        android:visibility="gone" />
+    
+    <TextView
+         android:id="@+id/list_tail"
+         android:layout_below="@+id/my_course_list"
+         android:layout_width="fill_parent"
+         android:layout_height="3dp"
+         android:layout_marginLeft="15dp"
+         android:layout_marginRight="15dp"        
+         android:background="#99ff66"
+          />
+    
 
     <ProgressBar
         android:id="@+id/pb"
         style="@style/Stylewidthhight_ww"
         android:layout_centerInParent="true"
         android:visibility="visible" />
+    
+     <ImageView
+        android:id="@+id/img_p"
+        android:layout_alignParentBottom="true"    
+        android:layout_below="@+id/list_tail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/nul"
+        android:scaleType="centerInside"
+        android:src="@drawable/my_course_bottom_pic"
+        android:visibility="gone" />
 
 </RelativeLayout>

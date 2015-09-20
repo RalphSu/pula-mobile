@@ -71,8 +71,9 @@ public class MyNoticeActivity extends BaseActivity {
             List<HuoDongData> huodongs = ClientApi.getHuoDongList();
 
             List<MyNoticeData> notices = new ArrayList<MyNoticeData>();
-
-            for (HuoDongData data : huodongs) {
+            if(huodongs != null)
+            { 	
+             for (HuoDongData data : huodongs) {
                 MyNoticeData notice = new MyNoticeData();
                 notice.setNoticeId(data.getId());
                 notice.setBuyCount(3);
@@ -81,8 +82,8 @@ public class MyNoticeActivity extends BaseActivity {
                 notice.setNoticeDay(DateTime.parse("2015-10-01"));
 
                 notices.add(notice);
+             }
             }
-
             return notices;
         }
 

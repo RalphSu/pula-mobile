@@ -15,6 +15,8 @@ public class MyCourseJsonTools {
 	private int used_count;
 	private int paid_count;
 	
+	private String create_time;
+	
 	private int gongfang_count;
 	private int used_gongfang_count;
 	
@@ -79,6 +81,15 @@ public class MyCourseJsonTools {
 		this.start_weekday = start_weekday;
 	}
 
+	
+	public String getCreate_time() {
+	  return create_time;
+    }
+
+	public void setCreate_time(String create_time) {
+	   this.create_time = create_time;
+	}
+	
 	public String getCourse_no() {
 		return cousr_no;
 	}

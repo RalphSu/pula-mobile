@@ -10,13 +10,11 @@ import org.json.JSONObject;
 import com.yuhj.ontheway.bean.MyCourseJsonTools;
 
 public class MyCourseJsonUtils {
-	/**
-	 * ��װ�˽���json�ķ���������list<JSONTOOLS>
-	 */
+	
 	private List<MyCourseJsonTools> list;
 	private MyCourseJsonTools tools;
 
-	// ����list�ڵ�����
+	
 	public List<MyCourseJsonTools> PutData(String str) {
 		list = new ArrayList<MyCourseJsonTools>();
 		JSONObject obj;
@@ -47,6 +45,7 @@ public class MyCourseJsonUtils {
 							.getString("durationMinute"));
 					tools.setCourse_no(json.getJSONObject("course").getString(
 							"no"));
+					tools.setCreate_time(json.getJSONObject("course").getString("createTime"));
 					
 				    JSONArray order = json.getJSONArray("orders");
 				    JSONObject order_json = order.getJSONObject(0);
