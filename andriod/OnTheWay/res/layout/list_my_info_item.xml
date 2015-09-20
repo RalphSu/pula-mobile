@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+
+    android:layout_width="fill_parent"  
+    android:layout_height="30dp"  
+    android:orientation="horizontal" >  
+  
+    <View  
+        android:layout_alignParentLeft="true"
+        android:layout_width="5px"  
+        android:layout_height="fill_parent"  
+        android:background="#CC0033"  
+        android:visibility="visible" />  
+  
+    <TextView  
+        android:id="@+id/user_info_field"  
+        android:layout_width="0dp"  
+        android:layout_height="30dip"  
+        android:layout_weight="0.4"
+        android:textColor="@color/black"  
+        android:gravity= "center"
+        android:textSize="20sp" 
+        android:textStyle="bold"
+   
+        android:paddingBottom="0dp"      
+        android:singleLine="true" 
+        android:ellipsize="marquee" 
+        android:marqueeRepeatLimit="marquee_forever"/>  
+  
+    <View  
+        android:layout_width="5px"  
+        android:layout_height="fill_parent"  
+        android:background="#CC0033"  
+        android:visibility="visible" />  
+  
+    <TextView  
+        android:id="@+id/user_info_value"  
+        android:layout_width="0dp"  
+        android:layout_height="30dip"  
+        android:layout_weight="0.6"
+        android:gravity= "center"
+        android:textColor="#000000"  
+        android:textSize="20sp"  
+  
+        android:paddingBottom="0dp" 
+        android:singleLine="true" 
+        android:ellipsize="marquee" 
+        android:marqueeRepeatLimit="marquee_forever"/>  
+  
+    <View  
+        android:layout_alignParentRight="true"
+        android:layout_width="5px"  
+        android:layout_height="fill_parent"  
+        android:background="#CC0033"  
+        android:visibility="visible" />  
+  
+</LinearLayout>  

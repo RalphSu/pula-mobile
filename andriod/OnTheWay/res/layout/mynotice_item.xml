@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical" >
+    android:layout_height="100dp"
+    android:background="#FFCC99"
+    android:orientation="horizontal" >
 
     
     <ImageView
         android:id="@+id/img_p"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="match_parent"
-        android:contentDescription="@string/nul"
-        android:layout_marginLeft="5dp"
-        android:src="@drawable/pula_logo_circle"
+        android:contentDescription="@string/nul"      
+        android:src="@drawable/aaa"
+        android:scaleType="fitXY"
         />
     
     <TextView
         android:id="@+id/mynotice_name"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/img_p"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold"
         android:textColor="#3C3C3C"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+       />
 
 
     <TextView
@@ -32,19 +35,22 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/img_p"
         android:layout_below="@+id/mynotice_name"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="5dp"
         android:textColor="#3C3C3C"
-        android:textSize="15sp" />
+        android:textStyle="bold"
+        android:textSize="15sp" 
+        />
 
     <TextView
         android:id="@+id/mynotice_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/mynotice_count"
+        android:layout_below="@+id/mynotice_count"        
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"      
         android:textColor="#3C3C3C"
-        android:textSize="15sp" />
+
+        android:textSize="15sp" 
+        />
 </RelativeLayout>

@@ -1,24 +1,50 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@color/white">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/myNoticeLinearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone" >
+               
+       <TextView
+        android:id="@+id/my_notice_chn"
+        android:textColor="#EE7600"  
+        android:textSize="22sp" 
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="@string/my_notice_chn"/>
 
+       <TextView
+           android:id="@+id/my_notice_english"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@+id/my_notice_chn"
+           android:layout_marginLeft="20dp"
+           android:background="#EE7600"
+           android:text="@string/my_notice_eng"
+           android:textColor="@color/white"
+           android:textSize="20sp"
+           android:textStyle="bold" />
+             
         <ListView
-            android:id="@+id/myNoticeListview"
+            android:id="@+id/myNoticeListview"          
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#ffffff"
-            android:dividerHeight="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp" >
+            android:layout_below="@+id/my_notice_english"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:divider="@color/white"          
+            android:dividerHeight="10dp"
+             >
         </ListView>
-    </LinearLayout>
+        
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

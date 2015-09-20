@@ -1,12 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
+<?xml version="1.0" encoding="utf-8"?>  
+<RelativeLayout  
+        xmlns:android="http://schemas.android.com/apk/res/android"  
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:orientation="horizontal" 
+        android:background="@color/white"> 
+          
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/my_info_chn"
+        android:textColor="#CC0033"  
+        android:textSize="22sp" 
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="@string/basic_info_chn"/>     
+   
+     <TextView
+        android:id="@+id/my_info_english"
+        android:layout_toRightOf="@+id/my_info_chn"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textColor="@color/white"
+        android:background="#CC0033"
+        android:textSize="20sp" 
+        android:textStyle="bold"
+        android:text="@string/basic_info_eng"/>
 
-</LinearLayout>
+     <TextView
+         android:id="@+id/list_head"
+         android:layout_width="fill_parent"
+         android:layout_height="30dp"
+         android:layout_marginLeft="15dp"
+         android:layout_marginRight="15dp"
+         android:layout_below="@+id/my_info_chn"
+         android:layout_marginTop="20dp"
+         android:background="#CC0033"
+          />
+             
+    <com.yuhj.ontheway.utils.RTPullListView
+        android:id="@+id/my_info_list"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list_head"
+        android:cacheColorHint="#00000000"
+        android:divider="#CC0033"
+        android:dividerHeight="3dp"
+        android:listSelector="#00000000" />
+    <TextView
+         android:id="@+id/list_tail"
+         android:layout_width="fill_parent"
+         android:layout_height="3dp"
+         android:layout_marginLeft="15dp"
+         android:layout_marginRight="15dp"
+         android:layout_below="@+id/my_info_list"
+         android:background="#CC0033"
+          />
+     
+     <ImageView
+        android:id="@+id/img_p"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight = "true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/nul"
+        android:scaleType="centerCrop"
+        android:src="@drawable/my_info_bottom_pic" />
+    
+   
+</RelativeLayout>  

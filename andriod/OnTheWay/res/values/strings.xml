@@ -113,6 +113,31 @@
     <string name="branch_name">分部:</string>   
     <string name="available_period">有效期:</string>
     
+    <string name="basic_info_chn">基本信息</string>
+    <string name="basic_info_eng">Basic information</string>
+   
+    <string name="my_notice_chn">我的活动</string>
+    <string name="my_notice_eng">My activities</string>
+    
+    <string name="my_course_chn">我的课程</string>
+    <string name="my_course_eng">My course</string>
+    
+    <string name="my_booking_chn">我的预约</string>
+    <string name="my_booking_eng">My reservation</string>
+    
+    <string name="my_work_chn">我的工作</string>
+    <string name="my_work_eng">My work</string>
+    
+   
+    <string name="user_no">编号</string>
+    <string name="user_name">姓名</string>
+    <string name="user_gender">性别</string>
+    <string name="user_parnet_name">家长姓名</string>     
+    <string name="user_mobile">联系电话</string>
+    <string name="user_address">家庭地址</string>
+    <string name="user_card_no">学员卡号</string>
+   
+   
     <string name="progress_buy_out_status">购买使用: </string>
     <string name="progress_gongfang_used">工坊使用: </string>
     <string name="progress_huodong_used">活动使用: </string>

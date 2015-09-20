@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.yuhj.ontheway.R;
@@ -37,8 +38,10 @@ public class MyNoticeActivity extends BaseActivity {
     private MyNoticeListAdapter myNoticeAdapter;
 
     // private RelativeLayout loadRelativeLayout;
-    private LinearLayout dataLinearLayout;
-
+    private RelativeLayout dataLinearLayout;
+    
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +54,12 @@ public class MyNoticeActivity extends BaseActivity {
 
         // loadRelativeLayout = (RelativeLayout)
         // view.findViewById(R.id.lodingRelativeLayout);
-        dataLinearLayout = (LinearLayout) view.findViewById(R.id.myNoticeLinearlayout);
+        dataLinearLayout = (RelativeLayout) view.findViewById(R.id.myNoticeLinearlayout);
 
         new DownData().execute();
         myNoticeAdapter = new MyNoticeListAdapter(this, userName, passWord);
         myNoticeList = (ListView) view.findViewById(R.id.myNoticeListview);
-
-        
+       
         setTitle("普拉星球 - 我的活动");
         setContentView(view);
     }

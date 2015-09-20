@@ -10,6 +10,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,8 @@ public class MyNoticeListAdapter extends BaseAdapter {
     private List<MyNoticeData> myNotices = new ArrayList<MyNoticeData>();
 
     private final LayoutInflater inflater;
-
+    String color[] = {"#A0522D","#8B814C","#FF7F24","#EE1289","#B22222","#8B2500","#B03060","#00B2EE","#9A32CD"};
+    
     public MyNoticeListAdapter(Context context, String userName, String passWord) {
         this.userName = userName;
         this.password = passWord;
@@ -72,6 +74,7 @@ public class MyNoticeListAdapter extends BaseAdapter {
         final MyNoticeData notice = myNotices.get(position);
 
         holder.noticeName.setText(notice.getNoticeName());
+        holder.noticeName.setTextColor(Color.parseColor(color[position]));
         holder.noticeDate.setText(notice.getNoticeDay() == null ? "" : formatter.print(notice.getNoticeDay()));
         holder.buyCount.setText("预约人数: " + notice.getBuyCount());
 //        holder.buyDate.setText(notice.getBuyDay() == null ? "" : formatter.print(notice.getBuyDay()));
