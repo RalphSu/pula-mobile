@@ -13,6 +13,7 @@ import com.yuhj.ontheway.utils.HttpTools;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +72,22 @@ public class MyInfoListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
+		
+		if(position % 2 == 1)
+		{  
+			Log.i("position=",""+ position);
+			holder.usr_info_field_name.setBackgroundColor(Color.parseColor("#FFC0CB"));
+			holder.user_info_value.setBackgroundColor(Color.parseColor("#FFC0CB"));
+		}
 	
+		if(position %2 == 0)
+		{  
+			Log.i("position=",""+ position);
+			holder.usr_info_field_name.setBackgroundColor(Color.parseColor("#FFFFFF"));
+			holder.user_info_value.setBackgroundColor(Color.parseColor("#FFFFFF"));
+		}
+	
+			
         holder.usr_info_field_name.setText(field[position] );
 		
     	// 取值
