@@ -22,7 +22,7 @@ import com.yuhj.ontheway.utils.StaticStrings;
 
 public class LoginWelcomeAvtivity extends Activity {
     private SharedPreferences preference;
-    private ImageView img_pula_logo,img_my_notice, img_my_course, img_my_booking, img_my_point;
+    private ImageView img_pula_logo,img_my_info,img_my_notice, img_my_course, img_my_booking, img_my_point;
 	
     private String userName;
     private String passWord;
@@ -37,19 +37,24 @@ public class LoginWelcomeAvtivity extends Activity {
 
 		setContentView(R.layout.frame_user_page);
 
-		img_pula_logo = (ImageView) findViewById(R.id.img_logo);
+		img_my_info = (ImageView) findViewById(R.id.img_my_info);
+		img_pula_logo = (ImageView) findViewById(R.id.img_pula_logo);
+		
         img_my_notice = (ImageView) findViewById(R.id.img_my_notice);
         img_my_course = (ImageView) findViewById(R.id.img_my_course);
         img_my_booking = (ImageView) findViewById(R.id.img_my_booking);
         img_my_point = (ImageView) findViewById(R.id.img_my_work);
 
+        
+        img_my_info.setImageResource(R.drawable.my_info);
+        img_pula_logo.setImageResource(R.drawable.pula_logo_welocme_pic);
         img_my_notice.setImageResource(R.drawable.my_notice);   
         img_my_course.setImageResource(R.drawable.my_course);  
         img_my_booking.setImageResource(R.drawable.my_booking);   
         img_my_point.setImageResource(R.drawable.my_work);  
         
         
-        img_pula_logo.setOnClickListener(new OnClickListener() {
+        img_my_info.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {

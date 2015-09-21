@@ -70,7 +70,8 @@ public class MyCourseActivity extends Activity {
 		initVaule();
 		// 监听
 		initListener();
-
+		
+		setTitle("普拉星球 - 我的课程");
 		// getDateFormServise();// 联网获取数据
 		// 下拉刷新监听器
 		/*
@@ -211,13 +212,14 @@ public class MyCourseActivity extends Activity {
 				// list列表点击事件
 				img_bottom.setVisibility(View.VISIBLE);
 				
+				 /*
 				my_course_list
 						.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 							@Override
 							public void onItemClick(AdapterView<?> parent,
 									View view, int position, long id) {
-
+                              
 								System.out.println(position);
 
 								position = position - 1;
@@ -233,9 +235,10 @@ public class MyCourseActivity extends Activity {
 								// intent.putExtra("SearchId","1");
 								intent.putExtra("name", to.getName());
 								startActivity(intent);
+							
 							}
 						});
-
+                   */
 				break;
 
 			}

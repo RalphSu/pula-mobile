@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/nul"
-        android:scaleType="centerInside"
+        android:scaleType="fitXY"
         android:src="@drawable/my_course_bottom_pic"
         android:visibility="gone" />
 
