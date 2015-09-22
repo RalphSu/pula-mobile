@@ -23,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class RegistedUserBookingDialogActivity extends BaseActivity
  
     private String userNameValue;
     
-	private Button btn_enter;
+	
 	
 	private SharedPreferences sp;
 	
@@ -48,6 +49,8 @@ public class RegistedUserBookingDialogActivity extends BaseActivity
 	TextView booking_course_time;
 	
 	TextView booking_user_no;
+	
+	ImageView btn_enter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class RegistedUserBookingDialogActivity extends BaseActivity
 		
 		userNameValue = sp.getString("USER_NAME", "USER_NAME");
 		
-		btn_enter = (Button)findViewById(R.id.btn_enter);
+		btn_enter = (ImageView)findViewById(R.id.btn_enter);
 		
 		booking_user_no = (TextView)findViewById(R.id.tv_user_no); 
 		booking_course_name = (TextView)findViewById(R.id.tv_course_name);
