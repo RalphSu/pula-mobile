@@ -147,6 +147,8 @@
     <string name="prevMonth">上一个月</string>
     <string name="nextMonth">下一个月</string>
     <string name="booking_plan">预约时间:</string>
+    <string name="person_num">人数:</string>
+    
     
     <string name="point_add_del">积分增减:</string>
     <string name="point_type">积分类型:</string>

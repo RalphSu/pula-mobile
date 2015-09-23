@@ -7,6 +7,7 @@ import java.util.List;
 
 
 
+
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.bean.MyCourseJsonTools;
 import com.yuhj.ontheway.utils.AsyncImageLoader;
@@ -15,6 +16,7 @@ import com.yuhj.ontheway.utils.HttpTools;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +71,15 @@ public class CurriculumScheduleListAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.list_course_item, null);
-
+            if(position % 2 == 0)
+            {
+               convertView.setBackgroundColor(Color.parseColor("#99CC66"));
+            }
+            else
+            {
+               convertView.setBackgroundColor(Color.parseColor("#B4EEB4"));
+            }
+            
 			holder.course_name = (TextView)convertView.findViewById(R.id.tx_course_name);
 			//holder.branch_name = (TextView)convertView.findViewById(R.id.tx_branch_name);
 			holder.duration_time = (TextView)convertView.findViewById(R.id.tx_course_duraion_name);
@@ -95,7 +105,8 @@ public class CurriculumScheduleListAdapter extends BaseAdapter {
 		//holder.avaiable_period.setText(tools.getStart_time() + "-" + tools.getEnd_time());
 		holder.open_time.setText(course_time[position]);
         holder.duration_time.setText(duration_time[position]);		
-		String path = tools.getTeacher_pic_url();
+		
+        String path = tools.getTeacher_pic_url();
 		holder.teacher_pic.setTag(path);
 		
 		/*
@@ -121,7 +132,7 @@ public class CurriculumScheduleListAdapter extends BaseAdapter {
 			holder.teacher_pic.setImageResource(R.drawable.pula_logo_circle);
 		}
 		*/
-		holder.teacher_pic.setImageResource(R.drawable.pula_logo_circle);
+		holder.teacher_pic.setImageResource(R.drawable.curriculum_schedule_list_pic);
 		
 		return convertView;
 	}

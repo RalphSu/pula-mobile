@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="80dp" >
-    <ImageView
+    android:layout_height="100dp"  
+    android:minHeight="100dp" 
+    android:background="@color/green"
+    android:orientation="horizontal"
+     >
+    
+
+     <ImageView
         android:id="@+id/img_p"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/nul"
-        android:layout_marginLeft="5dp"
-        android:src="@drawable/pula_logo_circle"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/nul"      
+        android:src="@drawable/curriculum_schedule_list_pic"
+        android:scaleType="fitXY"
         />
     
 	<TextView
@@ -102,18 +107,31 @@
 		android:ellipsize="marquee"
 		android:textColor="@color/black"
 		android:marqueeRepeatLimit="marquee_forever"/>
-    
-       <ImageView
-        android:id="@+id/course_image_click"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/nul"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/right_45"
-        />
-    
-    
+ 
+     <TextView
+	    android:id="@+id/text_booking_num"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_below="@+id/text_course_open_time"
+	    android:layout_toRightOf="@+id/img_p"
+	    android:layout_marginTop="5dp"
+	    android:text="@string/person_num"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+	
+    <TextView
+	    android:id="@+id/tx_booking_num"
+	    style="@style/Stylewidthhight_ww"
+	    android:layout_toRightOf="@+id/text_booking_num"
+	    android:layout_below="@+id/tx_course_open_time"
+	    android:layout_marginTop="5dp"
+	    android:text="@string/nul"
+	    android:singleLine="true"
+		android:ellipsize="marquee"
+		android:textColor="@color/black"
+		android:marqueeRepeatLimit="marquee_forever"/>
+       
     <!-- 
 	  	<TextView
 	    android:id="@+id/text_available_period_name"
