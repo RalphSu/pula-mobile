@@ -90,7 +90,7 @@ public class CurriculumScheduleActivity extends BaseActivity {
 		initVaule();
 		// 监听
 		initListener();
-
+		setTitle("普拉星球 - 预约");
 		new Thread() {
 			public void run() {
 				Log.i("username=","" + userName);
