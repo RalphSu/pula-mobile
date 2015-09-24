@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v4.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ public class HuoDongAdapter extends BaseAdapter {
 	private ArrayList<HuoDongData> data;
 	private Context context;
 	private LruCache<String,Bitmap> lruCache;
+	String color[] = {"#A0522D","#8B814C","#FF7F24","#EE1289","#B22222","#8B2500","#B03060","#00B2EE","#9A32CD"};
+	
 	public void BindData(ArrayList<HuoDongData> data){
 		this.data = data;
 	}
@@ -66,6 +69,7 @@ public class HuoDongAdapter extends BaseAdapter {
 		}
         HuoDongData huoDongData = data.get(position);
         viewHoleder.textView.setText(huoDongData.getTitle());
+        viewHoleder.textView.setTextColor(Color.parseColor(color[position]));
 //		viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
 		viewHoleder.imageView.setTag(huoDongData.getIamge());
 //		new ImageCache(context, lruCache, viewHoleder.imageView, huoDongData.getIamge(),"OnTheWay",800, 400);

@@ -18,8 +18,8 @@
             android:id="@+id/hongdong_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#C0C0C0"
-            android:dividerHeight="1dp"
+            android:divider="@color/white"
+            android:dividerHeight="10dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" >
 
