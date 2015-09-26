@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:visibility="gone" >
 
-        <com.yuhj.ontheway.widget.PullToRefreshLayout
+        <com.pula.star.widget.PullToRefreshLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/refresh_view"
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             <include layout="@layout/refresh_head" />
             <!-- 支持所有实现Pullable接口的View -->
 
-            <com.yuhj.ontheway.widget.PullableListView
+            <com.pula.star.widget.PullableListView
                 android:id="@+id/jingxuan_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -34,7 +34,7 @@
                 android:paddingRight="5dp" />
 
             <include layout="@layout/load_more" />
-        </com.yuhj.ontheway.widget.PullToRefreshLayout>
+        </com.pula.star.widget.PullToRefreshLayout>
     </LinearLayout>
 
 </LinearLayout>

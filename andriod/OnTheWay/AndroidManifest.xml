@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yuhj.ontheway"
+    package="com.pula.star"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -35,10 +35,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.yuhj.ontheway.activity.MainActivity"
+            android:name="com.pula.star.activity.MainActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.WelcomeActivity" >
+        <activity android:name="com.pula.star.activity.WelcomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,11 +46,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.JingXuanDetailsActivity"
+            android:name="com.pula.star.activity.JingXuanDetailsActivity"
             android:label="@string/title_activity_jing_xuan_details" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.ShareActivity"
+            android:name="com.pula.star.activity.ShareActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
 
             <!--
@@ -77,60 +77,60 @@
         <activity android:name="com.freedoman.fingerlife.activities.UserCenterActivity" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.AddActivity"
+            android:name="com.pula.star.activity.AddActivity"
             android:label="@string/title_activity_add"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.CourseDetailTourActivity"
+            android:name="com.pula.star.activity.CourseDetailTourActivity"
             android:label="@string/title_activity_zhuanti_detail" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.CourseDetailH5Activity"
+            android:name="com.pula.star.activity.CourseDetailH5Activity"
             android:label="@string/title_activity_zhuanti_detail" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.CourseDetailImageActivity"
+            android:name="com.pula.star.activity.CourseDetailImageActivity"
             android:label="@string/title_activity_zhuanti_detail_image" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.HuodongDetailActivity"
+            android:name="com.pula.star.activity.HuodongDetailActivity"
             android:label="@string/title_activity_huodong_detail" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.BookingActivity"
+            android:name="com.pula.star.activity.BookingActivity"
             android:label="@string/title_activity_booking" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.LoginWelcomeAvtivity" >
+        <activity android:name="com.pula.star.activity.LoginWelcomeAvtivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.LogoActivity" >
+        <activity android:name="com.pula.star.activity.LogoActivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.UserInfoActivity" >
+        <activity android:name="com.pula.star.activity.UserInfoActivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.MyCourseActivity" >
+        <activity android:name="com.pula.star.activity.MyCourseActivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.MyBookingActivity" >
+        <activity android:name="com.pula.star.activity.MyBookingActivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.MyPointActivity" >
+        <activity android:name="com.pula.star.activity.MyPointActivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.buy.BuyCourseSubmitActivity" >
+        <activity android:name="com.pula.star.activity.buy.BuyCourseSubmitActivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.buy.BuyHuodongSubmitActivity" >
-        </activity>
-        
-        <activity android:name="com.yuhj.ontheway.activity.CurriculumScheduleActivity" >
+        <activity android:name="com.pula.star.activity.buy.BuyHuodongSubmitActivity" >
         </activity>
         
+        <activity android:name="com.pula.star.activity.CurriculumScheduleActivity" >
+        </activity>
         
-        <activity android:name="com.yuhj.ontheway.activity.BookingDialogActivity" >
+        
+        <activity android:name="com.pula.star.activity.BookingDialogActivity" >
         </activity>
 
-        <activity android:name="com.yuhj.ontheway.activity.RegistedUserBookingDialogActivity" >
+        <activity android:name="com.pula.star.activity.RegistedUserBookingDialogActivity" >
         </activity>
         
-        <activity android:name="com.yuhj.ontheway.activity.MyNoticeActivity" >
+        <activity android:name="com.pula.star.activity.MyNoticeActivity" >
         </activity>
-        <activity android:name="com.yuhj.ontheway.activity.MyWorkH5Activity" >
+        <activity android:name="com.pula.star.activity.MyWorkH5Activity" >
         </activity>
            
         <activity

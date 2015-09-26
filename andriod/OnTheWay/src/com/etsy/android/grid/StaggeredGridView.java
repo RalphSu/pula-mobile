@@ -13,7 +13,7 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yuhj.ontheway.R;
+import com.pula.star.R;
 
 
 /**

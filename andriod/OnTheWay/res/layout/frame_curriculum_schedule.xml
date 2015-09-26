@@ -25,7 +25,7 @@
     -->
 
       
-    <com.yuhj.ontheway.utils.RTPullListView
+    <com.pula.star.utils.RTPullListView
         android:id="@+id/course_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

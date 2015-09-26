@@ -38,7 +38,7 @@
          android:background="#CC0033"
           />
              
-    <com.yuhj.ontheway.utils.RTPullListView
+    <com.pula.star.utils.RTPullListView
         android:id="@+id/my_info_list"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp" 

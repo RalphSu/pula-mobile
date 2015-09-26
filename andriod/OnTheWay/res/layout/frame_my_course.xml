@@ -36,7 +36,7 @@
          android:background="#66cc33"
           />
      
-    <com.yuhj.ontheway.utils.RTPullListView
+    <com.pula.star.utils.RTPullListView
         android:id="@+id/my_course_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
