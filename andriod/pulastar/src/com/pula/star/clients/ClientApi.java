@@ -529,5 +529,31 @@ public class ClientApi {
 		}
 		return null;
 	}
+	
+    public static boolean audition_create(){
+
+		String audition_create_url = "http://121.40.151.183:8080/pula-sys/app/audition/_update?student=ff&id=&age=13&phone=165666"
+				+ "&parent=ff&content=f&plan1=f&plan2=f&plan3=f&plan4=f&plan5=f&resultId=&comments=f&id=325&_json=1";
+		
+		boolean result = false;
+		
+		JSONObject json = ParseJson(audition_create_url, "utf-8");
+		
+		if (json == null) {
+			return false;
+		} else {
+			try {
+			  	
+			  result = json.getBoolean("error");
+			  	
+			} catch (Exception e) {
+				e.printStackTrace();
+}
+		}
+		return !result;
+	
+    	
+    }
+    
 }	
 	

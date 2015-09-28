@@ -1,12 +1,16 @@
 package com.pula.star.fragment;
 
 
+import org.joda.time.DateTime;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,22 +26,56 @@ import android.widget.Toast;
 
 import com.pula.star.R;
 import com.pula.star.activity.LoginWelcomeAvtivity;
+import com.pula.star.bean.UserInfoData;
 import com.pula.star.clients.ClientApi;
 
 public class LoginFragment extends Fragment {
-    private EditText userName, password;
-	private CheckBox rem_pw, auto_login;
+    //Actually userName is user's No
+	private EditText userName, password;
+	
+    private CheckBox rem_pw, auto_login;
 	private Button btn_login;
 	
     private String userNameValue,passwordValue;
 	private SharedPreferences sp;
 	private boolean status = false;
+	
+	
+	
+	private String user_info_name;//用户姓名
+	private String user_info_parent_name; //家长姓名
+	private String user_info_phone; //用户电话号码
+	private String user_info_age; //用户年龄
+	
+	
+	
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
-		
+	
+	
+	Handler handler = new Handler(){
+		 
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+            case 1:
+            	Boolean result = (Boolean) msg.obj;
+                if(result == true)
+                {
+                  new get_user_info().execute();
+                }
+                break;
+ 
+            default:
+                break;
+            }
+        }
+         
+    };
+    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -89,9 +127,9 @@ public class LoginFragment extends Fragment {
 					public void onClick(View v) {
 						userNameValue = userName.getText().toString();
 					    passwordValue = password.getText().toString();
-					    System.out.println(userNameValue);
-					    System.out.println(passwordValue);
-					    new loging_action().execute();
+									    
+					    new loging_action(handler).execute();
+					    
 					    				  
 					}
 				});
@@ -140,8 +178,14 @@ public class LoginFragment extends Fragment {
 
 	
 	
+	
 	 class loging_action extends AsyncTask<Void,Void,Boolean> {
-
+		    Handler mHandler;
+		    
+		    public loging_action(Handler handler){
+		        
+		        this.mHandler = handler;
+		    }
 	        @Override
 	        protected Boolean doInBackground(Void... arg0) {
 	            return ClientApi.getLoginStatus(userNameValue,passwordValue);
@@ -167,9 +211,16 @@ public class LoginFragment extends Fragment {
 					  editor.commit();
 					}
 					
-					Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
+					//Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
 
-					startActivity(intent);
+					//startActivity(intent);
+					
+					Message msg = mHandler.obtainMessage();
+			       
+			        msg.what = 1;
+			        msg.obj = result;
+			        mHandler.sendMessage(msg);
+				
 					
 	            } else {
 	            	
@@ -182,9 +233,67 @@ public class LoginFragment extends Fragment {
 					 editor.commit();
 					 
 	            	Toast.makeText(LoginFragment.this.getActivity(),"用户名或密码错误，请重新登录", Toast.LENGTH_LONG).show();
+	            
 	            }
 	        }
 
    } 
+	 
+	 
+	 class get_user_info extends AsyncTask<Void,Void,Boolean>{
+
+
+	        @Override
+	        protected Boolean doInBackground(Void... arg0) {
+	           
+	        	UserInfoData userInfo = new UserInfoData();
+				
+				userInfo = ClientApi.getUserInfoData(userNameValue,passwordValue);
+				
+				if(userInfo != null)
+				{
+					 user_info_name = userInfo.getName();
+					 user_info_parent_name = userInfo.getParentName();
+					 user_info_phone = userInfo.getMobile();        
+		                
+				  return true;
+				}
+				else
+					
+				{
+					
+				  return false;	
+				}
+				
+	        }
+
+   
+	        @Override
+	        protected void onPostExecute(final Boolean result) {
+
+	            super.onPostExecute(result);
+	            if (result == true) {
+	    
+	       
+					  Editor editor = sp.edit();
+					  editor.putString("USER_INFO_NAME", user_info_name);
+					  editor.putString("USER_INFO_PARENT_NAME",user_info_parent_name);
+					  editor.putString("USER_INFO_MOBILE",user_info_phone);
+					  
+					  System.out.println("xingming " + user_info_name);
+					  System.out.println("jiazhang " + user_info_parent_name);
+					  System.out.println("dianhua " + user_info_phone);
+					  editor.commit();
+					
+					  Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
+
+					  startActivity(intent);
+						
+	            }            
+	        	
+	        }
+
+
+	 }
 }
  

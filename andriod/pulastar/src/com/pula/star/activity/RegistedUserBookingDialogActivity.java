@@ -119,7 +119,7 @@ public class RegistedUserBookingDialogActivity extends BaseActivity
 	        @Override
 	        protected Boolean doInBackground(Void... arg0) {
 	        	
-	            //return ClientApi.audition_create(nameValue,ageValue,phoneValue);
+	            //return ClientApi.audition_create();
 	        		
 	        	return true;
 	        }
