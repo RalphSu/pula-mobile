@@ -57,6 +57,7 @@ public class BookingDialogActivity extends BaseActivity
 		
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.booking_dialog);
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		
 		selected = (DateTime) getIntent().getSerializableExtra("calSelected");
 		
@@ -128,6 +129,14 @@ public class BookingDialogActivity extends BaseActivity
 			startActivity(intent);
 			
 	    }
+	   
+		@Override
+		protected void onPause() {
+			super.onPause();
+			if (isFinishing()) {
+				overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+			}
+		}
 	   
 	 class enter_action extends AsyncTask<Void,Void,Boolean> {
 

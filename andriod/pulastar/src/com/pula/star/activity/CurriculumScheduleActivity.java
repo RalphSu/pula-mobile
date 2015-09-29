@@ -63,7 +63,7 @@ public class CurriculumScheduleActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.frame_curriculum_schedule);
 
@@ -131,6 +131,14 @@ public class CurriculumScheduleActivity extends BaseActivity {
 		
     }
     
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
+	
 	public void initView() {
 
 	}

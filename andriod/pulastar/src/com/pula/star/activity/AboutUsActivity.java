@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+
 import com.pula.star.utils.phoneInfoUtils;
 import com.pula.star.R;
 //import com.dongji.market.helper.AConstDefine;
@@ -79,6 +80,14 @@ public class AboutUsActivity extends Activity {
 		mShareUs.setLayoutParams(linearParams);
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
+	
 	public String getVersionName() {
 		try {
 			PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);

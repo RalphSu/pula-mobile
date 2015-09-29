@@ -32,6 +32,7 @@ public class AddActivity extends FragmentActivity implements OnClickListener {
 	}
 
 	private void initViews() {
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		take_photo = (Button) findViewById(R.id.take_photo);
 		select_picture = (Button) findViewById(R.id.select_picture);
 		publish_text = (Button) findViewById(R.id.publish_text);
@@ -47,8 +48,7 @@ public class AddActivity extends FragmentActivity implements OnClickListener {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		overridePendingTransition(android.R.anim.fade_in,
-				android.R.anim.fade_out);
+		overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
 	}
 
 	@Override
@@ -77,5 +77,8 @@ public class AddActivity extends FragmentActivity implements OnClickListener {
 		}
 
 	}
+	
+
+	
 
 }

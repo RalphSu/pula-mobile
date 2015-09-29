@@ -51,7 +51,7 @@ public class CourseDetailH5Activity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
         userName = preference.getString("USER_NAME", "");
         passWord = preference.getString("PASSWORD", "");
@@ -119,8 +119,17 @@ public class CourseDetailH5Activity extends BaseActivity {
                 progressBar.postInvalidate();
             }
         });
+        
+        
     }
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
 
     private void addBuyNowButton(LinearLayout rootViewLayout) {
         // check login

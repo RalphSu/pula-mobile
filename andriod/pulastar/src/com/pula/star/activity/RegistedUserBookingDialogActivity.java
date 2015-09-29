@@ -57,8 +57,11 @@ public class RegistedUserBookingDialogActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
+		
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.registed_user_booking_dialog);
 
@@ -105,6 +108,14 @@ public class RegistedUserBookingDialogActivity extends BaseActivity {
 
 		}
 
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
 	}
 
 	@Override

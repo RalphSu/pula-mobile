@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
 import com.pula.star.R;
 import com.pula.star.adapter.MyInfoListAdapter;
 import com.pula.star.bean.BookingData;
@@ -45,6 +46,7 @@ public class UserInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.user_info);
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		setTitle("普拉星球 - 我的信息");
 		my_info_list = (RTPullListView) findViewById(R.id.my_info_list);  
 		
@@ -66,6 +68,14 @@ public class UserInfoActivity extends Activity {
 		new Thread(runnable).start();
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
+	
 	Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {

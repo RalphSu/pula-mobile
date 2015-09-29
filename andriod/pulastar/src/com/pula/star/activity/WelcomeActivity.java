@@ -24,7 +24,7 @@ public class WelcomeActivity extends BaseActivity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_welcome);  
-  
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         // JodaTimeAndroid.init(this);
         initJoda();
         
@@ -50,6 +50,14 @@ public class WelcomeActivity extends BaseActivity {
         }.start();  
     }
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
+	
     private void initJoda() {
       //  System.setProperty("org.joda.time.DateTimeZone.Provider", 
        //         "com.yuhj.ontheway.utils.FastDateTimeZoneProvider");

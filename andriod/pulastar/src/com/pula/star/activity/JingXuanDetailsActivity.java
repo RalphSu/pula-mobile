@@ -55,6 +55,7 @@ public class JingXuanDetailsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_jing_xuan_details);
 		initViews();
@@ -62,7 +63,16 @@ public class JingXuanDetailsActivity extends BaseActivity {
 
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
+	
 	private void initViews() {
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		View headerView = LayoutInflater.from(getApplicationContext()).inflate(
 				R.layout.jing_xuan_details_header, null);
 		mainImage = (ImageView) headerView
@@ -108,9 +118,12 @@ public class JingXuanDetailsActivity extends BaseActivity {
 				startActivity(intent);
 			}
 		});
+		
+		
 
 	}
 
+	
 	class DownData extends AsyncTask<Void, Void, ArrayList<JingxuanDetailData>> {
 
 		@Override

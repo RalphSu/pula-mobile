@@ -32,6 +32,7 @@ public class CourseDetailImageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_zhuanti_detail_image_activity);
         LoadingAinm.ininLoding(CourseDetailImageActivity.this);
@@ -47,6 +48,14 @@ public class CourseDetailImageActivity extends BaseActivity {
         new DownLoad().execute();
     }
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
+	
     class DownLoad extends AsyncTask<Void, Void, ArrayList<CourseData>> {
 
         protected ArrayList<CourseData> doInBackground(Void... arg0) {

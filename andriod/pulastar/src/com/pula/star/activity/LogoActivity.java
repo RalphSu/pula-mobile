@@ -18,7 +18,7 @@ public class LogoActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.logo);
 
@@ -38,6 +38,14 @@ public class LogoActivity extends Activity {
 			}
 		});
 
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
 	}
 	
 }

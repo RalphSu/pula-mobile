@@ -53,7 +53,7 @@ public class BookingActivity extends BaseActivity {
     @SuppressLint("InflateParams")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_booking, null);
 
         DateTime selected = (DateTime) getIntent().getSerializableExtra("calSelected");
@@ -70,4 +70,12 @@ public class BookingActivity extends BaseActivity {
         adapter.notifyDataSetChanged();
 
     }
+    
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
 }

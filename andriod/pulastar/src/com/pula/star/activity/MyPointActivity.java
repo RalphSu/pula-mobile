@@ -44,6 +44,7 @@ public class MyPointActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.frame_my_booking);
 
@@ -71,6 +72,13 @@ public class MyPointActivity extends Activity {
 		}.start(); 
 	}
 	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
 
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {

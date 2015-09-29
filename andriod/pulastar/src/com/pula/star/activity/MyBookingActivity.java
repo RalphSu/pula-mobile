@@ -47,9 +47,11 @@ public class MyBookingActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	
+		
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.frame_my_booking);
 
+		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
 		userName = preference.getString("USER_NAME", "");
 			
@@ -74,6 +76,13 @@ public class MyBookingActivity extends Activity {
 		}.start(); 
 	}
 	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+		}
+	}
 
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
