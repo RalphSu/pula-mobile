@@ -64,6 +64,16 @@ public class LoginWelcomeAvtivity extends Activity {
 			}
 		});
         
+        img_pula_logo.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+                Intent intent_my_info = new Intent(LoginWelcomeAvtivity.this, AboutUsActivity.class);
+	            startActivity(intent_my_info);
+
+			}
+		});
+        
         img_my_notice.setOnClickListener(new OnClickListener() {
 
 			@Override

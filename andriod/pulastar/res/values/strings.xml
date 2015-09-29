@@ -157,6 +157,14 @@
     
     <string name="booking">预约</string>
     
+    <string name="product_web">产品官网</string>
+    <string name="productwebaddress">www.zt-zoo.com</string>
+    <string name="weixin_gongzhong">微信公众号</string>
+    <string name="weixingzh">PulaStar</string>
+    
+    <string name="copy_right_text1">普拉星球     版权所有</string>
+    <string name="copy_right_text2">CopyRight©2015 普拉星球</string>
+    <string name="copy_right_text3">All Rights Reserved</string>
     
 	<!-- 星期 -->
 	<string name="Mon">一</string>
@@ -166,5 +174,7 @@
 	<string name="Fri">五</string>
 	<string name="Sat">六</string>
 	<string name="Sun">日</string>
+	
+	<string name="publish_date_value">2015-10-01</string>
 	
 </resources>
