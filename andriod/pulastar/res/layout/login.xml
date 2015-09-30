@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -9,13 +8,25 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
+        
+        <TextView
+            android:id="@+id/register_text"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="已注册用户:"
+            android:textColor="#000000"
+            android:textSize="25sp" />
 
+ 
         <TextView
             android:id="@+id/tv_zh"
             android:layout_width="wrap_content"
             android:layout_height="35dip"
+        
             android:layout_marginLeft="12dip"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="30dip"
             android:gravity="bottom"
             android:text="帐号:"
             android:textColor="#000000"
@@ -69,24 +80,33 @@
             android:layout_marginLeft="12dip"
             android:text="自动登录"
             android:textColor="#000000" />
+
         <Button
             android:id="@+id/btn_login"
             android:layout_width="80dip"
             android:layout_height="40dip"
-            android:layout_below="@id/et_mima"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@id/cb_auto"
+            android:layout_below="@id/et_mima"
             android:layout_marginRight="10dip"
             android:gravity="center"
             android:text="登录"
             android:textColor="#000000"
-            android:textSize="15sp"/>
-        
-        
-
-        
+            android:textSize="15sp" />
     </RelativeLayout>
-    
-    
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="未注册用户:"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="我 要 试 听" />
 
 </LinearLayout>
