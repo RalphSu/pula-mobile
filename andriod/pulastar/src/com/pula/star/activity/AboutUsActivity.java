@@ -21,7 +21,7 @@ import com.pula.star.R;
 
 /**
  * 关于界面
- * @author wenli
+ * @author 
  *
  */
 public class AboutUsActivity extends Activity {

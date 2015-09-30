@@ -25,6 +25,7 @@ import com.pula.star.fragment.BookingFragment;
 import com.pula.star.fragment.CourseFragment;
 import com.pula.star.fragment.HuodongFragment;
 import com.pula.star.fragment.LoginFragment;
+import com.pula.star.fragment.MallFragment;
 
 /**
  * @name MainActivity
@@ -40,7 +41,7 @@ import com.pula.star.fragment.LoginFragment;
 public class MainActivity extends FragmentActivity implements
 		OnCheckedChangeListener, OnTouchListener, OnKeyListener, OnClickListener {
 	private TextView title;
-	private BookingFragment bookingFragment;
+	private MallFragment mallFragment;
 	private HuodongFragment huodongFragment;
 	private CourseFragment courseFragment;
 	private LoginFragment loginFragment;
@@ -60,7 +61,7 @@ public class MainActivity extends FragmentActivity implements
         
         fragments.add(huodongFragment);
         fragments.add(courseFragment);
-        fragments.add(bookingFragment);
+        fragments.add(mallFragment);
         fragments.add(loginFragment);
         
         if (getIntent().getIntExtra("FragmentType", 0) == 3) {
@@ -80,11 +81,11 @@ public class MainActivity extends FragmentActivity implements
     }
 
     private void initViews() {
-        bookingFragment = new BookingFragment(this);
+        mallFragment = new MallFragment();
         courseFragment = new CourseFragment();
         huodongFragment = new HuodongFragment();
         loginFragment = new LoginFragment();
-        //title = (TextView) findViewById(R.id.main_title);
+       
     }
 
     @Override
