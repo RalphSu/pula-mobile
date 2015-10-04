@@ -65,6 +65,8 @@ public class WheelView extends View {
 	/** Default count of visible items */
 	private static final int DEF_VISIBLE_ITEMS = 5;
 
+
+	
 	// Wheel Values
 	private int currentItem = 0;
 

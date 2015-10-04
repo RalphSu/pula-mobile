@@ -6,6 +6,7 @@ import java.util.Date;
 import com.pula.star.R;
 import com.pula.star.datepicker.wheelview.OnWheelScrollListener;
 import com.pula.star.datepicker.wheelview.WheelView;
+import com.pula.star.datepicker.wheelview.adapter.ListWheelAdapter;
 import com.pula.star.datepicker.wheelview.adapter.NumericWheelAdapter;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -29,9 +30,13 @@ public class DatePickerPopWindow extends PopupWindow{
 	private WheelView hourView;
 	private WheelView minView;
 	private WheelView secView;
+	private WheelView timePeriodView;
 	private int[] timeInt;
 	private String currentDaySet;
 	private String currentTimeSet;
+	private String plan_list[] =
+	new String[] {"09:00-10:30","13:00-14:00","14:30-15:30","16:00-17:00","19:00-20:00",};
+	
 	public DatePickerPopWindow(Context context,String startTime){
 		this.context=context;
 		this.startTime=startTime;
@@ -56,10 +61,12 @@ public class DatePickerPopWindow extends PopupWindow{
 		yearView=(WheelView) dateView.findViewById(R.id.year);
 		monthView=(WheelView) dateView.findViewById(R.id.month);
 		dayView=(WheelView) dateView.findViewById(R.id.day);
-		hourView=(WheelView) dateView.findViewById(R.id.time);
-		minView=(WheelView) dateView.findViewById(R.id.min);
-		secView=(WheelView) dateView.findViewById(R.id.sec);
-		secView.setVisibility(View.GONE);
+		//hourView=(WheelView) dateView.findViewById(R.id.time);
+		//minView=(WheelView) dateView.findViewById(R.id.min);
+		//secView=(WheelView) dateView.findViewById(R.id.sec);
+		//secView.setVisibility(View.GONE);
+		timePeriodView = (WheelView)dateView.findViewById(R.id.time_period);
+		
 		initWheel();
 	}
 	private void initWheel() {
@@ -85,7 +92,7 @@ public class DatePickerPopWindow extends PopupWindow{
 		dayView.setViewAdapter(numericWheelAdapter3);
 		dayView.setCyclic(true);
 		dayView.addScrollingListener(scrollListener);
-		
+	/*	
 		NumericWheelAdapter numericWheelAdapter4=new NumericWheelAdapter(context,0, 23, "%02d"); 
 		numericWheelAdapter4.setLabel("时");
 		hourView.setViewAdapter(numericWheelAdapter4);
@@ -97,17 +104,34 @@ public class DatePickerPopWindow extends PopupWindow{
 		minView.setViewAdapter(numericWheelAdapter5);
 		minView.setCyclic(true);
 		minView.addScrollingListener(scrollListener);
+	*/	
+		
+		
+		ListWheelAdapter listWheelAdapter = new ListWheelAdapter(context,plan_list);
+		listWheelAdapter.setLabel("");
+		timePeriodView.setViewAdapter(listWheelAdapter);
+		timePeriodView.setCyclic(true);
+		timePeriodView.addScrollingListener(scrollListener);
+		
 		
 		yearView.setCurrentItem(timeInt[0]-curYear);
 		monthView.setCurrentItem(timeInt[1]-1);
 		dayView.setCurrentItem(timeInt[2]-1);
+		/*
 		hourView.setCurrentItem(timeInt[3]);
 		minView.setCurrentItem(timeInt[4]);
+		*/
+		timePeriodView.setCurrentItem(3);
+		
 		yearView.setVisibleItems(7);//设置显示行数
 		monthView.setVisibleItems(7);
 		dayView.setVisibleItems(7);
+		/*
 		hourView.setVisibleItems(7);
 		minView.setVisibleItems(7);
+		*/
+		timePeriodView.setVisibleItems(7);
+		
 		setContentView(dateView);
 		setWidth(LayoutParams.FILL_PARENT);
 		setHeight(LayoutParams.WRAP_CONTENT);
@@ -128,13 +152,13 @@ public class DatePickerPopWindow extends PopupWindow{
 			
 			initDay(n_year,n_month);
 			
-			String birthday=new StringBuilder().append((yearView.getCurrentItem()+curYear)).append("-").append((monthView.getCurrentItem() + 1) < 10 ? "0" + (monthView.getCurrentItem() + 1) : (monthView.getCurrentItem() + 1)).append("-").append(((dayView.getCurrentItem()+1) < 10) ? "0" + (dayView.getCurrentItem()+1) : (dayView.getCurrentItem()+1)).toString();
-			birthday+="	"+hourView.getCurrentItem()+":"+minView.getCurrentItem();
+			//String birthday=new StringBuilder().append((yearView.getCurrentItem()+curYear)).append("-").append((monthView.getCurrentItem() + 1) < 10 ? "0" + (monthView.getCurrentItem() + 1) : (monthView.getCurrentItem() + 1)).append("-").append(((dayView.getCurrentItem()+1) < 10) ? "0" + (dayView.getCurrentItem()+1) : (dayView.getCurrentItem()+1)).toString();
+			//birthday+="	"+hourView.getCurrentItem()+":"+minView.getCurrentItem();
 			//currentDaySet = StringBuilder().append((yearView.getCurrentItem()+curYear)).append("-").append((monthView.getCurrentItem() + 1) < 10 ? "0" + (monthView.getCurrentItem() + 1) : (monthView.getCurrentItem() + 1)).append("-").append(((dayView.getCurrentItem()+1) < 10) ? "0" + (dayView.getCurrentItem()+1) : (dayView.getCurrentItem()+1)).toString();;
 			
 			
 			currentDaySet = yearView.getCurrentItem()+ curYear + "-" + (((monthView.getCurrentItem() + 1) < 10) ? ("0" + (monthView.getCurrentItem() + 1)) : (monthView.getCurrentItem() + 1)) + "-" + (((dayView.getCurrentItem()+1) < 10) ? ("0" + (dayView.getCurrentItem()+1)) : (dayView.getCurrentItem()+1));
-			currentTimeSet = hourView.getCurrentItem()+":"+ minView.getCurrentItem();
+			currentTimeSet = plan_list[timePeriodView.getCurrentItem()];
 			
 			//Toast.makeText(context, birthday, Toast.LENGTH_SHORT).show();
 		}
@@ -152,7 +176,7 @@ public class DatePickerPopWindow extends PopupWindow{
 	
 	public String getCurrentTime(){
 		if(currentTimeSet == null)
-			currentTimeSet = hourView.getCurrentItem()+":"+ minView.getCurrentItem();
+			currentTimeSet = plan_list[timePeriodView.getCurrentItem()];
 		return currentTimeSet;
 	}
 	private void initDay(int arg1, int arg2) {
