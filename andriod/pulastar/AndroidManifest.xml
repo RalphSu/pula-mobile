@@ -135,6 +135,12 @@
         
         <activity android:name="com.pula.star.activity.AboutUsActivity" >
         </activity>
+        
+        
+        <activity android:name="com.pula.star.activity.changePasswordActivity" >
+        </activity>
+        
+        
         <activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
             android:screenOrientation="portrait" />
