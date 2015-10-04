@@ -307,4 +307,5 @@
     <color name="Noteback">#FFCC99</color>
     <color name="BookingDay">#ff6bd697</color>
 
+    <color name="province_line_border">#D0D0D0</color> 
 </resources>
