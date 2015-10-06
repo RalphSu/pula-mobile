@@ -2,6 +2,7 @@ package com.pula.star.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.pula.star.R;
+import com.pula.star.activity.BookingDialogActivity.enter_action;
+import com.pula.star.clients.ClientApi;
 import com.pula.star.utils.Validator;
 
 public class resetPasswordActivity extends BaseActivity {
@@ -51,8 +54,8 @@ public class resetPasswordActivity extends BaseActivity {
 							Toast.LENGTH_SHORT).show();
 
 				} else {
-					Toast.makeText(resetPasswordActivity.this, "密码重置",
-							Toast.LENGTH_SHORT).show();
+					new reset_action().execute();
+					
 				}
 
 			}
@@ -68,5 +71,33 @@ public class resetPasswordActivity extends BaseActivity {
 					R.anim.slide_right_out);
 		}
 	}
+	
+	
+	class reset_action extends AsyncTask<Void, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(Void... arg0) {
+			
+			return ClientApi.resetPwd(mobilePhoneValue);
+		}
+
+		@Override
+		protected void onPostExecute(final Boolean result) {
+
+			super.onPostExecute(result);
+			if (result == true) {
+
+			
+				Toast.makeText(resetPasswordActivity.this,"密码重置成功",Toast.LENGTH_LONG).show();
+			
+			} else {
+
+				Toast.makeText(resetPasswordActivity.this,"密码重置失败，请核对手机号码信息",Toast.LENGTH_LONG).show();
+			}
+		}
+
+	}
+
+	
 
 }

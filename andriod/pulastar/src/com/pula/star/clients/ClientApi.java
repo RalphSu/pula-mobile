@@ -558,5 +558,32 @@ public class ClientApi {
     	
     }
     
+    
+    public static boolean resetPwd(String mobile){
+    	
+    	String reset_pwd_url="http://121.40.151.183:8080/pula-sys/app/studentinterface/resetPassword?mobile=" + mobile;
+    	
+    	
+    	boolean result = false;
+    	
+    	JSONObject json = ParseJson(reset_pwd_url,"utf-8");
+    	
+    	if(json == null){
+    		return false;
+    	}
+    	else
+    	{
+    		try{
+    			result = json.getBoolean("error");
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    		
+    	}
+    	return !result;
+    }
+    
 }	
 	
