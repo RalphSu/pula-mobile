@@ -8,7 +8,6 @@ import java.util.Date;
 import org.joda.time.DateTime;
 
 import com.pula.star.DatePickerPopWindow;
-
 import com.pula.star.R;
 import com.pula.star.clients.ClientApi;
 import com.pula.star.fragment.LoginFragment;
@@ -22,6 +21,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -86,7 +86,9 @@ public class BookingDialogActivity extends BaseActivity {
 
 		name = (EditText) findViewById(R.id.et_name);
 		age = (EditText) findViewById(R.id.et_age);
+		age.setInputType(InputType.TYPE_CLASS_NUMBER);
 		phone = (EditText) findViewById(R.id.et_phone);
+		phone.setInputType(InputType.TYPE_CLASS_NUMBER);
 		btn_enter = (Button) findViewById(R.id.btn_enter);
 
 		//booking_course_time = (TextView) findViewById(R.id.tv_booking_time_name);

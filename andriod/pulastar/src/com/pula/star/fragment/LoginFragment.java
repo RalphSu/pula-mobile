@@ -28,6 +28,7 @@ import com.pula.star.R;
 import com.pula.star.activity.BookingDialogActivity;
 import com.pula.star.activity.LoginWelcomeAvtivity;
 import com.pula.star.activity.changePasswordActivity;
+import com.pula.star.activity.resetPasswordActivity;
 import com.pula.star.bean.UserInfoData;
 import com.pula.star.clients.ClientApi;
 
@@ -38,7 +39,7 @@ public class LoginFragment extends Fragment {
     private CheckBox rem_pw, auto_login;
 	private Button btn_login;
 	private Button booking_button;
-	private Button btn_change_pwd;
+	private Button btn_reset_pwd;
     private String userNameValue,passwordValue;
 	private SharedPreferences sp;
 	private boolean status = false;
@@ -94,7 +95,7 @@ public class LoginFragment extends Fragment {
 		auto_login = (CheckBox) view.findViewById(R.id.cb_auto);
 		btn_login = (Button) view.findViewById(R.id.btn_login);
 		booking_button = (Button) view.findViewById(R.id.booking_button);
-		btn_change_pwd = (Button)view.findViewById(R.id.btn_change_password);		
+		btn_reset_pwd = (Button)view.findViewById(R.id.btn_reset_password);		
 		        
 				//判断记住密码多选框的状态
 		      if(sp.getBoolean("ISCHECK", true))
@@ -149,11 +150,11 @@ public class LoginFragment extends Fragment {
 					}
 				});
 				
-				btn_change_pwd.setOnClickListener(new OnClickListener() {
+				btn_reset_pwd.setOnClickListener(new OnClickListener() {
 
 					public void onClick(View v) {
 						
-						 Intent intent = new Intent(LoginFragment.this.getActivity(),changePasswordActivity.class);
+						 Intent intent = new Intent(LoginFragment.this.getActivity(),resetPasswordActivity.class);
 
 						  startActivity(intent);
 					    

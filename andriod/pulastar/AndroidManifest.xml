@@ -141,6 +141,9 @@
         </activity>
         
         
+        <activity android:name="com.pula.star.activity.resetPasswordActivity" >
+        </activity>
+        
         <activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
             android:screenOrientation="portrait" />

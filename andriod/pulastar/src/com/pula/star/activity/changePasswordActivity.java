@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.pula.star.R;
 
-public class changePasswordActivity extends Activity {
+public class changePasswordActivity extends BaseActivity {
 	private EditText userName, passWord1, passWord2;
 	private String userNameValue, passWord1Value, passWord2Value;
 	private Button doAction;
@@ -24,7 +24,7 @@ public class changePasswordActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.requestWindowFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.change_pwd);
 
 		doAction = (Button) findViewById(R.id.btn_enter);
