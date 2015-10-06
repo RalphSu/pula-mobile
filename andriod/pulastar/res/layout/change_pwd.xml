@@ -18,27 +18,28 @@
             android:layout_marginLeft="12dip"
             android:layout_marginTop="30dip"
             android:gravity="bottom"
-            android:text="帐号:"
+            android:text="旧密码:"
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/et_zh"
+            android:id="@+id/et_old_mima"
             android:layout_width="fill_parent"
             android:layout_height="40dip"
             android:layout_below="@id/tv_zh"
             android:layout_marginLeft="12dip"
+            android:maxLength="30"
             android:layout_marginRight="10dip" />
 
         <TextView
             android:id="@+id/tv_mima_1"
             android:layout_width="wrap_content"
             android:layout_height="35dip"
-            android:layout_below="@id/et_zh"
+            android:layout_below="@id/et_old_mima"
             android:layout_marginLeft="12dip"
             android:layout_marginTop="10dip"
             android:gravity="bottom"
-            android:text="密码:"
+            android:text="新密码:"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -49,6 +50,7 @@
             android:layout_below="@id/tv_mima_1"
             android:layout_marginLeft="12dip"
             android:layout_marginRight="10dip"
+            android:maxLength="30"
             android:maxLines="200"
             android:password="true"
             android:scrollHorizontally="true" />
@@ -72,6 +74,7 @@
             android:layout_below="@id/tv_mima_2"
             android:layout_marginLeft="12dip"
             android:layout_marginRight="10dip"
+            android:maxLength="30"
             android:maxLines="200"
             android:password="true"
             android:scrollHorizontally="true" />

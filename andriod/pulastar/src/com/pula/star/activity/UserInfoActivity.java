@@ -11,10 +11,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 
 
@@ -39,6 +44,7 @@ public class UserInfoActivity extends Activity {
 	private ArrayList<String> info_list;
 	private ArrayList<BookingData> booking_list;
     private String value;
+    private Button change_pwd_button;
 	RTPullListView my_info_list;
 	/** Called when the activity is first created. */
 	@Override
@@ -49,6 +55,7 @@ public class UserInfoActivity extends Activity {
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		setTitle("普拉星球 - 我的信息");
 		my_info_list = (RTPullListView) findViewById(R.id.my_info_list);  
+		change_pwd_button = (Button)findViewById(R.id.btn_change_pwd);
 		
 		preference=getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
 		userName=preference.getString("USER_NAME", "");
@@ -65,6 +72,15 @@ public class UserInfoActivity extends Activity {
 			startActivity(main);
 		}
 		
+		change_pwd_button.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+	                Intent intent_change_pwd = new Intent(UserInfoActivity.this, changePasswordActivity.class);
+		            startActivity(intent_change_pwd);
+
+				}
+			});
 		new Thread(runnable).start();
 	}
 

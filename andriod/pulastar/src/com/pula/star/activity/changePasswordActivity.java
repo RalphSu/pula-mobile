@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.pula.star.R;
 
 public class changePasswordActivity extends BaseActivity {
-	private EditText userName, passWord1, passWord2;
-	private String userNameValue, passWord1Value, passWord2Value;
+	private EditText oldPwd, newPwd1, newPwd2;
+	private String oldPwdValue, passWord1Value, passWord2Value;
 	private Button doAction;
 
 	@Override
@@ -28,20 +28,20 @@ public class changePasswordActivity extends BaseActivity {
 		setContentView(R.layout.change_pwd);
 
 		doAction = (Button) findViewById(R.id.btn_enter);
-		userName = (EditText) findViewById(R.id.et_zh);
-		passWord1 = (EditText) findViewById(R.id.et_mima_1);
-		passWord2 = (EditText) findViewById(R.id.et_mima_2);
+		oldPwd = (EditText) findViewById(R.id.et_old_mima);
+		newPwd1 = (EditText) findViewById(R.id.et_mima_1);
+		newPwd2 = (EditText) findViewById(R.id.et_mima_2);
 
 		doAction.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				userNameValue = userName.getText().toString();
-				passWord1Value = passWord1.getText().toString();
-				passWord2Value = passWord2.getText().toString();
+				oldPwdValue = oldPwd.getText().toString();
+				passWord1Value = newPwd1.getText().toString();
+				passWord2Value = newPwd2.getText().toString();
 
-				if (userNameValue.equals("")) {
-					Toast.makeText(changePasswordActivity.this, "请输入用户名", Toast.LENGTH_SHORT).show();
+				if (oldPwdValue.equals("")) {
+					Toast.makeText(changePasswordActivity.this, "请输入旧密码", Toast.LENGTH_SHORT).show();
 				} else if ((passWord1Value.equals("")) || (passWord2Value.equals(""))) {
 					Toast.makeText(changePasswordActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
 				} else {

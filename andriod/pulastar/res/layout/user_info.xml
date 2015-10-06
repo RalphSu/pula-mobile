@@ -49,6 +49,7 @@
         android:divider="#CC0033"
         android:dividerHeight="3dp"
         android:listSelector="#00000000" />
+    
     <TextView
          android:id="@+id/list_tail"
          android:layout_width="fill_parent"
@@ -58,6 +59,18 @@
          android:layout_below="@+id/my_info_list"
          android:background="#CC0033"
           />
+    
+     <Button
+            android:id="@+id/btn_change_pwd"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@+id/list_tail"
+            android:text="修  改  密  码"
+            android:textColor="@color/white"
+            android:background="#CC0033"           
+            android:textSize="18sp" />
      
      <ImageView
         android:id="@+id/img_p"
