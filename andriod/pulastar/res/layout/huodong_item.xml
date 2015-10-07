@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="#FFCC99"
+    android:background="#DDFFC125"
     android:orientation="horizontal" >
 
            
@@ -11,7 +11,7 @@
         android:layout_width="180dp"
         android:layout_height="120dp"
         android:contentDescription="@string/nul"      
-        android:src="@drawable/aaa"
+        android:src="@drawable/deer"
         android:scaleType="fitXY"
         />
       

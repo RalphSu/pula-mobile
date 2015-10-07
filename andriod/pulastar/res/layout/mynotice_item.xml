@@ -9,11 +9,13 @@
     <ImageView
         android:id="@+id/img_p"
         android:layout_width="180dp"
-        android:layout_height="match_parent"
+        android:layout_height="120dp"
         android:contentDescription="@string/nul"      
-        android:src="@drawable/aaa"
+        android:src="@drawable/deer"
         android:scaleType="fitXY"
         />
+    
+ 
     
     <TextView
         android:id="@+id/mynotice_name"

@@ -135,7 +135,7 @@ public class CurriculumScheduleListAdapter extends BaseAdapter {
 			holder.teacher_pic.setImageResource(R.drawable.pula_logo_circle);
 		}
 		*/
-		holder.teacher_pic.setImageResource(R.drawable.curriculum_schedule_list_pic);
+		holder.teacher_pic.setImageResource(R.drawable.deer);
 		
 		return convertView;
 	}

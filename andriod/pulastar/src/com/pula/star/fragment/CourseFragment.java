@@ -24,10 +24,10 @@ import com.pula.star.clients.ClientApi;
 import com.pula.star.utils.LoadingAinm;
 
 /**
- * @name ZhuanTiFragment
- * @Descripation 这是关于<br>
+ * @name course fragment
+ * @Descripation 关于课程的fragment
  * @author
- * @date 2014-10-24
+ * @date 
  * @version 1.0
  */
 public class CourseFragment extends Fragment {

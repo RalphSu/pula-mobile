@@ -28,7 +28,7 @@ public class HuoDongAdapter extends BaseAdapter {
 	private ArrayList<HuoDongData> data;
 	private Context context;
 	private LruCache<String,Bitmap> lruCache;
-	String color[] = {"#A0522D","#8B814C","#FF7F24","#EE1289","#B22222","#8B2500","#B03060","#00B2EE","#9A32CD"};
+	String color[] = {"#B22222","#8B2500","#B03060","#00B2EE","#A0522D","#8B814C","#FF7F24","#EE1289","#9A32CD","#006699","#CC3366"};
 	
 	public void BindData(ArrayList<HuoDongData> data){
 		this.data = data;

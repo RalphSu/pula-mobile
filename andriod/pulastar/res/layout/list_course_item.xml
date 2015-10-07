@@ -13,7 +13,7 @@
         android:layout_width="175dp"
         android:layout_height="100dp"
         android:contentDescription="@string/nul"      
-        android:src="@drawable/curriculum_schedule_list_pic"
+        android:src="@drawable/deer"
         android:scaleType="fitXY"
         />
     
