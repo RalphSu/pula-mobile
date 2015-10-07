@@ -585,5 +585,30 @@ public class ClientApi {
     	return !result;
     }
     
+    public static boolean changePwd(String studentNo,String oldPwd,String newPwd){
+    	
+    	String change_pwd_url = "http://121.40.151.183:8080/pula-sys/app/studentinterface/updatePassword?studentNo="+studentNo+"&oldPassword="+oldPwd
+    			+ "&newPassword="+newPwd;
+    	
+        boolean result = false;
+    	
+    	JSONObject json = ParseJson(change_pwd_url,"utf-8");
+    	
+    	if(json == null){
+    		return false;
+    	}
+    	else
+    	{
+    		try{
+    			result = json.getBoolean("error");
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    		
+    	}
+    	return !result;
+    }
 }	
 	
