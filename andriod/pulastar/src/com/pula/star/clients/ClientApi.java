@@ -591,7 +591,7 @@ public class ClientApi {
     public static boolean changePwd(String studentNo,String oldPwd,String newPwd){
     	
     	String change_pwd_url = "http://121.40.151.183:8080/pula-sys/app/studentinterface/updatePassword?studentNo="+studentNo+"&oldPassword="+oldPwd
-    			+ "&newPassword="+newPwd;
+    			+ "&newPassword="+newPwd+"&_json=1";
     	
         boolean result = false;
     	

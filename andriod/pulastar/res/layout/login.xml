@@ -147,7 +147,7 @@
     <Button
         android:id="@+id/booking_button"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="12dip"
         android:layout_marginRight ="12dip"

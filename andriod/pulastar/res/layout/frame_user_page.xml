@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop ="10dp"
-    android:layout_marginBottom ="10dp"
+ 
     android:layout_marginLeft = "10dp"
     android:layout_marginRight ="10dp"
     android:background="@color/white" >
@@ -12,31 +11,18 @@
     
  <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
-
-        
+        android:layout_weight="0.6"
+        android:layout_gravity="center"
         android:orientation="horizontal" >
-
-        <ImageView
-            android:id="@+id/img_my_info"
-            style="@style/Stylewidthhight_wm"
-            
-            android:layout_weight="1"            
-            android:scaleType="fitXY"         
-            android:contentDescription="@string/nul"
-            android:src="@drawable/my_info" />
-
-        <ImageView
-            android:id="@+id/img_pula_logo"
-            style="@style/Stylewidthhight_wm"
-            android:layout_marginLeft="10dp"
-            
-            android:layout_weight="1"
-            android:scaleType="fitXY"          
-            android:contentDescription="@string/nul"
-            android:src="@drawable/pula_logo_welocme_pic"  />
+        
+     <ImageView android:id="@+id/img_pula_logo" 
+         style="@style/Stylewidthhight_wm" 
+         android:contentDescription="@string/nul" 
+         android:scaleType="centerInside"       
+         android:src="@drawable/pula_logo_welocme_pic"/>   
+        
     </LinearLayout>
     
  
@@ -49,16 +35,14 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
-        <ImageView
-            android:id="@+id/img_my_notice"
+               <ImageView
+            android:id="@+id/img_my_info"
             style="@style/Stylewidthhight_wm"
             
-            android:layout_weight="1"
-            
+            android:layout_weight="1"            
             android:scaleType="fitXY"         
             android:contentDescription="@string/nul"
-            android:src= "@drawable/my_notice" />
-
+            android:src="@drawable/my_info" />
         <ImageView
             android:id="@+id/img_my_course"
             style="@style/Stylewidthhight_wm"
@@ -78,14 +62,17 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
+       
         <ImageView
-            android:id="@+id/img_my_booking"
+            android:id="@+id/img_my_notice"
             style="@style/Stylewidthhight_wm"
             
             android:layout_weight="1"
-            android:scaleType="fitXY"      
-            android:contentDescription="@string/nul" 
-            android:src= "@drawable/my_booking"/>
+            
+            android:scaleType="fitXY"         
+            android:contentDescription="@string/nul"
+            android:src= "@drawable/my_notice" />
+
 
         <ImageView
             android:id="@+id/img_my_work"
@@ -97,5 +84,14 @@
             android:contentDescription="@string/nul"
             android:src= "@drawable/my_work" />
     </LinearLayout>
+    
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+        
+        </LinearLayout>
  
 </LinearLayout>
