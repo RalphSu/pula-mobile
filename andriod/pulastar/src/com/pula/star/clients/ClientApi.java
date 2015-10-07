@@ -530,13 +530,16 @@ public class ClientApi {
 		return null;
 	}
 	
-    public static boolean audition_create(String name, String phone, String parent_name, String plan, String content){
+	
+    public static boolean audition_create(String name,String parentName,String age, String phone, String branchName, String plan, String content){
 
 		//String audition_create_url = "http://121.40.151.183:8080/pula-sys/app/audition/_update?student=ff&id=&age=13&phone=165666"
 		//		+ "&parent=ff&content=f&plan1=f&plan2=f&plan3=f&plan4=f&plan5=f&resultId=&comments=f&id=325&_json=1";
 		
-		String audition_create_url="http://121.40.151.183:8080/pula-sys/app/audition/_update?student="+ name +"&id=100"+"&age="+"&phone="+ phone
-				+"&parent="+ parent_name + "&content="+content + "&plan1=" + plan + "&plan2=&plan2=&plan3=&plan4=&resultId=&comments&_json=1";
+		
+		String audition_create_url="http://121.40.151.183:8080/pula-sys/app/audition/create?audition.parent="+ parentName + "&audition.comments="+content+"&audition.student="
+				+name+"&audition.branchName="+branchName+"&audition.plan1="+ plan + "&audition.age="+ age + "&audition.phone="+phone;
+					
 		
 		boolean result = false;
 		

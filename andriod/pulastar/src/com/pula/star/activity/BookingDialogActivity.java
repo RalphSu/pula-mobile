@@ -12,6 +12,7 @@ import com.pula.star.R;
 import com.pula.star.clients.ClientApi;
 import com.pula.star.fragment.LoginFragment;
 import com.pula.star.utils.StaticStrings;
+import com.pula.star.utils.Validator;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -19,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
@@ -28,21 +30,23 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.PopupWindow.OnDismissListener;
 
 public class BookingDialogActivity extends BaseActivity {
 
-	private EditText name, age, phone;
+	private EditText name, parentName,age, phone;
 
-	private String nameValue, ageValue, phoneValue;
+	private String nameValue, parentNameValue,ageValue, phoneValue;
 
 	private String userNameValue;
-	
 	
 
 	//private String course_name;
@@ -52,14 +56,19 @@ public class BookingDialogActivity extends BaseActivity {
 
 	private Button btn_enter;
 	
-	private Button booking_time;
+	private Button bookingTime;
+	private String bookingTimeValue;
 
 	private SharedPreferences sp;
-
+	
+	private Spinner spinner; 
+    private String  branchName;
+    private String[] branchNameList;
+    
 	String date;
 	DateTime selected;
 	String plan;
-
+    
 	//TextView booking_course_name;
 
 	TextView booking_course_time;
@@ -85,18 +94,36 @@ public class BookingDialogActivity extends BaseActivity {
 		userNameValue = sp.getString("USER_NAME", "USER_NAME");
 
 		name = (EditText) findViewById(R.id.et_name);
+		parentName = (EditText)findViewById(R.id.et_parent_name);
 		age = (EditText) findViewById(R.id.et_age);
 		age.setInputType(InputType.TYPE_CLASS_NUMBER);
 		phone = (EditText) findViewById(R.id.et_phone);
 		phone.setInputType(InputType.TYPE_CLASS_NUMBER);
 		btn_enter = (Button) findViewById(R.id.btn_enter);
-
+		spinner = (Spinner)findViewById(R.id.branch_spinner);
+		
+		Resources res =getResources();
+		branchNameList = res.getStringArray(R.array.branchnameserver);
+		branchName = branchNameList[0];
+		
 		//booking_course_time = (TextView) findViewById(R.id.tv_booking_time_name);
 
 		
-		booking_time = (Button)findViewById(R.id.time_select); 
-		
-		booking_time.setOnClickListener(new OnClickListener(){
+		bookingTime = (Button)findViewById(R.id.time_select); 
+			
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+	            public void onItemSelected(AdapterView<?> parent, View view,
+	                    int position, long id) {
+	              branchName = branchNameList[position];
+	              
+	            }
+
+	            public void onNothingSelected(AdapterView<?> parent) {
+	            	branchName = branchNameList[0];
+	            }
+	        });
+        
+		bookingTime.setOnClickListener(new OnClickListener(){
 			
 			public void onClick(View v) {
 
@@ -122,7 +149,8 @@ public class BookingDialogActivity extends BaseActivity {
 						Log.i("course_booking_day",course_booking_day);
 						Log.i("course_booking_time",course_booking_time);
 						
-						booking_time.setText(" " + course_booking_day + " " + course_booking_time + " " );
+						bookingTimeValue = course_booking_day + "+" + course_booking_time;
+						bookingTime.setText(" " + course_booking_day + " " + course_booking_time + " " );
 						
 						WindowManager.LayoutParams lp=getWindow().getAttributes();
 						lp.alpha=1f;
@@ -142,19 +170,36 @@ public class BookingDialogActivity extends BaseActivity {
 			btn_enter.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View v) {
+					
 					nameValue = name.getText().toString();
+					parentNameValue = parentName.getText().toString();
 					ageValue = age.getText().toString();
 					phoneValue = phone.getText().toString();
-					System.out.println(nameValue);
-					System.out.println(ageValue);
-					System.out.println(phoneValue);
-
-					Log.i("nameValue =", "" + nameValue);
-					Log.i("ageValue =", "" + ageValue);
-					Log.i("phoneValue =", "" + phoneValue);
-
-					new enter_action().execute();
-
+					
+					if(nameValue.equals("")== true)
+					{
+					  Toast.makeText(BookingDialogActivity.this, "请输入姓名", Toast.LENGTH_LONG).show();
+					}
+					else if(parentNameValue.equals("")== true)
+					{
+					  Toast.makeText(BookingDialogActivity.this, "请输入家长姓名", Toast.LENGTH_LONG).show();
+					}
+					else if(ageValue.equals("")== true)
+					{
+					  Toast.makeText(BookingDialogActivity.this, "请输入年龄", Toast.LENGTH_LONG).show();
+					}
+					else if((phoneValue.equals("") == true)|| (Validator.isMobile(phoneValue) == false))
+					{	
+					   Toast.makeText(BookingDialogActivity.this, "请输入手机号码", Toast.LENGTH_LONG).show();
+					}
+					else if(bookingTimeValue == null)
+                    {
+                      Toast.makeText(BookingDialogActivity.this, "请选择时间", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {	
+					 new enter_action().execute();
+                    }
 				}
 				
 				
@@ -173,6 +218,7 @@ public class BookingDialogActivity extends BaseActivity {
 
 	}
 
+	
 	@Override
 	public void onBackPressed() {
 
@@ -199,7 +245,8 @@ public class BookingDialogActivity extends BaseActivity {
 				return false;
 			}
 
-			return true;
+			return ClientApi.audition_create(nameValue,parentNameValue,ageValue,phoneValue,branchName,bookingTimeValue,"");
+			
 		}
 
 		@Override
@@ -210,12 +257,12 @@ public class BookingDialogActivity extends BaseActivity {
 
 				// Toast.makeText(BookingDialogActivity.this,"预约成功",
 				// Toast.LENGTH_LONG).show();
-
-				showCustomMessageOK("预约请求已经提交", "请等待短信通知");
+				Toast.makeText(BookingDialogActivity.this,"预约请求已经提交,请等待短信通知",Toast.LENGTH_LONG).show();
+				//showCustomMessageOK("预约请求已经提交", "请等待短信通知");
 
 			} else {
-
-				showCustomMessage("预约请求失败", "请核实用户信息");
+				Toast.makeText(BookingDialogActivity.this,"预约请求失败,请核实用户信息",Toast.LENGTH_LONG).show();
+				//showCustomMessage("预约请求失败", "请核实用户信息");
 			}
 		}
 

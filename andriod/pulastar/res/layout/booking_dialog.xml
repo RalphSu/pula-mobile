@@ -27,17 +27,39 @@
             android:layout_height="40dip"
             android:layout_below="@id/tv_name"
             android:layout_marginLeft="12dip"
-            android:layout_marginRight="10dip" />
+            android:layout_marginRight="12dip" 
+            android:maxLength="16"/>
+        
+         <TextView
+            android:id="@+id/tv_parent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="35dip"
+            android:layout_marginLeft="12dip"
+            android:layout_below="@id/et_name"
+            android:layout_marginTop="5dip"
+            android:gravity="bottom"
+            android:text="家长姓名:"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_parent_name"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_below="@id/tv_parent_name"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip" 
+            android:maxLength="16"/>
 
         <TextView
             android:id="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="35dip"
-            android:layout_below="@id/et_name"
+            android:layout_below="@id/et_parent_name"
             android:layout_marginLeft="12dip"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="5dip"
             android:gravity="bottom"
-            android:text="年龄:"
+            android:text="年龄（周岁）:"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -47,8 +69,9 @@
             android:layout_height="40dip"
             android:layout_below="@id/tv_age"
             android:layout_marginLeft="12dip"
-            android:layout_marginRight="10dip"
+            android:layout_marginRight="12dip"
             android:maxLines="200"
+            android:maxLength="2"
             android:scrollHorizontally="true" />
         
         
@@ -58,9 +81,9 @@
             android:layout_height="35dip"
             android:layout_below="@id/et_age"
             android:layout_marginLeft="12dip"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="5dip"
             android:gravity="bottom"
-            android:text="电话号码:"
+            android:text="手机号码:"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -70,29 +93,41 @@
             android:layout_height="40dip"
             android:layout_below="@id/tv_phone"
             android:layout_marginLeft="12dip"
-            android:layout_marginRight="10dip"
+            android:layout_marginRight="12dip"
             android:maxLines="200"
+            android:maxLength="11"
             android:scrollHorizontally="true" />
-<!-- 
+ 
         <TextView
-            android:id="@+id/tv_course_name"
+            android:id="@+id/tv_branch_name"
             android:layout_width="wrap_content"
             android:layout_height="35dip"
             android:layout_below="@id/et_phone"
             android:layout_marginLeft="12dip"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="5dip"
             android:gravity="bottom"
-            android:text="课程名称:"
+            android:text="校区分部:"
             android:textColor="#000000"
             android:textSize="18sp" />
-      -->   
+      
+         <Spinner
+             android:id="@+id/branch_spinner"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@id/tv_branch_name"
+             android:layout_below="@id/et_phone"
+             android:layout_marginRight="12dip"
+             android:layout_toRightOf="@+id/tv_branch_name"
+             android:entries="@array/spingarr"
+             android:gravity="bottom" />
+        
         <TextView
             android:id="@+id/tv_booking_time_name"
             android:layout_width="wrap_content"
             android:layout_height="35dip"
-            android:layout_below="@id/et_phone"
+            android:layout_below="@id/tv_branch_name"
             android:layout_marginLeft="12dip"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="5dip"
             android:gravity="bottom"
             android:text="预约时间:"
             android:textColor="#000000"
@@ -106,22 +141,25 @@
             android:layout_below="@id/et_phone"
             android:layout_alignTop="@+id/tv_booking_time_name"
             android:gravity="center"
-            android:text="选择"
-            android:textColor="#000000"
+            android:text="选  择"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            
             android:textSize="15sp" />
-        
-        
+
         <Button
             android:id="@+id/btn_enter"
-            android:layout_width="fill_parent"
+            android:layout_width="140dip"
             android:layout_height="50dip"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/tv_booking_time_name"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dip"
+            android:layout_below="@id/time_select"
+            android:layout_centerHorizontal="true"
+            android:background="#cc3366"
             android:gravity="center"
-            android:text="确认"
-            android:textColor="#000000"
-            android:textSize="25sp" />
+            android:text="确   认"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
         
     </RelativeLayout>
     

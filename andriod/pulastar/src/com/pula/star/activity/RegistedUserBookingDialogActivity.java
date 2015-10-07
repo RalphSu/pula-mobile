@@ -135,9 +135,9 @@ public class RegistedUserBookingDialogActivity extends BaseActivity {
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
 
-			return ClientApi.audition_create(student_name,mobile_phone,student_parent_name,plan,course_name);
+			//return ClientApi.audition_create(student_name,mobile_phone,student_parent_name,plan,course_name);
 
-			//return true;
+			return true;
 		}
 
 		@Override

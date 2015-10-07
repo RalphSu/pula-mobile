@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- this is for customer -->
+   <string-array name="spingarr">
+     <item>源深香榭丽花园校区</item>  
+     <item>金桥文峰广场校区</item>  
+     <item>金桥禹州国际校区</item>  
+    </string-array>
+    
+    <!-- this is for server -->
+   <string-array name="branchnameserver">
+     <item>香榭丽</item>  
+     <item>文峰店</item>  
+     <item>金桥总校</item>  
+    </string-array>
+   
+   
+</resources>
