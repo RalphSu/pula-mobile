@@ -52,6 +52,7 @@ public class MyCourseJsonUtils {
 				    tools.setPaid_count(order_json.getInt("paiedCount"));
 				    tools.setGongfang_count(order_json.getInt("gongfangCount"));
 					tools.setHuodong_count(order_json.getInt("huodongCount"));
+					tools.setSpec_count(order_json.getInt("specialCourseCount"));
 					
 					JSONArray order_usage = json.getJSONArray("orderUsages");
 					JSONObject order_usages_json = order_usage.getJSONObject(0);
@@ -59,7 +60,7 @@ public class MyCourseJsonUtils {
 					tools.setUsed_count(order_usages_json.getInt("usedCount"));						
 					tools.setUsed_gongfang_count(order_usages_json.getInt("usedGongfangCount"));
 					tools.setUsed_huodong_count(order_usages_json.getInt("usedHuodongCount"));
-				    
+				    tools.setUsed_spec_count(order_usages_json.getInt("usedSpecialCourseCount"));
 				    
 			
 					list.add(tools);

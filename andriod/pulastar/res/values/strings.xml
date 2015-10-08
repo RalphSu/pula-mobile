@@ -122,6 +122,8 @@
     <string name="my_course_chn">我的课程</string>
     <string name="my_course_eng">My course</string>
     
+    <string name="sys_course">系统课程</string>
+    
     <string name="my_booking_chn">我的预约</string>
     <string name="my_booking_eng">My reservation</string>
     

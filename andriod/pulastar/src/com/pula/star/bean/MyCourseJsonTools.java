@@ -12,10 +12,15 @@ public class MyCourseJsonTools {
 	private String branch_name;//分部地址
 	private String teacher_pic_url;//老师图片的获取地址，可以通过老师的ID来转化	
 	private String cousr_no;//课程 的编号
+	
+	private String create_time;
+	
 	private int used_count;
 	private int paid_count;
 	
-	private String create_time;
+
+	private int spec_count;
+	private int used_spec_count;
 	
 	private int gongfang_count;
 	private int used_gongfang_count;
@@ -26,11 +31,30 @@ public class MyCourseJsonTools {
 	public int getUsed_count() {
 		return used_count;
 	}
+	
+	
 
 	public void setUsed_count(int used_count) {
 		this.used_count = used_count;
 	}
 
+	public int getSpec_count() {
+		return spec_count;
+	}
+
+	public void setSpec_count(int spec_count) {
+		this.spec_count = spec_count;
+	}
+
+	public int getUsed_spec_count() {
+		return used_spec_count;
+	}
+
+	public void setUsed_spec_count(int used_spec_count) {
+		this.used_spec_count = used_spec_count;
+	}
+
+	
 	public int getPaid_count() {
 		return paid_count;
 	}

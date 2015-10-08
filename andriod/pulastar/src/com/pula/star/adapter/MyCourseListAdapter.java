@@ -43,7 +43,9 @@ public class MyCourseListAdapter extends BaseAdapter {
 
 	 
 	String [] week = new String[] {"星期一","星期二","星期三","星期四","星期五","星期六","星期日",};
-	String field[] = {"课程名称","创立时间","上课时间"}; 
+	
+	String field[]={"有效期","系统课程","特殊课程","艺术工坊","会员活动"};
+	
 	public MyCourseListAdapter(Context context, List<String> list) {
 		this.context = context;
 		this.list = list;
@@ -92,6 +94,7 @@ public class MyCourseListAdapter extends BaseAdapter {
 			holder.course_field_value = (TextView)convertView.findViewById(R.id.course_info_value);
 			
 			convertView.setTag(holder);
+			
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}

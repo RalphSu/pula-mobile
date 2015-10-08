@@ -44,8 +44,15 @@ public class MyCourseActivity extends Activity {
 	private MyCourseListAdapter adapter;
 	private SharedPreferences preference;
 	private String userName;
+	private String userNameInfo;
 	private int weekday;
 	private ImageView img_bottom;
+	
+	private String courseValidityPeriodDesc;
+	private String courseSysCourseDesc;
+	private String courseSpeCourseDesc;
+	private String gongfangCourseDesc;
+    private String memActCourseDesc;
 	
 	String[] week = new String[] { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
 			"星期日", };
@@ -61,8 +68,10 @@ public class MyCourseActivity extends Activity {
 		preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS,
 				MODE_PRIVATE);
 		userName = preference.getString("USER_NAME", "");
-
+		userNameInfo = preference.getString("USER_INFO_NAME", "");
+		
 		my_course_list = (RTPullListView) findViewById(R.id.my_course_list);
+		
 		pb = (ProgressBar) findViewById(R.id.pb);
         img_bottom =(ImageView)findViewById(R.id.img_p);
 		// 初始化
@@ -200,18 +209,44 @@ public class MyCourseActivity extends Activity {
 				}
 
 				if (list.size() > 0) {
-					course_field_value.add(list.get(0).getName());
-					course_field_value.add(list.get(0).getCreate_time());
+					//course_field_value.add(userName);
+					//course_field_value.add(userNameInfo);
+					
+					courseValidityPeriodDesc = list.get(0).getStart_time() + "至" + list.get(0).getEnd_time(); 
+					course_field_value.add(courseValidityPeriodDesc);
+					
+					courseSysCourseDesc = "总课券"+list.get(0).getPaid_count()+"次,已使用"+list.get(0).getUsed_count()+"次";
+					course_field_value.add(courseSysCourseDesc);
+					
+					courseSpeCourseDesc= "总课券"+list.get(0).getSpec_count()+"次,已使用"+list.get(0).getUsed_spec_count()+"次";
+					
+					course_field_value.add(courseSpeCourseDesc);
+					
+					gongfangCourseDesc= "总课券"+list.get(0).getGongfang_count()+"次,已使用"+list.get(0).getUsed_gongfang_count()+"次";
+					
+					course_field_value.add(gongfangCourseDesc);
+					
+					memActCourseDesc = "总课券"+list.get(0).getHuodong_count()+"次,已使用"+list.get(0).getUsed_huodong_count()+"次";
+					
+					course_field_value.add(memActCourseDesc);
+					/*
 					weekday = Integer.parseInt(list.get(0).getStart_weekday());
 					course_field_value.add(week[weekday] + " "
 							+ list.get(0).getStart_hour() + ":"
 							+ list.get(0).getStart_minute());
+							*/
+					
 				} else {
+					course_field_value.add(userName);
+					course_field_value.add(userNameInfo);
+					course_field_value.add(" ");
+					course_field_value.add(" ");
 					course_field_value.add(" ");
 					course_field_value.add(" ");
 					course_field_value.add(" ");
 				}
 
+				
 				pb.setVisibility(View.GONE);
 
 				adapter = new MyCourseListAdapter(MyCourseActivity.this,

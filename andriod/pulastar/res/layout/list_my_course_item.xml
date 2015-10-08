@@ -6,7 +6,7 @@
   
     <View  
         android:layout_alignParentLeft="true"
-        android:layout_width="5px"  
+        android:layout_width="2dp"  
         android:layout_height="fill_parent"  
         android:background="#99ff66"  
         android:visibility="visible" />  
@@ -15,19 +15,18 @@
         android:id="@+id/course_info_field"  
         android:layout_width="0dp"  
         android:layout_height="30dip"  
-        android:layout_weight="0.4"
+        android:layout_weight="0.25"
         android:textColor="@color/black"  
         android:gravity= "center"
-        android:textSize="20sp" 
-        android:textStyle="bold"
-   
+        android:textSize="16sp" 
+         
         android:paddingBottom="0dp"      
         android:singleLine="true" 
         android:ellipsize="marquee" 
         android:marqueeRepeatLimit="marquee_forever"/>  
   
     <View  
-        android:layout_width="5px"  
+        android:layout_width="2dp"  
         android:layout_height="fill_parent"  
         android:background="#99ff66"  
         android:visibility="visible" />  
@@ -39,7 +38,7 @@
         android:layout_weight="0.6"
         android:gravity= "center"
         android:textColor="#000000"  
-        android:textSize="20sp"  
+        android:textSize="16sp"  
   
         android:paddingBottom="0dp" 
         android:singleLine="true" 
@@ -48,7 +47,7 @@
   
     <View  
         android:layout_alignParentRight="true"
-        android:layout_width="5px"  
+        android:layout_width="2dp"  
         android:layout_height="fill_parent"  
         android:background="#99ff66"  
         android:visibility="visible" />  
