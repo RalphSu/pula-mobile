@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -370,6 +371,7 @@ public class ClientApi {
 					userInfo.setGenderName(data.optString("genderName"));
 					userInfo.setPoints(data.getInt("points"));
 					userInfo.setMobile(data.optString("mobile"));
+				
 					userInfo.setBirthday(data.optLong("birthday"));
 					userInfo.setPhone(data.optInt("phone"));
 					userInfo.setZip(data.optInt("zip"));

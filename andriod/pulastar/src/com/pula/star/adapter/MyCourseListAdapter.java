@@ -35,20 +35,23 @@ public class MyCourseListAdapter extends BaseAdapter {
 	private Context context;
 	//private List<MyCourseJsonTools> list;
 	private List<String> list;
+
 	private LayoutInflater inflater;
 	Bitmap bm;
 	private AsyncImageLoader loder = new AsyncImageLoader();
 
 	Boolean state;
 
+
 	 
-	String [] week = new String[] {"星期一","星期二","星期三","星期四","星期五","星期六","星期日",};
+	String [] week = new String[] {"每期一","每期二","每期三","每期四","每期五","每期六","每期日",};
 	
 	String field[]={"有效期","系统课程","特殊课程","艺术工坊","会员活动"};
 	
 	public MyCourseListAdapter(Context context, List<String> list) {
 		this.context = context;
 		this.list = list;
+		
 		inflater = (LayoutInflater) context
 				.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 	}

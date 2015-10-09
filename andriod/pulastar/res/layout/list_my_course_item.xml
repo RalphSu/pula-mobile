@@ -6,7 +6,7 @@
   
     <View  
         android:layout_alignParentLeft="true"
-        android:layout_width="2dp"  
+        android:layout_width="3dp"  
         android:layout_height="fill_parent"  
         android:background="#99ff66"  
         android:visibility="visible" />  
@@ -18,7 +18,7 @@
         android:layout_weight="0.25"
         android:textColor="@color/black"  
         android:gravity= "center"
-        android:textSize="16sp" 
+        android:textSize="18sp" 
          
         android:paddingBottom="0dp"      
         android:singleLine="true" 
@@ -26,7 +26,7 @@
         android:marqueeRepeatLimit="marquee_forever"/>  
   
     <View  
-        android:layout_width="2dp"  
+        android:layout_width="3dp"  
         android:layout_height="fill_parent"  
         android:background="#99ff66"  
         android:visibility="visible" />  
@@ -38,7 +38,7 @@
         android:layout_weight="0.6"
         android:gravity= "center"
         android:textColor="#000000"  
-        android:textSize="16sp"  
+        android:textSize="18sp"  
   
         android:paddingBottom="0dp" 
         android:singleLine="true" 
@@ -47,7 +47,7 @@
   
     <View  
         android:layout_alignParentRight="true"
-        android:layout_width="2dp"  
+        android:layout_width="3dp"  
         android:layout_height="fill_parent"  
         android:background="#99ff66"  
         android:visibility="visible" />  

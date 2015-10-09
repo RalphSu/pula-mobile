@@ -62,12 +62,12 @@
         android:id="@+id/sys_course"  
         android:layout_below="@+id/list_tail" 
         android:layout_marginLeft="10dp"   
-        android:layout_marginTop="5dp"    
+        android:layout_marginTop="8dp"    
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:textColor="@color/white"
         android:background="#66cc33"
-        android:textSize="18sp" 
+        android:textSize="20sp" 
         android:textStyle="bold"
         android:text="@string/sys_course"/>   
         
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:textColor="@color/black"
-        android:textSize="18sp" 
+        android:textSize="20sp" 
         android:textStyle="bold"
         android:text="您当前的等级为"/>
       
@@ -123,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:textColor="@color/black"
-        android:textSize="18sp" 
+        android:textSize="20sp" 
         android:textStyle="bold"
         android:text="课程进度为"/>
       
@@ -136,7 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:textColor="@color/orange"
-        android:textSize="18sp" 
+        android:textSize="20sp" 
         android:textStyle="bold"
         android:text="20%"/>
 
@@ -149,7 +149,7 @@
            android:layout_marginTop="5dp"
            android:text="上课时间:每周六15:30-17:00"
            android:textColor="@color/black"
-           android:textSize="18sp"
-           android:textStyle="bold" />
+           android:textSize="20sp"
+            />
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.pula.star.bean;
 
+import java.util.Calendar;
+
 public class UserInfoData {
     
 	public String getAddress() {
@@ -143,6 +145,7 @@ public class UserInfoData {
 	private int updatedTime;
 	private int createdTime;
 	private int points;
+   
     private long birthday;
     private int phone;
     private int zip;

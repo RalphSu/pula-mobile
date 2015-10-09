@@ -1,6 +1,7 @@
 package com.pula.star.activity;
 
 import java.io.InputStream;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.pula.star.R;
 import com.pula.star.adapter.MyCourseListAdapter;
@@ -53,9 +55,18 @@ public class MyCourseActivity extends Activity {
 	private String courseSpeCourseDesc;
 	private String gongfangCourseDesc;
     private String memActCourseDesc;
+    private int userAge = 4;
+    private String courseProgress = "0%";
+    
+    private TextView userGrade;
+    private TextView progress;
+    private TextView courseTime;
+	private String courseTimeString;
+    private ProgressBar courseProgressBar;
+    
 	
-	String[] week = new String[] { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
-			"星期日", };
+	String[] week = new String[] { "每期一", "每期二", "每期三", "每期四", "每期五", "每期六",
+			"每期日", };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +80,23 @@ public class MyCourseActivity extends Activity {
 				MODE_PRIVATE);
 		userName = preference.getString("USER_NAME", "");
 		userNameInfo = preference.getString("USER_INFO_NAME", "");
+		userAge = preference.getInt("USER_INFO_AGE", 4);
+		
+		
 		
 		my_course_list = (RTPullListView) findViewById(R.id.my_course_list);
 		
 		pb = (ProgressBar) findViewById(R.id.pb);
         img_bottom =(ImageView)findViewById(R.id.img_p);
+        userGrade = (TextView)findViewById(R.id.grade_text);
+        progress =  (TextView)findViewById(R.id.class_progress);
+        courseTime = (TextView)findViewById(R.id.class_time_text);
+        courseProgressBar =  (ProgressBar) findViewById(R.id.progressbar_sys_used);
+    
+        userAge = (userAge>5)? 5:userAge;
+        
+        userGrade.setText("您的等级为:"+" "+userAge+"级");
+        
 		// 初始化
 		initView();
 		// 填值
@@ -218,6 +241,24 @@ public class MyCourseActivity extends Activity {
 					courseSysCourseDesc = "总课券"+list.get(0).getPaid_count()+"次,已使用"+list.get(0).getUsed_count()+"次";
 					course_field_value.add(courseSysCourseDesc);
 					
+					if(list.get(0).getPaid_count() != 0)
+					{	
+						 NumberFormat numberFormat = NumberFormat.getInstance();  
+						 numberFormat.setMaximumFractionDigits(0);  
+						 courseProgress = numberFormat.format((float) list.get(0).getUsed_count() / (float) list.get(0).getPaid_count() * 100);  
+						 
+						 						
+					}
+					else
+					{
+						courseProgress = "0";
+					}
+					
+					progress.setText(courseProgress+"%");
+					
+					courseProgressBar.setProgress(Integer.parseInt(courseProgress));
+					
+					
 					courseSpeCourseDesc= "总课券"+list.get(0).getSpec_count()+"次,已使用"+list.get(0).getUsed_spec_count()+"次";
 					
 					course_field_value.add(courseSpeCourseDesc);
@@ -229,6 +270,21 @@ public class MyCourseActivity extends Activity {
 					memActCourseDesc = "总课券"+list.get(0).getHuodong_count()+"次,已使用"+list.get(0).getUsed_huodong_count()+"次";
 					
 					course_field_value.add(memActCourseDesc);
+					
+					int weekday = Integer.parseInt(list.get(0).getStart_weekday());
+					
+					String duration_time = list.get(0).getDuration_minute();
+					
+					int hour;
+					int min;
+					
+					hour = (Integer.parseInt(list.get(0).getStart_hour())*60 + Integer.parseInt(list.get(0).getStart_minute())+ Integer.parseInt(duration_time))/60;
+					min = (Integer.parseInt(list.get(0).getStart_hour())*60 + Integer.parseInt(list.get(0).getStart_minute())+ Integer.parseInt(duration_time))%60;
+					
+					courseTimeString = "上课时间:"+ week[weekday%7]+ list.get(0).getStart_hour()+":"+list.get(0).getStart_minute()+"-"+hour+":"+min;
+					courseTime.setText(courseTimeString);
+					
+					
 					/*
 					weekday = Integer.parseInt(list.get(0).getStart_weekday());
 					course_field_value.add(week[weekday] + " "
@@ -249,8 +305,10 @@ public class MyCourseActivity extends Activity {
 				
 				pb.setVisibility(View.GONE);
 
-				adapter = new MyCourseListAdapter(MyCourseActivity.this,
-						course_field_value);
+				
+				
+				
+				adapter = new MyCourseListAdapter(MyCourseActivity.this,course_field_value);
 
 				my_course_list.setAdapter(adapter);
 				// list列表点击事件

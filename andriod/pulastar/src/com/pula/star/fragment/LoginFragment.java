@@ -3,6 +3,7 @@ package com.pula.star.fragment;
 
 import org.joda.time.DateTime;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +33,7 @@ import com.pula.star.activity.changePasswordActivity;
 import com.pula.star.activity.resetPasswordActivity;
 import com.pula.star.bean.UserInfoData;
 import com.pula.star.clients.ClientApi;
+import com.pula.star.utils.getAge;
 
 public class LoginFragment extends Fragment {
     //Actually userName is user's No
@@ -49,8 +52,8 @@ public class LoginFragment extends Fragment {
 	private String user_info_name;//用户姓名
 	private String user_info_parent_name; //家长姓名
 	private String user_info_phone; //用户电话号码
-	private String user_info_age; //用户年龄
-	
+	private int user_info_age; //用户年龄
+	private String user_info_birth; //用户的生日 YYYY-MM-DD
 	
 	
 	@Override
@@ -275,7 +278,8 @@ public class LoginFragment extends Fragment {
 	 class get_user_info extends AsyncTask<Void,Void,Boolean>{
 
 
-	        @Override
+	        @SuppressLint("SimpleDateFormat")
+			@Override
 	        protected Boolean doInBackground(Void... arg0) {
 	           
 	        	UserInfoData userInfo = new UserInfoData();
@@ -287,7 +291,22 @@ public class LoginFragment extends Fragment {
 					 user_info_name = userInfo.getName();
 					 user_info_parent_name = userInfo.getParentName();
 					 user_info_phone = userInfo.getMobile();        
-		                
+					  
+					 if(userInfo.getBirthday() != 0)
+					 { 
+					  user_info_birth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(userInfo.getBirthday()));					 
+					 }
+					 
+					 if(user_info_birth != null)
+					 {
+					    user_info_age = getAge.getUserAge(user_info_birth);
+					 }
+					 else
+					 {
+					   user_info_age = 4; // 默认就是四岁吧	 
+					 }
+				
+					 Log.i("user_info_age=",""+ user_info_age);
 				  return true;
 				}
 				else
@@ -311,10 +330,11 @@ public class LoginFragment extends Fragment {
 					  editor.putString("USER_INFO_NAME", user_info_name);
 					  editor.putString("USER_INFO_PARENT_NAME",user_info_parent_name);
 					  editor.putString("USER_INFO_MOBILE",user_info_phone);
-					  
+					  editor.putInt("USER_INFO_AGE", user_info_age);
 					  System.out.println("xingming " + user_info_name);
 					  System.out.println("jiazhang " + user_info_parent_name);
 					  System.out.println("dianhua " + user_info_phone);
+					  System.out.println("nianling " + user_info_age);
 					  editor.commit();
 					
 					  Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
