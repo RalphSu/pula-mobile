@@ -34,6 +34,7 @@ import com.pula.star.bean.HuoDongData;
 import com.pula.star.bean.JingXuanData;
 import com.pula.star.bean.JingxuanDetailData;
 import com.pula.star.bean.MyPoints;
+import com.pula.star.bean.MyWorkData;
 import com.pula.star.bean.UserInfo;
 import com.pula.star.bean.UserInfoData;
 
@@ -482,7 +483,48 @@ public class ClientApi {
         return myPointInfoList;
     }
   
-    
+  public static List<MyWorkData> getMyWorkList(String studentNo) {
+  	
+      if (StringUtils.isEmpty(studentNo)) {
+          return Collections.emptyList();
+      }
+      
+      String getPointUrlTemp = "http://121.40.151.183:8080/pula-sys/app/timecoursework/list?condition.studentNo=%s&_json=1";
+   
+      String url = String.format(getPointUrlTemp,studentNo);
+      
+      List<MyWorkData> myWorkDataInfoList = new ArrayList<MyWorkData>();
+
+      JSONObject json = ParseJson(url, "utf-8");
+      if (json != null) {
+          try {
+          	
+          	 Log.e("total records", ""+ json);
+          	  
+              JSONArray records = json.getJSONArray("records");
+              if (records != null) {
+                  for (int i = 0; i < records.length(); i++) {
+                      JSONObject data = records.getJSONObject(i);
+                      MyWorkData myWorkDataInfo = new MyWorkData();  
+                      
+                      myWorkDataInfo.setWorkEffectDate(data.optString("workEffectDate"));
+                      myWorkDataInfo.setId(data.optInt("id"));
+                      myWorkDataInfo.setCourseNo(data.optString("courseNo"));
+                      myWorkDataInfo.setBranchNo(data.optString("branchNo"));
+                      myWorkDataInfo.setComments(data.optString("comments"));
+                      myWorkDataInfo.setIconId(data.getJSONObject("icon").optInt("id"));                     
+                      myWorkDataInfo.setFileId(data.getJSONObject("icon").optString("fileId"));
+                      myWorkDataInfo.setFileName(data.getJSONObject("icon").optString("name"));
+                                          
+                      myWorkDataInfoList.add(myWorkDataInfo);
+                  }
+              }
+          } catch (Exception e) {
+              Log.e("ClientAPI.getMyWorkList", "Fail to get work list!", e);
+          }
+      }
+      return myWorkDataInfoList;
+  }
     
 	/**
 	 * 通过 url 联网得到返回字符串

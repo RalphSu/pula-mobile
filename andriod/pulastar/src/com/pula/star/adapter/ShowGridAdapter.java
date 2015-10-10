@@ -1,0 +1,103 @@
+package com.pula.star.adapter;
+
+import java.util.List;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.pula.star.bean.MyWorkData;
+
+import com.squareup.picasso.Picasso;
+
+import com.pula.star.R;
+
+
+public class ShowGridAdapter extends BaseAdapter {
+
+	private List<MyWorkData> list;
+	private Context context;
+	private LayoutInflater inflater;
+	private int height;
+
+	public ShowGridAdapter(List<MyWorkData> list, Context context,
+			int height) {
+		// TODO 自动生成的构造函数存根
+		
+		this.context = context;
+		this.list = list;
+		this.height = height;
+		inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+	}
+
+	@Override
+	public int getCount() {
+		// TODO 自动生成的方法存根
+		return list.size();
+	}
+
+	@Override
+	public Object getItem(int arg0) {
+		// TODO 自动生成的方法存根
+		return list.get(arg0);
+	}
+
+	@Override
+	public long getItemId(int arg0) {
+		// TODO 自动生成的方法存根
+		return arg0;
+	}
+
+	@Override
+	public View getView(int arg0, View arg1, ViewGroup arg2) {
+		// TODO 自动生成的方法存根
+		View view = inflater.inflate(R.layout.show_waterfallitem, null);
+
+		AbsListView.LayoutParams param = new AbsListView.LayoutParams(
+				android.view.ViewGroup.LayoutParams.FILL_PARENT, height);
+		view.setLayoutParams(param);
+		final MyWorkData workData = list.get(arg0);
+		ImageView show_waterfall_image = (ImageView) view
+				.findViewById(R.id.show_waterfall_image);
+		TextView show_waterfall_text01 = (TextView) view
+				.findViewById(R.id.show_waterfall_text01);
+		TextView show_waterfall_text02 = (TextView) view
+				.findViewById(R.id.show_waterfall_text02);
+		TextView show_waterfall_text03 = (TextView) view
+				.findViewById(R.id.show_waterfall_text03);
+
+		String imageUrl = "http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="+ workData.getFileId()+"&id="+ workData.getIconId(); 
+				
+		Picasso.with(context).load(imageUrl)
+				.placeholder(R.drawable.pula_logo_rec).error(R.drawable.pula_logo_rec)
+				.into(show_waterfall_image);
+		show_waterfall_text01.setText(workData.getComments());
+		show_waterfall_text02.setText("" + workData.getBranchNo());
+		show_waterfall_text03.setText("" + workData.getWorkEffectDate());
+		
+		show_waterfall_image.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO 自动生成的方法存根
+                /*
+				Intent intent = new Intent();
+				intent.setData(Uri.parse(workData.getUrl()));
+				intent.setAction(Intent.ACTION_VIEW);
+				context.startActivity(intent); // 启动浏览器
+	           */
+			}
+		});
+
+		return view;
+	}
+
+}
