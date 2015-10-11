@@ -74,6 +74,13 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
+        
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        
         <activity android:name="com.freedoman.fingerlife.activities.UserCenterActivity" >
         </activity>
         <activity
@@ -117,39 +124,26 @@
         </activity>
         <activity android:name="com.pula.star.activity.buy.BuyHuodongSubmitActivity" >
         </activity>
-        
         <activity android:name="com.pula.star.activity.CurriculumScheduleActivity" >
         </activity>
-        
-        
         <activity android:name="com.pula.star.activity.BookingDialogActivity" >
         </activity>
-
         <activity android:name="com.pula.star.activity.RegistedUserBookingDialogActivity" >
         </activity>
-        
         <activity android:name="com.pula.star.activity.MyNoticeActivity" >
         </activity>
         <activity android:name="com.pula.star.activity.MyWorkH5Activity" >
         </activity>
-        
         <activity android:name="com.pula.star.activity.MyWorkActivity" >
         </activity>
-        
         <activity android:name="com.pula.star.activity.MyWorkDetailActivity" >
         </activity>
-        
         <activity android:name="com.pula.star.activity.AboutUsActivity" >
         </activity>
-        
-        
         <activity android:name="com.pula.star.activity.changePasswordActivity" >
         </activity>
-        
-        
         <activity android:name="com.pula.star.activity.resetPasswordActivity" >
         </activity>
-        
         <activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
             android:screenOrientation="portrait" />

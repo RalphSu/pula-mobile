@@ -138,7 +138,7 @@
         android:textColor="@color/orange"
         android:textSize="20sp" 
         android:textStyle="bold"
-        android:text="20%"/>
+        android:text="0%"/>
 
        <TextView
            android:id="@+id/class_time_text"

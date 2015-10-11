@@ -306,6 +306,20 @@
     <color name="ToDayText">#ffc2a53d</color>
     <color name="Noteback">#FFCC99</color>
     <color name="BookingDay">#ff6bd697</color>
-
+    <color name="share_bg_color">#ffe6e6e6</color>
     <color name="province_line_border">#D0D0D0</color> 
+    
+    <color name="res_cor1">#ffffffff</color>
+ 	<color name="res_cor2">#ff000000</color>
+    <color name="res_cor3">#ffff0000</color>
+    <color name="res_cor4">#dedede</color>
+    <color name="res_cor5">#ff516491</color>
+    <color name="res_cor6">#ff444444</color>
+    <color name="res_cor7">#ff354149</color>
+    <color name="res_cor8">#ff808080</color>
+    <color name="res_cor9">#ff2c2d2c</color>
+    <color name="res_cor10">#f9ff50</color>
+    <color name="res_cor11">#ffba0000</color>
+    <color name="res_cor12">#ff151618</color>
+    <color name="res_cor20">#ff2b2b2b</color>
 </resources>

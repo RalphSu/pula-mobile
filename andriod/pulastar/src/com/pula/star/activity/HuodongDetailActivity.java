@@ -1,5 +1,6 @@
 package com.pula.star.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,10 +14,12 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.pula.star.ShareDialog;
 import com.pula.star.R;
 import com.pula.star.activity.buy.BuyHuodongSubmitActivity;
 import com.pula.star.utils.StaticStrings;
@@ -27,8 +30,9 @@ import com.pula.star.utils.StaticStrings;
  * @author
  * @date 2014-10-25
  * @version 1.0
+ * @param <ShareDialog>
  */
-public class HuodongDetailActivity extends BaseActivity {
+public class HuodongDetailActivity extends Activity {
     Handler handler;
     WebView webView;
     TextView textView;
@@ -40,16 +44,19 @@ public class HuodongDetailActivity extends BaseActivity {
     private SharedPreferences preference;
     private String userName;
     private String passWord;
-
+    private ImageButton btnShare;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
         preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
         userName = preference.getString("USER_NAME", "");
         passWord = preference.getString("PASSWORD", "");
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        	
         url = getIntent().getStringExtra("url");
         name = getIntent().getStringExtra("name");
         LinearLayout rootViewLayout = new LinearLayout(this);
@@ -57,13 +64,16 @@ public class HuodongDetailActivity extends BaseActivity {
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_huodong_detail, null);
         rootViewLayout.addView(view);
         progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        
         webView = new WebView(this);
         rootViewLayout.addView(progressBar);
         rootViewLayout.addView(webView);
-
+        
         addBuyNowButton(rootViewLayout);
 
         setContentView(rootViewLayout);
+        btnShare = (ImageButton)findViewById(R.id.btn_share);
+        
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
@@ -104,6 +114,22 @@ public class HuodongDetailActivity extends BaseActivity {
                 // }
             }
         });
+        
+        btnShare.setOnClickListener( new OnClickListener()
+         {
+            public void onClick(View v)
+
+            {
+
+            	ShareDialog shareDialog = new ShareDialog(HuodongDetailActivity.this, false);
+    			shareDialog.show();             
+
+            }   
+         }
+        );
+       
+        
+        
     }
 
 	@Override

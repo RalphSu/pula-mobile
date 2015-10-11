@@ -152,12 +152,15 @@
     <string name="person_num">人数:</string>
     
     
+    
     <string name="point_add_del">积分增减:</string>
     <string name="point_type">积分类型:</string>
     <string name="point_comments">积分备注:</string>   
     <string name="create_time">创建时间:</string>
     
     <string name="booking">预约</string>
+      
+    <string name="share_dialog_title">分享到</string>
     
     <string name="product_web">产品官网</string>
     <string name="productwebaddress">www.zt-zoo.com</string>
