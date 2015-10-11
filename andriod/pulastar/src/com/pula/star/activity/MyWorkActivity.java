@@ -132,7 +132,7 @@ public class MyWorkActivity extends Activity {
 		grid = (GridView)findViewById(R.id.tab_a_grid);
 		int height = display.getHeight() / 3;
 		
-		ShowGridAdapter adapter = new ShowGridAdapter(work_list_rcvd,this,height);
+		ShowGridAdapter adapter = new ShowGridAdapter(work_list_rcvd,MyWorkActivity.this,height);
 		grid.setAdapter(adapter);
 	}
    

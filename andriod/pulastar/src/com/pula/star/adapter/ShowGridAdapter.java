@@ -4,6 +4,8 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pula.star.bean.MyWorkData;
-
 import com.squareup.picasso.Picasso;
-
 import com.pula.star.R;
 
 
@@ -68,20 +68,25 @@ public class ShowGridAdapter extends BaseAdapter {
 		ImageView show_waterfall_image = (ImageView) view
 				.findViewById(R.id.show_waterfall_image);
 		TextView show_waterfall_text01 = (TextView) view
-				.findViewById(R.id.show_waterfall_text01);
+				.findViewById(R.id.show_waterfall_text01);  //for date
 		TextView show_waterfall_text02 = (TextView) view
-				.findViewById(R.id.show_waterfall_text02);
-		TextView show_waterfall_text03 = (TextView) view
-				.findViewById(R.id.show_waterfall_text03);
+				.findViewById(R.id.show_waterfall_text03);  //for comments
+	
 
 		String imageUrl = "http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="+ workData.getFileId()+"&id="+ workData.getIconId(); 
 				
 		Picasso.with(context).load(imageUrl)
-				.placeholder(R.drawable.pula_logo_rec).error(R.drawable.pula_logo_rec)
+				.placeholder(R.drawable.defaultcovers).error(R.drawable.defaultcovers)
 				.into(show_waterfall_image);
-		show_waterfall_text01.setText(workData.getComments());
-		show_waterfall_text02.setText("" + workData.getBranchNo());
-		show_waterfall_text03.setText("" + workData.getWorkEffectDate());
+		
+		show_waterfall_text01.setText(workData.getWorkEffectDate());
+		show_waterfall_text02.setText(workData.getComments());
+
+		
+		Typeface tf = Typeface.createFromAsset (context.getAssets(), "fonts/wwt.ttf" );  
+		//show_waterfall_text01.setTypeface(tf);//设置字体
+		show_waterfall_text02.setTypeface(tf);//设置字体
+		show_waterfall_text02.getPaint().setFakeBoldText(true);
 		
 		show_waterfall_image.setOnClickListener(new OnClickListener() {
 

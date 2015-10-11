@@ -10,21 +10,42 @@
         android:id="@+id/show_waterfall_image"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_weight="1"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@drawable/aaa" />
 
-    <TextView
-        android:id="@+id/show_waterfall_text01"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:text="爆款Mk9910迷你版出货原版双层十字纹高端大气上档次，色组合，尺寸25*21*11实物美爆了编码：41030056"
-        android:textColor="@color/gray"
-        android:textSize="14sp" />
+        android:background="#DB6A24"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/show_waterfall_text00"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"           
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="日期："
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/show_waterfall_text01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="2015-09-18"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+  
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -33,42 +54,30 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/show_waterfall_text02"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="￥"
-            android:textColor="@color/red" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="评语："
+            android:textColor="#DB6A24" />
 
         <TextView
-            android:id="@+id/show_waterfall_text02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="260"
-            android:textColor="@color/red"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/show_waterfall_image02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp" 
-            android:layout_marginLeft="50dp"
-            android:src="@drawable/waterfall_item_fav_icon" />
-        
-         <TextView
             android:id="@+id/show_waterfall_text03"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="260"
-            android:textColor="@color/gray"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="画得很好！"
+            android:textColor="#DB6A24"
             android:textSize="14sp" />
     </LinearLayout>
-
+<!-- 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="20dp"
         android:background="@color/white"
         android:orientation="horizontal" >
     </LinearLayout>
-
+ -->
 </LinearLayout>

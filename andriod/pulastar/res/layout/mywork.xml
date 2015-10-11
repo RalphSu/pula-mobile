@@ -3,7 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:baselineAligned="false"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="@color/white" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -55,7 +56,8 @@
                 android:id="@+id/tab_a_grid"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:horizontalSpacing="10dp"
+                android:horizontalSpacing="0dp"
+                android:verticalSpacing="10dp"
                 android:listSelector="@color/transparent"
                 android:numColumns="2" />
 
