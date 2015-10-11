@@ -62,7 +62,7 @@ public class MyWorkActivity extends Activity {
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.mywork);
-
+		setTitle("普拉星球 - 我的作品");
         preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
 		userName = preference.getString("USER_NAME", "");
 			

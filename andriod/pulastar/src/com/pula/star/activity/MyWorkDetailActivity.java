@@ -44,7 +44,7 @@ public class MyWorkDetailActivity extends Activity {
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		getWindow().requestFeature(Window.FEATURE_PROGRESS);
 		setContentView(R.layout.mywork_detail);
-
+		setTitle("普拉星球 - 作品详情");
 		imageUrl = getIntent().getStringExtra("imgUrl");
 		workEffectDate = getIntent().getStringExtra("date");
 		comments = getIntent().getStringExtra("comments");
