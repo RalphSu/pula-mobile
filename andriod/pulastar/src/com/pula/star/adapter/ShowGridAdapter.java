@@ -16,6 +16,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pula.star.activity.MyWorkDetailActivity;
+import com.pula.star.activity.MyWorkH5Activity;
 import com.pula.star.bean.MyWorkData;
 import com.squareup.picasso.Picasso;
 import com.pula.star.R;
@@ -27,7 +29,8 @@ public class ShowGridAdapter extends BaseAdapter {
 	private Context context;
 	private LayoutInflater inflater;
 	private int height;
-
+	private static String imageUrl;
+	
 	public ShowGridAdapter(List<MyWorkData> list, Context context,
 			int height) {
 		// TODO 自动生成的构造函数存根
@@ -73,7 +76,7 @@ public class ShowGridAdapter extends BaseAdapter {
 				.findViewById(R.id.show_waterfall_text03);  //for comments
 	
 
-		String imageUrl = "http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="+ workData.getFileId()+"&id="+ workData.getIconId(); 
+		imageUrl = "http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="+ workData.getFileId()+"&id="+ workData.getIconId(); 
 				
 		Picasso.with(context).load(imageUrl)
 				.placeholder(R.drawable.defaultcovers).error(R.drawable.defaultcovers)
@@ -93,12 +96,22 @@ public class ShowGridAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View arg0) {
 				// TODO 自动生成的方法存根
+				Intent intent = new Intent(context, MyWorkDetailActivity.class);
+				
+				intent.putExtra("imgUrl","http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="+ workData.getFileId()+"&id="+ workData.getIconId());
+				intent.putExtra("date",workData.getWorkEffectDate());
+				intent.putExtra("comments",workData.getComments());
+				
+				context.startActivity(intent);
+				
                 /*
 				Intent intent = new Intent();
 				intent.setData(Uri.parse(workData.getUrl()));
 				intent.setAction(Intent.ACTION_VIEW);
 				context.startActivity(intent); // 启动浏览器
 	           */
+				 
+				
 			}
 		});
 

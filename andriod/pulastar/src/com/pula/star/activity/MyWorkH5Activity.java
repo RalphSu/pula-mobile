@@ -41,6 +41,8 @@ public class MyWorkH5Activity extends BaseActivity {
 
     private static final String MY_WORK_URL = "http://121.40.151.183:8080/pula-sys/app/image/icon?fp=logo.png&sub=notice&studentNo=%s";
     
+    //private static final String MY_WORK_URL = "http://121.40.151.183:8080/pula-sys/app/timecoursework/appshow?id=%d";
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

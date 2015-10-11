@@ -77,7 +77,6 @@ public class MyWorkActivity extends Activity {
 		new Thread() {
 			public void run() {
 				
-				Log.i("username=","" + userName);
 				
 				List<MyWorkData> booking_list_send = ClientApi.getMyWorkList(userName);
 			
@@ -115,7 +114,7 @@ public class MyWorkActivity extends Activity {
 				
 				if(msg.obj != null)
 				{	
-				 Log.i("msg.obj != null","DONE");	
+				
 				 work_list_rcvd = (ArrayList<MyWorkData>)msg.obj;
 				} 
 										

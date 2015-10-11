@@ -499,7 +499,7 @@ public class ClientApi {
       if (json != null) {
           try {
           	
-          	 Log.e("total records", ""+ json);
+          	 
           	  
               JSONArray records = json.getJSONArray("records");
               if (records != null) {

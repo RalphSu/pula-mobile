@@ -133,8 +133,12 @@
         <activity android:name="com.pula.star.activity.MyWorkH5Activity" >
         </activity>
         
-           <activity android:name="com.pula.star.activity.MyWorkActivity" >
+        <activity android:name="com.pula.star.activity.MyWorkActivity" >
         </activity>
+        
+        <activity android:name="com.pula.star.activity.MyWorkDetailActivity" >
+        </activity>
+        
         <activity android:name="com.pula.star.activity.AboutUsActivity" >
         </activity>
         
