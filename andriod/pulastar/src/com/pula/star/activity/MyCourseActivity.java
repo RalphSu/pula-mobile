@@ -293,13 +293,13 @@ public class MyCourseActivity extends Activity {
 							*/
 					
 				} else {
-					course_field_value.add(userName);
-					course_field_value.add(userNameInfo);
+
 					course_field_value.add(" ");
 					course_field_value.add(" ");
 					course_field_value.add(" ");
 					course_field_value.add(" ");
 					course_field_value.add(" ");
+					
 				}
 
 				
@@ -347,73 +347,5 @@ public class MyCourseActivity extends Activity {
 		}
 	};
 
-	/*
-	 * public List<JSONTools> parseJson(String content){
-	 * 
-	 * 
-	 * list=new ArrayList<JSONTools>();
-	 * 
-	 * JSONObject obj; try { obj = new JSONObject(content); JSONArray
-	 * arr=obj.getJSONArray("records"); Log.i("arr=", arr+""); for(int
-	 * i=0;i<arr.length();i++){ tools=new JSONTools();
-	 * 
-	 * JSONObject json=arr.getJSONObject(i);
-	 * 
-	 * tools.setStart_weekday(json.getString("startWeekDay"));
-	 * tools.setStart_minute(json.getString("startMinute"));
-	 * tools.setStart_hour(json.getString("startHour"));
-	 * tools.setStart_time(json.getString("startTime"));
-	 * tools.setEnd_time(json.getString("endTime"));
-	 * tools.setName(json.getString("name"));
-	 * tools.setBranch_name(json.getString("branchName"));
-	 * tools.setDuration_minute(json.getString("duration_minute"));
-	 * tools.setCourse_no(json.optString("course_no"));
-	 * 
-	 * list.add(tools); } } catch (Exception e) { e.printStackTrace(); return
-	 * null; } return list; }
-	 */
-
-	/*
-	 * public void PutData(String str) { list = new ArrayList<JSONTools>();
-	 * JSONObject obj; try { obj = new JSONObject(str); JSONArray arr =
-	 * obj.getJSONArray("records"); Log.i("arr=", arr + ""); for (int i = 0; i <
-	 * arr.length(); i++) { tools = new JSONTools(); JSONObject json =
-	 * arr.getJSONObject(i);
-	 * 
-	 * tools.setStart_weekday(json.getString("startWeekDay"));
-	 * tools.setStart_minute(json.getString("startMinute"));
-	 * tools.setStart_hour(json.getString("startHour"));
-	 * tools.setStart_time(json.getString("startTime"));
-	 * tools.setEnd_time(json.getString("endTime"));
-	 * tools.setName(json.getString("name"));
-	 * tools.setBranch_name(json.getString("branchName")); list.add(tools); }
-	 * pb.setVisibility(View.GONE);
-	 * 
-	 * adapter = new List_2_2Adapter(MyCourseActivity.this, list);
-	 * my_course_list.setAdapter(adapter); } catch (JSONException e) {
-	 * e.printStackTrace(); }
-	 * 
-	 * }
-	 */
-	/*
-	 * private void getDateFormServise() {
-	 * 
-	 * 
-	 * new Thread() {
-	 * 
-	 * @Override public void run() { String result = null; try {
-	 * 
-	 * result = ClientApi .getDataByUrl(
-	 * "http://121.40.151.183:8080/pula-sys/app/timecourseorder/list?pageIndex=1&condition.studentNo=PD0D00002&_json=1"
-	 * );
-	 * 
-	 * 
-	 * Log.i("result=", result);
-	 * 
-	 * 
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } Message msg =
-	 * Message.obtain(); msg.what = 6; msg.obj = result; Log.i("",
-	 * "##############" + result); handler.sendMessage(msg); } }.start(); }
-	 */
+	
 }
