@@ -28,11 +28,11 @@ public class HuoDongData {
     public void setContent(String content) {
         this.content = content;
     }
-    public String getIamge() {
-		return iamge;
+    public String getImage() {
+		return image;
 	}
-	public void setIamge(String iamge) {
-		this.iamge = iamge;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	public String getUpdateTime() {
@@ -47,8 +47,25 @@ public class HuoDongData {
 	private String name;
 	private String title;
 	private String content;
-	private String iamge;
+	private String image;
 	private String urlS;
+	
+	public String getFileId() {
+		return fileId;
+	}
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+	public int getIconId() {
+		return iconId;
+	}
+	public void setIconId(int iconId) {
+		this.iconId = iconId;
+	}
+
+	private String fileId;
+	private int iconId;
+	
 	public String getUrlS() {
 		return urlS;
 	}

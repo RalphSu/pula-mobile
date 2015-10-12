@@ -237,13 +237,14 @@ public class ClientApi {
             return null;
         } else {
             try {
+            	
 				JSONArray Data = json.getJSONArray("records");
 				
 				for (int i = 0; i < Data.length(); i++) {
 				    JSONObject data = Data.getJSONObject(i);
                     CourseData courseData = convertToCourse(data);
 					result.add(courseData);
-				}
+				}            	                        	
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -265,9 +266,12 @@ public class ClientApi {
         courseData.setPrice(data.getInt("price"));
         courseData.setStartHour(data.getInt("startHour"));
         courseData.setStartMinute(data.getInt("startMinute"));
-        // TODO : use correct data
-        courseData.setImage("http://121.40.151.183:8080/pula-sys/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
-                + "&sub=notice");
+        
+        courseData.setFileId(data.getJSONObject("icon").getString("fileId"));
+        courseData.setIconId(data.getJSONObject("icon").getInt("id"));     
+        
+        courseData.setImage("http://121.40.151.183:8080/pula-sys/app/timecourse/icon?fp="+courseData.getFileId()+"&id="+courseData.getIconId());
+        
         return courseData;
     }
 	
@@ -306,10 +310,15 @@ public class ClientApi {
                     huoDongData.setTitle(data.getString("title"));
                     huoDongData.setContent(data.getString("content"));
                     huoDongData.setUpdateTime(data.getString("updateTime"));
+                    huoDongData.setFileId(data.getJSONObject("icon").getString("fileId"));
+                    huoDongData.setIconId(data.getJSONObject("icon").getInt("id"));
                     // FIXME: use real img path
-                    huoDongData.setIamge("http://121.40.151.183:8080/pula-sys/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
-                            + "&sub=notice");
+                    //huoDongData.setImage("http://121.40.151.183:8080/pula-sys/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
+                    //        + "&sub=notice");
+                    huoDongData.setImage("http://121.40.151.183:8080/pula-sys/app/notice/icon?fp="+huoDongData.getFileId()+"&id="+huoDongData.getIconId());
+                    
                     huoDongData.setUrlS("http://121.40.151.183:8080/pula-sys/app/notice/appshow?id=" + huoDongData.getId());
+                    
                     list.add(huoDongData);
                 }
 

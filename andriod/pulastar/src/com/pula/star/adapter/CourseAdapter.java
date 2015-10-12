@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.pula.star.R;
 import com.pula.star.bean.CourseData;
 import com.pula.star.utils.ImageCache;
+import com.squareup.picasso.Picasso;
 
 /**
  * @name ZhuantiAdapter
@@ -72,13 +73,16 @@ public class CourseAdapter extends BaseAdapter {
         }
         CourseData zhuantiData = data.get(position);
 //        viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
-        viewHoleder.imageView.setTag(zhuantiData.getImage());
+// viewHoleder.imageView.setTag(zhuantiData.getImage());
         viewHoleder.titleView.setText(zhuantiData.getName());
         viewHoleder.titleView.setTextColor(Color.parseColor(color[position]));
         viewHoleder.branchName.setText(zhuantiData.getBranchName());
         viewHoleder.classRoomName.setText(zhuantiData.getClassRoomName());
 //        new ImageCache(context, lruCache, viewHoleder.imageView, zhuantiData.getImage(), "OnTheWay", 800, 400);
-
+        
+        Picasso.with(context).load(zhuantiData.getImage())
+		.placeholder(R.drawable.deer).error(R.drawable.deer)
+		.into( viewHoleder.imageView);
         return view;
     }
 

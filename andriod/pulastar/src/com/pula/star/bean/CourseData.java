@@ -81,6 +81,25 @@ public class CourseData {
     private String name;
     private String image;
 
+    public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+
+	public int getIconId() {
+		return iconId;
+	}
+
+	public void setIconId(int iconId) {
+		this.iconId = iconId;
+	}
+
+	private String fileId;
+    private int iconId;
+    
     public int getStartHour() {
         return startHour;
     }
