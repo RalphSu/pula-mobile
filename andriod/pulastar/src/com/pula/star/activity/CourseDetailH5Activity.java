@@ -18,11 +18,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pula.star.R;
+import com.pula.star.ShareDialog;
 import com.pula.star.activity.buy.BuyCourseSubmitActivity;
 import com.pula.star.utils.StaticStrings;
 
@@ -47,6 +49,7 @@ public class CourseDetailH5Activity extends BaseActivity {
     private SharedPreferences preference;
     private String userName;
     private String passWord;
+    private ImageButton btnShare;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,9 @@ public class CourseDetailH5Activity extends BaseActivity {
         addBuyNowButton(rootViewLayout);
 
         setContentView(rootViewLayout);
+        
+        btnShare = (ImageButton)findViewById(R.id.btn_share);
+        
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
@@ -120,6 +126,20 @@ public class CourseDetailH5Activity extends BaseActivity {
             }
         });
         
+        btnShare.setOnClickListener( new OnClickListener()
+        {
+           public void onClick(View v)
+
+           {
+
+           	ShareDialog shareDialog = new ShareDialog(CourseDetailH5Activity.this, false);
+   			shareDialog.show();             
+
+           }   
+        }
+       );
+      
+       
         
     }
 
@@ -131,6 +151,8 @@ public class CourseDetailH5Activity extends BaseActivity {
 		}
 	}
 
+	
+	 
     private void addBuyNowButton(LinearLayout rootViewLayout) {
         // check login
         if (userName == null || passWord == null) {
