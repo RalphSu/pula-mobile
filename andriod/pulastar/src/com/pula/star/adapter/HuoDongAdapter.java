@@ -29,8 +29,7 @@ public class HuoDongAdapter extends BaseAdapter {
 	private ArrayList<HuoDongData> data;
 	private Context context;
 	private LruCache<String,Bitmap> lruCache;
-	String color[] = {"#B22222","#8B2500","#B03060","#00B2EE","#A0522D","#8B814C","#FF7F24","#EE1289","#9A32CD","#006699","#CC3366","#B22222",
-			"#8B2500","#B03060","#00B2EE","#A0522D","#8B814C","#FF7F24","#EE1289","#9A32CD","#006699","#CC3366"};
+	String color[] = {"#B22222","#8B2500","#B03060","#00B2EE","#A0522D","#8B814C","#FF7F24","#EE1289","#9A32CD","#006699","#CC3366"};
 	
 	public void BindData(ArrayList<HuoDongData> data){
 		this.data = data;
@@ -72,7 +71,7 @@ public class HuoDongAdapter extends BaseAdapter {
 		
         HuoDongData huoDongData = data.get(position);
         viewHoleder.textView.setText(huoDongData.getTitle());
-        viewHoleder.textView.setTextColor(Color.parseColor(color[position]));
+        viewHoleder.textView.setTextColor(Color.parseColor(color[position%11]));
 //		viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
 //		viewHoleder.imageView.setTag(huoDongData.getImage());
 //		new ImageCache(context, lruCache, viewHoleder.imageView, huoDongData.getIamge(),"OnTheWay",800, 400);

@@ -30,7 +30,7 @@ public class CourseAdapter extends BaseAdapter {
     private Context context;
     private LruCache<String, Bitmap> lruCache;
 
-    String color[] = {"#00B2EE","#9A32CD","#006699","#CC3366","#A0522D","#8B814C","#FF7F24","#EE1289","#B22222","#8B2500","#B03060"};
+    String color[] = {"#00B2EE","#9A32CD","#006699","#CC3366","#A0522D","#8B814C","#FF7F24","#EE1289"};
     
     public void BindData(ArrayList<CourseData> data) {
 
@@ -75,7 +75,7 @@ public class CourseAdapter extends BaseAdapter {
 //        viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
 // viewHoleder.imageView.setTag(zhuantiData.getImage());
         viewHoleder.titleView.setText(zhuantiData.getName());
-        viewHoleder.titleView.setTextColor(Color.parseColor(color[position]));
+        viewHoleder.titleView.setTextColor(Color.parseColor(color[position%8]));
         viewHoleder.branchName.setText(zhuantiData.getBranchName());
         viewHoleder.classRoomName.setText(zhuantiData.getClassRoomName());
 //        new ImageCache(context, lruCache, viewHoleder.imageView, zhuantiData.getImage(), "OnTheWay", 800, 400);

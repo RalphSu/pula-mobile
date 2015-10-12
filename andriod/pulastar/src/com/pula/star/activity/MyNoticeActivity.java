@@ -89,7 +89,7 @@ public class MyNoticeActivity extends BaseActivity {
                 notice.setNoticeName(data.getTitle());
                 notice.setBuyDay(DateTime.parse("2015-09-01"));
                 notice.setNoticeDay(DateTime.parse("2015-10-01"));
-
+                
                 notices.add(notice);
              }
             }
