@@ -3,9 +3,15 @@
  */
 package com.pula.star.activity;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -50,6 +56,9 @@ public class CourseDetailH5Activity extends BaseActivity {
     private String userName;
     private String passWord;
     private ImageButton btnShare;
+    private Bundle bundle;
+    private InputStream is;
+    private Bitmap bitmap;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +72,7 @@ public class CourseDetailH5Activity extends BaseActivity {
 
         SearchId = getIntent().getStringExtra("SearchId");
         courseNo = getIntent().getStringExtra("courseNo");
-
+       
         if (SearchId == null) {
             SearchId = "";
         }
@@ -73,9 +82,24 @@ public class CourseDetailH5Activity extends BaseActivity {
         }
 
         url = String.format(COURSE_DETIAL_GET, SearchId, courseNo);
-
-        Log.i("H5 URL =", url);
-
+        bundle = new Bundle();
+        bundle.putString("shareUrl", url);
+        bundle.putString("title", "普拉星球");
+        bundle.putString("wxContent","课程");
+        bundle.putString("otherContent","少儿艺术创造力研发中心");
+        
+        AssetManager assetManager = getAssets();
+        
+		try {
+			 is = assetManager.open("logo.png");
+			 bitmap = BitmapFactory.decodeStream(is);
+			 bundle.putParcelable("icon",bitmap);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        
         name = getIntent().getStringExtra("name");
         LinearLayout rootViewLayout = new LinearLayout(this);
         rootViewLayout.setOrientation(LinearLayout.VERTICAL);
@@ -132,7 +156,7 @@ public class CourseDetailH5Activity extends BaseActivity {
 
            {
 
-           	ShareDialog shareDialog = new ShareDialog(CourseDetailH5Activity.this, false);
+           	ShareDialog shareDialog = new ShareDialog(CourseDetailH5Activity.this,bundle);
    			shareDialog.show();             
 
            }   

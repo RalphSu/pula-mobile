@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">普拉星球</string>
+    <string name="app_desc">少儿艺术创造力研发中心</string>
     <string name="head">这里是HeadView</string>
     <string name="pull_to_refresh">下拉刷新</string>
     <string name="release_to_refresh">释放立即刷新</string>

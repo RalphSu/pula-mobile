@@ -40,7 +40,7 @@ public class HuodongDetailActivity extends Activity {
     private String url;
     private String name;
     private String noticeId;
-
+    private Bundle bundle;
     private SharedPreferences preference;
     private String userName;
     private String passWord;
@@ -121,7 +121,7 @@ public class HuodongDetailActivity extends Activity {
 
             {
 
-            	ShareDialog shareDialog = new ShareDialog(HuodongDetailActivity.this, false);
+            	ShareDialog shareDialog = new ShareDialog(HuodongDetailActivity.this, bundle);
     			shareDialog.show();             
 
             }   
