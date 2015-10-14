@@ -97,7 +97,7 @@ public class ShareDialog extends Dialog {
 		
 		if(isWXAppInstalledAndSupported(context, msgApi) == false)
 		{
-		  this.dismiss();
+			ShareDialog.this.dismiss();   
 		}
 		
 	}
