@@ -49,6 +49,7 @@ public class CourseDetailH5Activity extends BaseActivity {
 
     private String SearchId;
     private String courseNo;
+    
 
     private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s&no=%s";
 
@@ -72,7 +73,8 @@ public class CourseDetailH5Activity extends BaseActivity {
 
         SearchId = getIntent().getStringExtra("SearchId");
         courseNo = getIntent().getStringExtra("courseNo");
-       
+        name = getIntent().getStringExtra("name");
+        
         if (SearchId == null) {
             SearchId = "";
         }
@@ -85,7 +87,7 @@ public class CourseDetailH5Activity extends BaseActivity {
         bundle = new Bundle();
         bundle.putString("shareUrl", url);
         bundle.putString("title", "普拉星球");
-        bundle.putString("wxContent","课程");
+        bundle.putString("wxContent",name+"课程");
         bundle.putString("otherContent","少儿艺术创造力研发中心");
         
         AssetManager assetManager = getAssets();

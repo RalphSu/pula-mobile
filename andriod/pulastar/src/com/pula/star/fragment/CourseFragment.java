@@ -73,6 +73,7 @@ public class CourseFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), CourseDetailH5Activity.class);
                         intent.putExtra("SearchId", result.get(position).getId());
                         intent.putExtra("name", result.get(position).getName());
+                        
                         startActivity(intent);
                     }
                 });

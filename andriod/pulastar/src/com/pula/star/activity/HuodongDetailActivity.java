@@ -59,6 +59,13 @@ public class HuodongDetailActivity extends Activity {
         	
         url = getIntent().getStringExtra("url");
         name = getIntent().getStringExtra("name");
+        
+        bundle = new Bundle();
+        bundle.putString("shareUrl", url);
+        bundle.putString("title", "普拉星球");
+        bundle.putString("wxContent",name+"活动");
+        bundle.putString("otherContent","少儿艺术创造力研发中心");
+        
         LinearLayout rootViewLayout = new LinearLayout(this);
         rootViewLayout.setOrientation(LinearLayout.VERTICAL);
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_huodong_detail, null);

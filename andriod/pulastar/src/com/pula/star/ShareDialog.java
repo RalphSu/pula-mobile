@@ -109,7 +109,7 @@ public class ShareDialog extends Dialog {
 			title = bundle.getString("title");
 			wxContent = bundle.getString("wxContent");
 			//icon = (Bitmap)bundle.getParcelable("icon");   
-			icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
+			icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.share_pic);
 			shareUrl = bundle.getString("shareUrl");
 			otherContent = bundle.getString("otherContent");
 		} else {
@@ -117,7 +117,7 @@ public class ShareDialog extends Dialog {
 			otherContent = "普拉星球";
 			title = context.getResources().getString(R.string.app_name);
 			wxContent = context.getResources().getString(R.string.app_desc);
-			icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
+			icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.share_pic);
 		}
 	}
 
@@ -170,6 +170,8 @@ public class ShareDialog extends Dialog {
 			if (wxContent == null) {
 				wxContent = otherContent;
 			}
+			title = title + " " + wxContent;
+			
 			WxUtils.sendWebPageWx(shareUrl, title, wxContent, icon, SendMessageToWX.Req.WXSceneTimeline);
 			dismiss();
 		}
