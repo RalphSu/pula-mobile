@@ -224,7 +224,7 @@ public class CourseDetailH5Activity extends BaseActivity {
         LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         
         params.gravity = Gravity.CENTER;
-        btn.setBackgroundResource(R.drawable.course_buy_img);
+        btn.setBackgroundResource(R.drawable.course_buy);
         btn.setLayoutParams(params);
         rootViewLayout.addView(btn);
 

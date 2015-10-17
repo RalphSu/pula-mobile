@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,7 +37,8 @@ public class HuodongDetailActivity extends Activity {
     Handler handler;
     WebView webView;
     TextView textView;
-    ProgressBar progressBar;
+    ImageButton btn;
+    //ProgressBar progressBar;
     private String url;
     private String name;
     private String noticeId;
@@ -45,6 +47,7 @@ public class HuodongDetailActivity extends Activity {
     private String userName;
     private String passWord;
     private ImageButton btnShare;
+    
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,10 +73,26 @@ public class HuodongDetailActivity extends Activity {
         rootViewLayout.setOrientation(LinearLayout.VERTICAL);
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_huodong_detail, null);
         rootViewLayout.addView(view);
-        progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        //progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        textView = new TextView(this);
         
+        textView.setBackgroundColor(0xEED7B704);
+        
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,100);         
+        textParams.setMargins(15,20, 15, 0); 
+        
+        textView.setLayoutParams(textParams);  
+        
+        textView.setVisibility(View.GONE);        
         webView = new WebView(this);
-        rootViewLayout.addView(progressBar);
+        
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);         
+        params.setMargins(15, 0, 15, 15);  
+        webView.setLayoutParams(params);  
+        
+        webView.setBackgroundColor(0x44D7B704);
+        //rootViewLayout.addView(progressBar);
+        rootViewLayout.addView(textView);
         rootViewLayout.addView(webView);
         
         addBuyNowButton(rootViewLayout);
@@ -93,6 +112,8 @@ public class HuodongDetailActivity extends Activity {
                 if (webView.getContentHeight() != 0) {
                     // 这个时候网页才显示
                 }
+                textView.setVisibility(View.VISIBLE);  
+                btn.setVisibility(View.VISIBLE); 
             }
 
             @Override
@@ -113,8 +134,8 @@ public class HuodongDetailActivity extends Activity {
                 // textView.setVisibility(View.VISIBLE);
                 // progressBar.setVisibility(View.VISIBLE);
                 // }
-                progressBar.setProgress(newProgress);
-                progressBar.postInvalidate();
+                //progressBar.setProgress(newProgress);
+                //progressBar.postInvalidate();
                 // if (newProgress == 100) {
                 // textView.setVisibility(View.GONE);
                 // progressBar.setVisibility(View.GONE);
@@ -154,10 +175,17 @@ public class HuodongDetailActivity extends Activity {
         }
         // TODO check whether already bought the course?
 
-        Button btn = new Button(this);
-        btn.setText("马上购买!");
-        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        btn = new ImageButton(this);
+        btn.setVisibility(View.GONE);
+       // btn.setText("马上购买!");
+
+        
+        LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        
+        params.gravity = Gravity.CENTER;
+        btn.setBackgroundResource(R.drawable.notice_buy);
         btn.setLayoutParams(params);
+
         rootViewLayout.addView(btn);
 
         btn.setOnClickListener(new OnClickListener() {
