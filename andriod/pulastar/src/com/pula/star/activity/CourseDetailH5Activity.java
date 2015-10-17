@@ -12,9 +12,11 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,6 +45,7 @@ public class CourseDetailH5Activity extends BaseActivity {
     Handler handler;
     WebView webView;
     TextView textView;
+    ImageButton btn;
     ProgressBar progressBar;
     private String url;
     private String name;
@@ -105,12 +108,35 @@ public class CourseDetailH5Activity extends BaseActivity {
         name = getIntent().getStringExtra("name");
         LinearLayout rootViewLayout = new LinearLayout(this);
         rootViewLayout.setOrientation(LinearLayout.VERTICAL);
+        
+        
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_zhuanti_detail, null);
+  
         rootViewLayout.addView(view);
 
-        progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        //progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        
+      
+        textView = new TextView(this);
+        
+        textView.setBackgroundColor(0xffee7600);
+        
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,100);         
+        textParams.setMargins(15,20, 15, 0); 
+        
+        textView.setLayoutParams(textParams);  
+        
+        textView.setVisibility(View.GONE);        
+      
+        
         webView = new WebView(this);
-        rootViewLayout.addView(progressBar);
+        
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);         
+        params.setMargins(15, 0, 15, 15);  
+        webView.setLayoutParams(params);  
+        
+        //rootViewLayout.addView(progressBar);
+        rootViewLayout.addView(textView);
         rootViewLayout.addView(webView);
 
         addBuyNowButton(rootViewLayout);
@@ -122,6 +148,8 @@ public class CourseDetailH5Activity extends BaseActivity {
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
+       
+        webView.setBackgroundColor(0xffffcc99);  
         
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -132,6 +160,9 @@ public class CourseDetailH5Activity extends BaseActivity {
                 if (webView.getContentHeight() != 0) {
                     // 这个时候网页才显示
                 }
+                //progressBar.setVisibility(View.GONE);
+                textView.setVisibility(View.VISIBLE);  
+                btn.setVisibility(View.VISIBLE); 
             }
 
             @Override
@@ -147,8 +178,8 @@ public class CourseDetailH5Activity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                progressBar.setProgress(newProgress);
-                progressBar.postInvalidate();
+                //progressBar.setProgress(newProgress);
+                //progressBar.postInvalidate();
             }
         });
         
@@ -186,9 +217,14 @@ public class CourseDetailH5Activity extends BaseActivity {
         }
         // TODO check whether already bought the course?
 
-        Button btn = new Button(this);
-        btn.setText("马上购买!");
-        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        btn = new ImageButton(this);
+        btn.setVisibility(View.GONE);
+        
+        
+        LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        
+        params.gravity = Gravity.CENTER;
+        btn.setBackgroundResource(R.drawable.course_buy_img);
         btn.setLayoutParams(params);
         rootViewLayout.addView(btn);
 
