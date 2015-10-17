@@ -183,4 +183,10 @@
 	
 	<string name="publish_date_value">2015-10-01</string>
 	
+	
+	<!--  支付 -->
+	<string name="app_tip">提示</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="getting_prepayid">正在获取预支付信息...</string>
+    
 </resources>
