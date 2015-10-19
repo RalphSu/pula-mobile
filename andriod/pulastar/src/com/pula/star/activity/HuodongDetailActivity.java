@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.pula.star.ShareDialog;
 import com.pula.star.R;
+import com.pula.star.activity.buy.BuyHuodongActivity;
 import com.pula.star.activity.buy.BuyHuodongSubmitActivity;
 import com.pula.star.utils.StaticStrings;
 
@@ -47,7 +48,7 @@ public class HuodongDetailActivity extends Activity {
     private String userName;
     private String passWord;
     private ImageButton btnShare;
-    
+    private int price;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class HuodongDetailActivity extends Activity {
         	
         url = getIntent().getStringExtra("url");
         name = getIntent().getStringExtra("name");
+        price= getIntent().getIntExtra("price",1000);
         
         bundle = new Bundle();
         bundle.putString("shareUrl", url);
@@ -193,8 +195,11 @@ public class HuodongDetailActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // start buy activity
-                Intent intent = new Intent(HuodongDetailActivity.this, BuyHuodongSubmitActivity.class);
+                Intent intent = new Intent(HuodongDetailActivity.this, BuyHuodongActivity.class);
                 intent.putExtra("noticeId", noticeId);
+                intent.putExtra("name", name);
+                intent.putExtra("price",price);
+                
                 startActivity(intent);
             }
         });

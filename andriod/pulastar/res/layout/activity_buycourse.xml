@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F0F0F2"
+    android:orientation="vertical" >
+    
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="@null" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="#ffffff" >
+
+                <ImageView
+                    android:id="@+id/buycourse_image"
+                    android:layout_width="75dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pula_logo_144_105" />
+
+                <TextView
+                    android:id="@+id/buycourse_context"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@+id/buycourse_image"
+                    android:text="普拉星球课程购买" />
+                <!--  
+                <ImageView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/juxing"
+                    android:layout_toLeftOf="@+id/buycourse_price"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginRight="1dp"
+                    />
+                <TextView 
+                    android:id="@+id/buycourse_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="100"
+                    android:textColor="#ff0000"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="22dp"
+                    />
+                  --> 
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#ffffff"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/rela_buycourse_total_payable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:text="应付总额" />
+                    
+                    <ImageView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/juxing"
+                    android:layout_toLeftOf="@+id/buycourse_total_payable"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    />
+
+                    <TextView
+                        android:id="@+id/buycourse_total_payable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="22dp"
+                        android:text="100元"
+                        android:textColor="#F44236" />
+                </RelativeLayout>
+
+               
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#F0F0F2" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#F0F0F2" />              
+               
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#F0F0F2" />
+              
+            
+                <RelativeLayout
+                    android:id="@+id/rela_wechat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/imageview_wechat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/wechat" />
+
+                    <TextView
+                        android:id="@+id/wechat_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toRightOf="@+id/imageview_wechat"
+                        android:text="微信支付" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/wechat_textview"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/imageview_wechat"
+                        android:text="推荐安装微信5.0版本以上的用户使用"
+                        android:textColor="#BFBFBF"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="5dp"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:id="@+id/wechat_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/my_shopping_cart_choice_icon" />
+                </RelativeLayout>
+               
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="#f2f2f2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:paddingLeft="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="温馨提示"
+                    android:textColor="#F44236" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f2f2f2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="\t亲，购买后会有短信通知您，请按时参加课程，有疑问请咨询普拉星球客服人员，谢谢。"
+                    android:textColor="#BFBFBF" 
+                    android:lineSpacingExtra="5dp"/>
+            </LinearLayout>
+     
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp" >
+
+                <Button
+                    android:id="@+id/btn_buycourse"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/shape_buydetail"
+                    android:gravity="center"
+                    android:text="确认支付"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+            </LinearLayout>
+                               
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

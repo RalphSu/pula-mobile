@@ -50,6 +50,14 @@ public class HuoDongData {
 	private String image;
 	private String urlS;
 	
+	private int price;
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public String getFileId() {
 		return fileId;
 	}

@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.pula.star.R;
 import com.pula.star.ShareDialog;
+import com.pula.star.activity.buy.BuyCourseActivity;
 import com.pula.star.activity.buy.BuyCourseSubmitActivity;
 import com.pula.star.utils.StaticStrings;
 
@@ -52,7 +53,7 @@ public class CourseDetailH5Activity extends BaseActivity {
 
     private String SearchId;
     private String courseNo;
-    
+    private int price;
 
     private static final String COURSE_DETIAL_GET = "http://121.40.151.183:8080/pula-sys/app/timecourse/appshow?id=%s&no=%s";
 
@@ -77,6 +78,7 @@ public class CourseDetailH5Activity extends BaseActivity {
         SearchId = getIntent().getStringExtra("SearchId");
         courseNo = getIntent().getStringExtra("courseNo");
         name = getIntent().getStringExtra("name");
+        price = getIntent().getIntExtra("price",1000);
         
         if (SearchId == null) {
             SearchId = "";
@@ -233,8 +235,11 @@ public class CourseDetailH5Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // start buy activity
-                Intent intent = new Intent(CourseDetailH5Activity.this, BuyCourseSubmitActivity.class);
+                Intent intent = new Intent(CourseDetailH5Activity.this, BuyCourseActivity.class);
                 intent.putExtra("courseNo", courseNo);
+                intent.putExtra("courseName",name);
+                intent.putExtra("price",price);
+                intent.putExtra("status",1);  //代表当前可以购买
                 startActivity(intent);
             }
         });

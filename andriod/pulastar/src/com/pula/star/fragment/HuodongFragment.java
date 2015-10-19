@@ -74,6 +74,7 @@ public class HuodongFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), HuodongDetailActivity.class);
                         intent.putExtra("id", result.get(position).getId());
                         intent.putExtra("url", result.get(position).getUrlS());
+                        intent.putExtra("price", result.get(position).getPrice());
                         intent.putExtra("name", result.get(position).getTitle()); 
                         startActivity(intent);
                     }

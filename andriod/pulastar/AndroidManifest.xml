@@ -144,6 +144,12 @@
         </activity>
         <activity android:name="com.pula.star.activity.resetPasswordActivity" >
         </activity>
+        
+        <activity android:name="com.pula.star.activity.buy.BuyCourseActivity" >
+        </activity>
+        
+          <activity android:name="com.pula.star.activity.buy.BuyHuodongActivity" >
+        </activity>
         <activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
             android:screenOrientation="portrait" />

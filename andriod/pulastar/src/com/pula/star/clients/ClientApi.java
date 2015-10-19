@@ -305,6 +305,7 @@ public class ClientApi {
                 for (int i = 0; i < Data.length(); i++) {
                     HuoDongData huoDongData = new HuoDongData();
                     JSONObject data = Data.getJSONObject(i);
+                    huoDongData.setPrice(data.getInt("noticePrice"));
                     huoDongData.setId(data.getString("id"));
                     huoDongData.setName(data.getString("no"));
                     huoDongData.setTitle(data.getString("title"));
