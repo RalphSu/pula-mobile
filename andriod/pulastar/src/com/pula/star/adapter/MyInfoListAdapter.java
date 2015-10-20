@@ -31,7 +31,7 @@ public class MyInfoListAdapter extends BaseAdapter {
 
 	Boolean state;
     
-	String field[] = {"编号","姓名","性别","家长姓名","联系电话","家庭地址","学员卡号"};
+	String field[] = {"学号","姓名","性别","家长姓名","联系电话","家庭地址"};
 	
  
 	public MyInfoListAdapter(Context context, List<String> list) {

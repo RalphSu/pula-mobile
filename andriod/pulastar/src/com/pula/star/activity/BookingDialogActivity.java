@@ -63,6 +63,8 @@ public class BookingDialogActivity extends BaseActivity {
 	
 	private Spinner spinner; 
     private String  branchName;
+    private String branchNo;
+    private String[] branchNoList;
     private String[] branchNameList;
     
 	String date;
@@ -105,7 +107,8 @@ public class BookingDialogActivity extends BaseActivity {
 		Resources res =getResources();
 		branchNameList = res.getStringArray(R.array.branchnameserver);
 		branchName = branchNameList[0];
-		
+		branchNoList = res.getStringArray(R.array.branchNoserver);
+		branchNo = branchNoList[0];
 		//booking_course_time = (TextView) findViewById(R.id.tv_booking_time_name);
 
 		
@@ -115,11 +118,13 @@ public class BookingDialogActivity extends BaseActivity {
 	            public void onItemSelected(AdapterView<?> parent, View view,
 	                    int position, long id) {
 	              branchName = branchNameList[position];
+	              branchNo = branchNoList[position];
 	              
 	            }
 
 	            public void onNothingSelected(AdapterView<?> parent) {
 	            	branchName = branchNameList[0];
+	            	branchNo =  branchNoList[0];
 	            }
 	        });
         
@@ -245,7 +250,7 @@ public class BookingDialogActivity extends BaseActivity {
 				return false;
 			}
 
-			return ClientApi.audition_create(nameValue,parentNameValue,ageValue,phoneValue,branchName,bookingTimeValue,"");
+			return ClientApi.audition_create(nameValue,parentNameValue,ageValue,phoneValue,branchNo,bookingTimeValue,"");
 			
 		}
 
