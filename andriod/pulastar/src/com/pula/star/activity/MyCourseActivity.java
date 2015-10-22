@@ -55,6 +55,19 @@ public class MyCourseActivity extends Activity {
 	private String courseSpeCourseDesc;
 	private String gongfangCourseDesc;
     private String memActCourseDesc;
+    
+    private int courseSysCoursePaidCnt = 0;
+    private int courseSysCourseUsedCnt = 0;
+    
+	private int courseSpeCoursePaidCnt = 0;
+	private int courseSpeCourseUsedCnt = 0;
+	
+	private int gongfangCoursePaidCnt = 0;
+	private int gongfangCourseUsedCnt = 0;
+	
+    private int memActCoursePaidCnt = 0;
+    private int memActCourseUsedCnt = 0;
+    
     private int userAge = 4;
     private String courseProgress = "0%";
     
@@ -231,21 +244,38 @@ public class MyCourseActivity extends Activity {
 					list = jj.PutData(msg.obj.toString());
 				}
 
+		
+				
 				if (list.size() > 0) {
+					
+					for(int i=0; i < list.size();i++)
+					{
+						 courseSysCoursePaidCnt = courseSysCoursePaidCnt + list.get(i).getPaid_count();
+						 courseSysCourseUsedCnt = courseSysCourseUsedCnt + list.get(i).getUsed_count();
+						    
+						 courseSpeCoursePaidCnt = courseSpeCoursePaidCnt + list.get(i).getSpec_count();
+						 courseSpeCourseUsedCnt = courseSpeCourseUsedCnt + list.get(i).getUsed_spec_count();
+							
+						 gongfangCoursePaidCnt = gongfangCoursePaidCnt + list.get(i).getGongfang_count();
+						 gongfangCourseUsedCnt = gongfangCourseUsedCnt + list.get(i).getUsed_gongfang_count();
+							
+						 memActCoursePaidCnt = memActCoursePaidCnt + list.get(i).getHuodong_count();
+						 memActCourseUsedCnt = memActCourseUsedCnt + list.get(i).getUsed_huodong_count();
+					}
 					//course_field_value.add(userName);
 					//course_field_value.add(userNameInfo);
 					
 					courseValidityPeriodDesc = list.get(0).getStart_time() + "至" + list.get(0).getEnd_time(); 
 					course_field_value.add(courseValidityPeriodDesc);
 					
-					courseSysCourseDesc = "总课券"+list.get(0).getPaid_count()+"次,已使用"+list.get(0).getUsed_count()+"次";
+					courseSysCourseDesc = "总课券"+courseSysCoursePaidCnt+"次,已使用"+courseSysCourseUsedCnt+"次";
 					course_field_value.add(courseSysCourseDesc);
 					
 					if(list.get(0).getPaid_count() != 0)
 					{	
 						 NumberFormat numberFormat = NumberFormat.getInstance();  
 						 numberFormat.setMaximumFractionDigits(0);  
-						 courseProgress = numberFormat.format((float) list.get(0).getUsed_count() / (float) list.get(0).getPaid_count() * 100);  
+						 courseProgress = numberFormat.format((float) courseSysCourseUsedCnt / (float) courseSysCoursePaidCnt * 100);  
 						 
 						 						
 					}
@@ -259,15 +289,15 @@ public class MyCourseActivity extends Activity {
 					courseProgressBar.setProgress(Integer.parseInt(courseProgress));
 					
 					
-					courseSpeCourseDesc= "总课券"+list.get(0).getSpec_count()+"次,已使用"+list.get(0).getUsed_spec_count()+"次";
+					courseSpeCourseDesc= "总课券"+courseSpeCoursePaidCnt+"次,已使用"+courseSpeCourseUsedCnt+"次";
 					
 					course_field_value.add(courseSpeCourseDesc);
 					
-					gongfangCourseDesc= "总课券"+list.get(0).getGongfang_count()+"次,已使用"+list.get(0).getUsed_gongfang_count()+"次";
+					gongfangCourseDesc= "总课券"+gongfangCoursePaidCnt+"次,已使用"+gongfangCourseUsedCnt+"次";
 					
 					course_field_value.add(gongfangCourseDesc);
 					
-					memActCourseDesc = "总课券"+list.get(0).getHuodong_count()+"次,已使用"+list.get(0).getUsed_huodong_count()+"次";
+					memActCourseDesc = "总课券"+memActCoursePaidCnt+"次,已使用"+memActCourseUsedCnt+"次";
 					
 					course_field_value.add(memActCourseDesc);
 					

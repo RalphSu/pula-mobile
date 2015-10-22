@@ -48,21 +48,42 @@ public class MyCourseJsonUtils {
 					tools.setCreate_time(json.getJSONObject("course").getString("createTime"));
 					
 				    JSONArray order = json.getJSONArray("orders");
-				    JSONObject order_json = order.getJSONObject(0);
-				    tools.setPaid_count(order_json.getInt("paiedCount"));
-				    tools.setGongfang_count(order_json.getInt("gongfangCount"));
-					tools.setHuodong_count(order_json.getInt("huodongCount"));
-					tools.setSpec_count(order_json.getInt("specialCourseCount"));
-					
-					JSONArray order_usage = json.getJSONArray("orderUsages");
-					JSONObject order_usages_json = order_usage.getJSONObject(0);
-					
-					tools.setUsed_count(order_usages_json.getInt("usedCount"));						
-					tools.setUsed_gongfang_count(order_usages_json.getInt("usedGongfangCount"));
-					tools.setUsed_huodong_count(order_usages_json.getInt("usedHuodongCount"));
-				    tools.setUsed_spec_count(order_usages_json.getInt("usedSpecialCourseCount"));
 				    
-			
+				    int paidCount = 0;
+				    int gongFangCount = 0;
+				    int huoDongCount = 0;
+				    int specCount = 0;
+				    
+				    int paidUsedCount = 0;
+				    int gongFangUsedCount = 0;
+				    int huoDongUsedCount = 0;
+				    int specUsedCount = 0;
+				    JSONObject order_json;
+				    
+				    for(int j = 0; j < order.length(); j++)
+				    {
+				    order_json = order.getJSONObject(j);
+				    
+				    paidCount += order_json.getInt("paiedCount");
+				    gongFangCount += order_json.getInt("gongfangCount");
+				    huoDongCount += order_json.getInt("huodongCount");
+				    specCount += order_json.getInt("specialCourseCount");
+				    paidUsedCount += order_json.getInt("usedCount");
+				    gongFangUsedCount += order_json.getInt("usedGongFangCount");
+				    huoDongUsedCount += order_json.getInt("usedHuodongCount");
+				    specUsedCount += order_json.getInt("usedSpecialCourseCount");
+				    }
+				    
+				    tools.setPaid_count(paidCount);
+				    tools.setGongfang_count(gongFangCount);
+					tools.setHuodong_count(huoDongCount);
+					tools.setSpec_count(specCount);
+					
+					tools.setUsed_count(paidUsedCount);						
+					tools.setUsed_gongfang_count(gongFangUsedCount);
+					tools.setUsed_huodong_count(huoDongUsedCount);
+				    tools.setUsed_spec_count(specUsedCount);
+				    
 					list.add(tools);
 				}
 			}
