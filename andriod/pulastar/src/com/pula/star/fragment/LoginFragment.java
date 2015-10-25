@@ -89,9 +89,9 @@ public class LoginFragment extends Fragment {
 		aboutUsButton = (Button) view.findViewById(R.id.aboutUs_button);
 		bookingButton = (Button) view.findViewById(R.id.booking_button);
 
-		loginStatus = (boolean) sp.getBoolean("USER_LOGIN_STATUS", false);
+		loginStatus = (boolean)sp.getBoolean("USER_LOGIN_STATUS", false);
 
-		userNameValue = (String) sp.getString("USER_INFO_NAME", "未登录");
+		userNameValue = (String)sp.getString("USER_INFO_NAME", "未登录");
 
 		if ((loginStatus == true) && (userNameValue.equals("未登录") == false)) {
 			userName.setText(userNameValue);

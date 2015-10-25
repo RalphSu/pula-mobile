@@ -72,6 +72,7 @@ public class MyCourseJsonUtils {
 				    gongFangUsedCount += order_json.getInt("usedGongFangCount");
 				    huoDongUsedCount += order_json.getInt("usedHuodongCount");
 				    specUsedCount += order_json.getInt("usedSpecialCourseCount");
+				    tools.setLevel(order.getJSONObject(0).getInt("level")); 
 				    }
 				    
 				    tools.setPaid_count(paidCount);

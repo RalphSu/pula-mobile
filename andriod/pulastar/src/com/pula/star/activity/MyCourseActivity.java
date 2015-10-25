@@ -68,7 +68,7 @@ public class MyCourseActivity extends Activity {
     private int memActCoursePaidCnt = 0;
     private int memActCourseUsedCnt = 0;
     
-    private int userAge = 4;
+    private int userLevel = 4;
     private String courseProgress = "0%";
     
     private TextView userGrade;
@@ -93,7 +93,8 @@ public class MyCourseActivity extends Activity {
 				MODE_PRIVATE);
 		userName = preference.getString("USER_INFO_NO", "");
 		userNameInfo = preference.getString("USER_INFO_NAME", "");
-		userAge = preference.getInt("USER_INFO_AGE", 4);
+		
+		
 		
 		
 		
@@ -105,10 +106,8 @@ public class MyCourseActivity extends Activity {
         progress =  (TextView)findViewById(R.id.class_progress);
         courseTime = (TextView)findViewById(R.id.class_time_text);
         courseProgressBar =  (ProgressBar) findViewById(R.id.progressbar_sys_used);
-    
-        userAge = (userAge>5)? 5:userAge;
         
-        userGrade.setText("您的等级为:"+" "+userAge+"级");
+        
         
 		// 初始化
 		initView();
@@ -270,6 +269,12 @@ public class MyCourseActivity extends Activity {
 					
 					courseSysCourseDesc = "总课券"+courseSysCoursePaidCnt+"次,已使用"+courseSysCourseUsedCnt+"次";
 					course_field_value.add(courseSysCourseDesc);
+					
+					userLevel = list.get(0).getLevel();
+					
+					userLevel = (userLevel>5)? 5:userLevel;
+					
+					userGrade.setText("您的等级为:"+" "+userLevel+"级");
 					
 					if(list.get(0).getPaid_count() != 0)
 					{	

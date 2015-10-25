@@ -1,6 +1,6 @@
 package com.pula.star.bean;
 
-public class HuoDongData {
+public class UserHuoDongData {
 	
 	public String getId() {
 		return id;
@@ -28,12 +28,7 @@ public class HuoDongData {
     public void setContent(String content) {
         this.content = content;
     }
-    public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+
 	
 	public String getUpdateTime() {
         return updateTime;
@@ -47,9 +42,35 @@ public class HuoDongData {
 	private String name;
 	private String title;
 	private String content;
-	private String image;
-	private String urlS;
+	private String imageUrl;
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	private String urlS;
+	private int bookingCount;
+	private String createTime;
+	
+	
+	
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	
+	public int getBookingCount() {
+		return bookingCount;
+	}
+	public void setBookingCount(int bookingCount) {
+		this.bookingCount = bookingCount;
+	}
+
 	private int price;
 	
 	public int getPrice() {

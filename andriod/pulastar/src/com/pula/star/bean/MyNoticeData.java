@@ -15,6 +15,31 @@ public class MyNoticeData {
     private DateTime noticeDay;
 
     private DateTime buyDay;
+    
+    private String imageUrl;
+    
+    private String urlS;
+      
+    private String bookingCount;
+    
+    public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getUrlS() {
+		return urlS;
+	}
+
+	public void setUrlS(String setUrlS) {
+		this.urlS = setUrlS;
+	}
+
+	
+    
 
     public String getNoticeId() {
         return noticeId;

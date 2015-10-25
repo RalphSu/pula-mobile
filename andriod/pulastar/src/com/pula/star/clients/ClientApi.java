@@ -35,6 +35,7 @@ import com.pula.star.bean.JingXuanData;
 import com.pula.star.bean.JingxuanDetailData;
 import com.pula.star.bean.MyPoints;
 import com.pula.star.bean.MyWorkData;
+import com.pula.star.bean.UserHuoDongData;
 import com.pula.star.bean.UserInfo;
 import com.pula.star.bean.UserInfoData;
 
@@ -293,8 +294,11 @@ public class ClientApi {
         }
     }
 
-    public static ArrayList<HuoDongData> getHuoDongList() {
+    public static ArrayList<HuoDongData> getHuoDongList( ) {
         String jingXuanDetailUrl = "http://121.40.151.183:8080/pula-sys/app/notice/list";
+        
+        //http://121.40.151.183:8080/pula-sys/app/noticeorder/list?condition.studentNo=PD0DB005
+        	
         ArrayList<HuoDongData> list = new ArrayList<HuoDongData>();
         JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
         if (json == null) {
@@ -313,11 +317,7 @@ public class ClientApi {
                     huoDongData.setUpdateTime(data.getString("updateTime"));
                     huoDongData.setFileId(data.getJSONObject("icon").getString("fileId"));
                     huoDongData.setIconId(data.getJSONObject("icon").getInt("id"));
-                    // FIXME: use real img path
-                    //huoDongData.setImage("http://121.40.151.183:8080/pula-sys/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
-                    //        + "&sub=notice");
-                    huoDongData.setImage("http://121.40.151.183:8080/pula-sys/app/notice/icon?fp="+huoDongData.getFileId()+"&id="+huoDongData.getIconId());
-                    
+                    huoDongData.setImage("http://121.40.151.183:8080/pula-sys/app/notice/icon?fp="+huoDongData.getFileId()+"&id="+huoDongData.getIconId());                   
                     huoDongData.setUrlS("http://121.40.151.183:8080/pula-sys/app/notice/appshow?id=" + huoDongData.getId());
                     
                     list.add(huoDongData);
@@ -330,6 +330,59 @@ public class ClientApi {
         return list;
     }
 
+    
+    public static ArrayList<UserHuoDongData> getUserHuoDongList(String studentNo ) {
+    	
+               
+        String UserHuoDongUrl = "http://121.40.151.183:8080/pula-sys/app/noticeorder/list?condition.studentNo="+studentNo;
+        	
+        ArrayList<UserHuoDongData> list = new ArrayList<UserHuoDongData>();
+        
+        JSONObject json = ParseJson(UserHuoDongUrl, "utf-8");
+        
+        if (json == null) {
+            return null;
+        } else {
+            try {
+                JSONArray Data = json.getJSONArray("records");
+                
+                for (int i = 0; i < Data.length(); i++) {
+                    UserHuoDongData huoDongData = new UserHuoDongData();
+                    JSONObject data = Data.getJSONObject(i);
+                    huoDongData.setBookingCount(data.getInt("count"));
+                    huoDongData.setCreateTime(data.getString("createTime"));
+                    huoDongData.setPrice(data.getJSONObject("notice").getInt("noticePrice"));
+                    huoDongData.setId(data.getJSONObject("notice").getString("id"));
+                    huoDongData.setName(data.getJSONObject("notice").getString("no"));
+                    huoDongData.setTitle(data.getJSONObject("notice").getString("title"));
+                    huoDongData.setContent(data.getJSONObject("notice").getString("content"));
+                    huoDongData.setUpdateTime(data.getJSONObject("notice").getString("updateTime"));
+                    huoDongData.setFileId(data.getJSONObject("notice").getJSONObject("icon").getString("fileId"));
+                    huoDongData.setIconId(data.getJSONObject("notice").getJSONObject("icon").getInt("id"));
+                    // FIXME: use real img path
+                    //huoDongData.setImage("http://121.40.151.183:8080/pula-sys/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
+                    //        + "&sub=notice");
+                    
+                    huoDongData.setImageUrl("http://121.40.151.183:8080/pula-sys/app/notice/icon?fp="+huoDongData.getFileId()+"&id="+huoDongData.getIconId());
+                    
+                    huoDongData.setUrlS("http://121.40.151.183:8080/pula-sys/app/notice/appshow?id=" + huoDongData.getId());
+                    
+                    list.add(huoDongData);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    
+    
+    
+    
+    
+    
+    
 	public static boolean getLoginStatus(String username, String password) {
 		String loginUrl = "http://121.40.151.183:8080/pula-sys/app/studentinterface/login?loginId="
 				+ username + "&password=" + password;

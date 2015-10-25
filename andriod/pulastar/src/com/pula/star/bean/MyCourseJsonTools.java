@@ -15,6 +15,7 @@ public class MyCourseJsonTools {
 	
 	private String create_time;
 	
+	private int level;
 	private int used_count;
 	private int paid_count;
 	
@@ -27,6 +28,14 @@ public class MyCourseJsonTools {
 	
 	private int huodong_count;
 	private int used_huodong_count;
+	
+	public int getLevel() {
+		return used_count;
+	}
+	
+	public void setLevel(int level) {
+		this.level  = level;
+	}
 	
 	public int getUsed_count() {
 		return used_count;
