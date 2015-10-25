@@ -64,7 +64,7 @@ public class MyWorkActivity extends Activity {
 		setContentView(R.layout.mywork);
 		setTitle("普拉星球 - 我的作品");
         preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
-		userName = preference.getString("USER_NAME", "");
+		userName = preference.getString("USER_INFO_NO", "");
 			
 	 
 		display = this.getWindowManager().getDefaultDisplay();

@@ -32,20 +32,22 @@
             android:layout_marginRight="12dip"        
              />
 
+
+        
         <Button
             android:id="@+id/btn_enter"
-            android:layout_width="150dp"
-            android:layout_marginTop = "12dip"
-            android:layout_height="wrap_content"
-           
-            android:layout_centerHorizontal="true"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
             android:layout_below="@id/et_zh"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_button"
             android:gravity="center"
             android:text="确  认"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="#cc3366"
-            android:textSize="20sp" />
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:visibility="visible" />
         
     </RelativeLayout>
 

@@ -108,9 +108,9 @@
             android:name="com.pula.star.activity.BookingActivity"
             android:label="@string/title_activity_booking" >
         </activity>
-        <activity android:name="com.pula.star.activity.LoginWelcomeAvtivity" >
+        <activity android:name="com.pula.star.activity.LoginWelcomeActivity" >
         </activity>
-        <activity android:name="com.pula.star.activity.LogoActivity" >
+        <activity android:name="com.pula.star.activity.LoginActivity" >
         </activity>
         <activity android:name="com.pula.star.activity.UserInfoActivity" >
         </activity>

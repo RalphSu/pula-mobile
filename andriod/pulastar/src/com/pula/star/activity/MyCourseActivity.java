@@ -91,7 +91,7 @@ public class MyCourseActivity extends Activity {
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 		preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS,
 				MODE_PRIVATE);
-		userName = preference.getString("USER_NAME", "");
+		userName = preference.getString("USER_INFO_NO", "");
 		userNameInfo = preference.getString("USER_INFO_NAME", "");
 		userAge = preference.getInt("USER_INFO_AGE", 4);
 		

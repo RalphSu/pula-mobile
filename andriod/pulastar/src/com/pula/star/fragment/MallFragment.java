@@ -25,7 +25,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.pula.star.R;
-import com.pula.star.activity.LoginWelcomeAvtivity;
+import com.pula.star.activity.LoginWelcomeActivity;
 import com.pula.star.bean.UserInfoData;
 import com.pula.star.clients.ClientApi;
 

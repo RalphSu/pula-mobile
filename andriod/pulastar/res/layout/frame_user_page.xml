@@ -2,96 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
- 
-    android:layout_marginLeft = "10dp"
-    android:layout_marginRight ="10dp"
-    android:background="@color/white" >
+    android:background="@color/white"
+    android:orientation="vertical" >
 
-    
- <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:layout_gravity="center"
-        android:orientation="horizontal" >
-        
-     <ImageView android:id="@+id/img_pula_logo" 
-         style="@style/Stylewidthhight_wm" 
-         android:contentDescription="@string/nul" 
-         android:scaleType="centerInside"       
-         android:src="@drawable/pula_logo_welocme_pic"/>   
-        
-    </LinearLayout>
-    
- 
-   <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+    <ImageView
+        android:id="@+id/img_pula_logo"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:contentDescription="@string/nul"
+        android:scaleType="centerInside"
+        android:src="@drawable/pula_logo_welocme_pic" />
 
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+    <Button
+        android:id="@+id/log_in_button"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="center"
+        android:text="登      录"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:visibility="visible" />
 
-               <ImageView
-            android:id="@+id/img_my_info"
-            style="@style/Stylewidthhight_wm"
-            
-            android:layout_weight="1"            
-            android:scaleType="fitXY"         
-            android:contentDescription="@string/nul"
-            android:src="@drawable/my_info" />
-        <ImageView
-            android:id="@+id/img_my_course"
-            style="@style/Stylewidthhight_wm"
-            android:layout_marginLeft="10dp"
-            
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            
-            android:contentDescription="@string/nul" 
-            android:src= "@drawable/my_course"/>
-    </LinearLayout>
+    <Button
+        android:id="@+id/log_out_button"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="center"
+        android:text="退 出 登 录"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:visibility="visible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+    <Button
+        android:id="@+id/change_pwd_button"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="center"
+        android:text="修 改 密 码"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:visibility="visible" />
 
-       
-        <ImageView
-            android:id="@+id/img_my_notice"
-            style="@style/Stylewidthhight_wm"
-            
-            android:layout_weight="1"
-            
-            android:scaleType="fitXY"         
-            android:contentDescription="@string/nul"
-            android:src= "@drawable/my_notice" />
+    <Button
+        android:id="@+id/forget_pwd_button"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
+        android:gravity="center"
+        android:text="忘 记 密 码"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:visibility="visible" />
 
-
-        <ImageView
-            android:id="@+id/img_my_work"
-            style="@style/Stylewidthhight_wm"
-            android:layout_marginLeft="10dp"
-            
-            android:layout_weight="1"
-            android:scaleType="fitXY"          
-            android:contentDescription="@string/nul"
-            android:src= "@drawable/my_work" />
-    </LinearLayout>
-    
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-        
-        </LinearLayout>
- 
 </LinearLayout>

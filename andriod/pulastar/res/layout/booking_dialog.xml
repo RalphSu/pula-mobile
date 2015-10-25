@@ -141,11 +141,11 @@
             android:layout_below="@id/et_phone"
             android:layout_alignTop="@+id/tv_booking_time_name"
             android:gravity="center"
+            android:background="#cc3366"
             android:text="选  择"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btn_enter"

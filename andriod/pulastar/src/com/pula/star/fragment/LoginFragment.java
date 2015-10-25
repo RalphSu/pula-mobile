@@ -1,6 +1,5 @@
 package com.pula.star.fragment;
 
-
 import org.joda.time.DateTime;
 
 import android.annotation.SuppressLint;
@@ -24,11 +23,20 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pula.star.R;
+import com.pula.star.activity.AboutUsActivity;
 import com.pula.star.activity.BookingDialogActivity;
-import com.pula.star.activity.LoginWelcomeAvtivity;
+import com.pula.star.activity.LoginWelcomeActivity;
+import com.pula.star.activity.MyCourseActivity;
+import com.pula.star.activity.MyNoticeActivity;
+import com.pula.star.activity.MyWorkActivity;
+import com.pula.star.activity.UserInfoActivity;
 import com.pula.star.activity.changePasswordActivity;
 import com.pula.star.activity.resetPasswordActivity;
 import com.pula.star.bean.UserInfoData;
@@ -36,316 +44,142 @@ import com.pula.star.clients.ClientApi;
 import com.pula.star.utils.getAge;
 
 public class LoginFragment extends Fragment {
-    //Actually userName is user's No
-	private EditText userName, password;
-	
-    private CheckBox rem_pw, auto_login;
-	private Button btn_login;
-	private Button booking_button;
-	private Button btn_reset_pwd;
-    private String userNameValue,passwordValue;
+
+	private TextView userName; // 用户姓名
+	private String userNameValue;// 用户姓名
+	private LinearLayout userInfoLinearLayout;
+	private RelativeLayout bookingRelativeLayout;
+	private RelativeLayout aboutUsRelativeLayout;
+	private Button aboutUsButton;
+	private Button bookingButton;
 	private SharedPreferences sp;
-	private boolean status = false;
-	
-	
-	
-	private String user_info_name;//用户姓名
-	private String user_info_parent_name; //家长姓名
-	private String user_info_phone; //用户电话号码
-	private int user_info_age; //用户年龄
-	private String user_info_birth; //用户的生日 YYYY-MM-DD
-	
-	
+	private boolean loginStatus = false;// 登录状态
+	private ImageView imgMyInfo, imgMyNotice, imgMyCourse, imgMyWork,
+			imgEnterNext;
+
 	@Override
-	public void onCreate (Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
-	
-	
-	Handler handler = new Handler(){
-		 
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-            case 1:
-            	Boolean result = (Boolean) msg.obj;
-                if(result == true)
-                {
-                  new get_user_info().execute();
-                }
-                break;
- 
-            default:
-                break;
-            }
-        }
-         
-    };
-    
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 
-		
-		View view =inflater.inflate(R.layout.login, container, false);
-		   //获得实例对象
-		sp = this.getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-		userName = (EditText) view.findViewById(R.id.et_zh);
-		password = (EditText) view.findViewById(R.id.et_mima);
-		rem_pw = (CheckBox) view.findViewById(R.id.cb_mima);
-		auto_login = (CheckBox) view.findViewById(R.id.cb_auto);
-		btn_login = (Button) view.findViewById(R.id.btn_login);
-		booking_button = (Button) view.findViewById(R.id.booking_button);
-		btn_reset_pwd = (Button)view.findViewById(R.id.btn_reset_password);		
-		        
-				//判断记住密码多选框的状态
-		      if(sp.getBoolean("ISCHECK", true))
-		        {
-		    	 
-		    	  //设置默认是记录密码状态
-		          rem_pw.setChecked(true);
-		       	  userName.setText(sp.getString("USER_NAME",""));
-		       	  password.setText(sp.getString("PASSWORD",""));
-		       	  
-		       	  		       	  
-		       	  //判断自动登陆多选框状态
-		       	  if(sp.getBoolean("AUTO_ISCHECK", true))
-		       	  {
-		       		
-		       		//设置默认是自动登录状态
-		       		auto_login.setChecked(true);
-		       		
-			    	userNameValue = userName.getText().toString();
-					passwordValue = password.getText().toString();
-					  
-			        if((userNameValue.equals(sp.getString("USER_NAME", "USER_NAME")) == true) && (passwordValue.equals(sp.getString("PASSWORD", "PASSWORD"))==true))
-			        {//跳转界面
-					Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
-					startActivity(intent);
-			        }	
-		       	   }
-		        }
-				
-			  
-				btn_login.setOnClickListener(new OnClickListener() {
+		View view = inflater.inflate(R.layout.login, container, false);
+		// 获得实例对象
+		sp = this.getActivity().getSharedPreferences("userInfo",
+				Context.MODE_PRIVATE);
 
-					public void onClick(View v) {
-						userNameValue = userName.getText().toString();
-					    passwordValue = password.getText().toString();
-									    
-					    new loging_action(handler).execute();
-					    
-					    				  
-					}
-				});
+		userName = (TextView) view.findViewById(R.id.user_name);
+		userInfoLinearLayout = (LinearLayout) view.findViewById(R.id.user_info);
+		bookingRelativeLayout = (RelativeLayout) view
+				.findViewById(R.id.booking);
+		aboutUsRelativeLayout = (RelativeLayout) view
+				.findViewById(R.id.aboutUs);
 
-				booking_button.setOnClickListener(new OnClickListener() {
+		imgEnterNext = (ImageView) view.findViewById(R.id.enter_next);
+		imgMyInfo = (ImageView) view.findViewById(R.id.img_my_info);
+		imgMyNotice = (ImageView) view.findViewById(R.id.img_my_notice);
+		imgMyCourse = (ImageView) view.findViewById(R.id.img_my_course);
+		imgMyWork = (ImageView) view.findViewById(R.id.img_my_work);
 
-					public void onClick(View v) {
-						
-						 Intent intent = new Intent(LoginFragment.this.getActivity(),BookingDialogActivity.class);
+		aboutUsButton = (Button) view.findViewById(R.id.aboutUs_button);
+		bookingButton = (Button) view.findViewById(R.id.booking_button);
 
-						  startActivity(intent);
-					    
-					    				  
-					}
-				});
-				
-				btn_reset_pwd.setOnClickListener(new OnClickListener() {
+		loginStatus = (boolean) sp.getBoolean("USER_LOGIN_STATUS", false);
 
-					public void onClick(View v) {
-						
-						 Intent intent = new Intent(LoginFragment.this.getActivity(),resetPasswordActivity.class);
+		userNameValue = (String) sp.getString("USER_INFO_NAME", "未登录");
 
-						  startActivity(intent);
-					    
-					    				  
-					}
-				});
-				
-			    //监听记住密码多选框按钮事件
-				rem_pw.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-					public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-						if (rem_pw.isChecked()) {
-		                    
-							System.out.println("记住密码已选中");
-							sp.edit().putBoolean("ISCHECK", true).commit();
-							
-						}else {
-							
-							System.out.println("记住密码没有选中");
-							sp.edit().putBoolean("ISCHECK", false).commit();
-							
-						}
+		if ((loginStatus == true) && (userNameValue.equals("未登录") == false)) {
+			userName.setText(userNameValue);
+			userInfoLinearLayout.setVisibility(View.VISIBLE);
+			bookingRelativeLayout.setVisibility(View.GONE);
+			aboutUsRelativeLayout.setVisibility(View.VISIBLE);
+		} else {
+			userName.setText(userNameValue);
+			userInfoLinearLayout.setVisibility(View.GONE);
+			bookingRelativeLayout.setVisibility(View.VISIBLE);
+			aboutUsRelativeLayout.setVisibility(View.VISIBLE);
 
-					}
-				});
-				
-				//监听自动登录多选框事件
-				auto_login.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-		            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-						if (auto_login.isChecked()) {
-							System.out.println("自动登录已选中");
-							sp.edit().putBoolean("AUTO_ISCHECK", true).commit();
+		}
 
-						} else {
-							System.out.println("自动登录没有选中");
-							sp.edit().putBoolean("AUTO_ISCHECK", false).commit();
-						}
-					}
-				});
-				/*
-				btnQuit.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						//finish();
-					}
-				});*/
-       return view;
-}
+		imgMyInfo.setOnClickListener(new OnClickListener() {
 
-	
-	
-	
-	 class loging_action extends AsyncTask<Void,Void,Boolean> {
-		    Handler mHandler;
-		    
-		    public loging_action(Handler handler){
-		        
-		        this.mHandler = handler;
-		    }
-	        @Override
-	        protected Boolean doInBackground(Void... arg0) {
-	            return ClientApi.getLoginStatus(userNameValue,passwordValue);
-	        }
-
-      
-	        @Override
-	        protected void onPostExecute(final Boolean result) {
-
-	            super.onPostExecute(result);
-	            if (result == true) {
-	    
-	            	//Toast.makeText(LoginFragment.this.getActivity(),"登录成功", Toast.LENGTH_SHORT).show();
-					//登录成功和记住密码框为选中状态才保存用户信息
-					if(rem_pw.isChecked())
-					{
-					 //记住用户名、密码、
-					  Editor editor = sp.edit();
-					  editor.putString("USER_NAME", userNameValue);
-					  editor.putString("PASSWORD",passwordValue);
-					  editor.putBoolean("ISCHECK",true);
-					  editor.putBoolean("AUTO_ISCHECK",true);
-					  editor.commit();
-					}
-					
-					//Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
-
-					//startActivity(intent);
-					
-					Message msg = mHandler.obtainMessage();
-			       
-			        msg.what = 1;
-			        msg.obj = result;
-			        mHandler.sendMessage(msg);
-				
-					
-	            } else {
-	            	
-	            	 Editor editor = sp.edit();
-	            	 
-	            	 /*
-					 editor.putString("USER_NAME", " ");
-					 editor.putString("PASSWORD", " ");
-	            	
-					 editor.putBoolean("ISCHECK",false);
-					 editor.putBoolean("AUTO_ISCHECK",false);
-					 */
-	            	 editor.clear();
-					 editor.commit();
-					 
-	            	Toast.makeText(LoginFragment.this.getActivity(),"用户名或密码错误，请重新登录", Toast.LENGTH_LONG).show();
-	            
-	            }
-	        }
-
-   } 
-	 
-	 
-	 class get_user_info extends AsyncTask<Void,Void,Boolean>{
-
-
-	        @SuppressLint("SimpleDateFormat")
 			@Override
-	        protected Boolean doInBackground(Void... arg0) {
-	           
-	        	UserInfoData userInfo = new UserInfoData();
-				
-				userInfo = ClientApi.getUserInfoData(userNameValue,passwordValue);
-				
-				if(userInfo != null)
-				{
-					 user_info_name = userInfo.getName();
-					 user_info_parent_name = userInfo.getParentName();
-					 user_info_phone = userInfo.getMobile();        
-					  
-					 if(userInfo.getBirthday() != 0)
-					 { 
-					  user_info_birth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(userInfo.getBirthday()));					 
-					 }
-					 
-					 if(user_info_birth != null)
-					 {
-					    user_info_age = getAge.getUserAge(user_info_birth);
-					 }
-					 else
-					 {
-					   user_info_age = 4; // 默认就是四岁吧	 
-					 }
-				
-					 Log.i("user_info_age=",""+ user_info_age);
-				  return true;
-				}
-				else
-					
-				{
-					
-				  return false;	
-				}
-				
-	        }
+			public void onClick(View v) {
+				Intent intent_my_info = new Intent(LoginFragment.this
+						.getActivity(), UserInfoActivity.class);
+				startActivity(intent_my_info);
 
-   
-	        @Override
-	        protected void onPostExecute(final Boolean result) {
+			}
+		});
 
-	            super.onPostExecute(result);
-	            if (result == true) {
-	    
-	       
-					  Editor editor = sp.edit();
-					  editor.putString("USER_INFO_NAME", user_info_name);
-					  editor.putString("USER_INFO_PARENT_NAME",user_info_parent_name);
-					  editor.putString("USER_INFO_MOBILE",user_info_phone);
-					  editor.putInt("USER_INFO_AGE", user_info_age);
-					  System.out.println("xingming " + user_info_name);
-					  System.out.println("jiazhang " + user_info_parent_name);
-					  System.out.println("dianhua " + user_info_phone);
-					  System.out.println("nianling " + user_info_age);
-					  editor.commit();
-					
-					  Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
+		imgMyNotice.setOnClickListener(new OnClickListener() {
 
-					  startActivity(intent);
-						
-	            }            
-	        	
-	        }
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_info = new Intent(LoginFragment.this
+						.getActivity(), MyNoticeActivity.class);
+				startActivity(intent_my_info);
 
+			}
+		});
 
-	 }
+		imgMyCourse.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_course = new Intent(LoginFragment.this
+						.getActivity(), MyCourseActivity.class);
+				startActivity(intent_my_course);
+
+			}
+		});
+
+		imgMyWork.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_point = new Intent(LoginFragment.this
+						.getActivity(), MyWorkActivity.class);
+				startActivity(intent_my_point);
+			}
+		});
+
+		imgEnterNext.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_point = new Intent(LoginFragment.this
+						.getActivity(), LoginWelcomeActivity.class);
+				startActivity(intent_my_point);
+			}
+		});
+
+		aboutUsButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(LoginFragment.this.getActivity(),
+						AboutUsActivity.class);
+
+				startActivity(intent);
+			}
+		});
+
+		bookingButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				Intent intent = new Intent(LoginFragment.this.getActivity(),
+						BookingDialogActivity.class);
+
+				startActivity(intent);
+
+			}
+		});
+		return view;
+	}	
 }
- 

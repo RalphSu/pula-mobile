@@ -48,9 +48,6 @@ public class BookingDialogActivity extends BaseActivity {
 
 	private String userNameValue;
 	
-
-	//private String course_name;
-
 	private String course_booking_day;
 	private String course_booking_time;
 
@@ -83,14 +80,6 @@ public class BookingDialogActivity extends BaseActivity {
 		setContentView(R.layout.booking_dialog);
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 
-		//selected = (DateTime) getIntent().getSerializableExtra("calSelected");
-
-		//date = (String) getIntent().getStringExtra("date");
-
-		//plan = (String) getIntent().getStringExtra("plan");
-
-		//course_name = (String) getIntent().getStringExtra("courseName");
-
 		sp = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
 
 		userNameValue = sp.getString("USER_NAME", "USER_NAME");
@@ -109,9 +98,7 @@ public class BookingDialogActivity extends BaseActivity {
 		branchName = branchNameList[0];
 		branchNoList = res.getStringArray(R.array.branchNoserver);
 		branchNo = branchNoList[0];
-		//booking_course_time = (TextView) findViewById(R.id.tv_booking_time_name);
-
-		
+	
 		bookingTime = (Button)findViewById(R.id.time_select); 
 			
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -223,7 +210,7 @@ public class BookingDialogActivity extends BaseActivity {
 
 	}
 
-	
+	/*	
 	@Override
 	public void onBackPressed() {
 
@@ -232,7 +219,8 @@ public class BookingDialogActivity extends BaseActivity {
 		startActivity(intent);
 
 	}
-
+  */
+	
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -245,7 +233,7 @@ public class BookingDialogActivity extends BaseActivity {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			// return ClientApi.audition_create(nameValue,ageValue,phoneValue);
+			
 			if ((nameValue.equals("") == true) || (ageValue.equals("") == true) || (phoneValue.equals("") == true)) {
 				return false;
 			}
@@ -260,14 +248,13 @@ public class BookingDialogActivity extends BaseActivity {
 			super.onPostExecute(result);
 			if (result == true) {
 
-				// Toast.makeText(BookingDialogActivity.this,"预约成功",
-				// Toast.LENGTH_LONG).show();
+
 				Toast.makeText(BookingDialogActivity.this,"预约请求已经提交,请等待短信通知",Toast.LENGTH_LONG).show();
-				//showCustomMessageOK("预约请求已经提交", "请等待短信通知");
+
 
 			} else {
 				Toast.makeText(BookingDialogActivity.this,"预约请求失败,请核实用户信息",Toast.LENGTH_LONG).show();
-				//showCustomMessage("预约请求失败", "请核实用户信息");
+
 			}
 		}
 
@@ -277,7 +264,7 @@ public class BookingDialogActivity extends BaseActivity {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			// return ClientApi.audition_create(nameValue,ageValue,phoneValue);
+			
 			if ((userNameValue.equals("") == true) || (date.equals("") == true) || (plan.equals("") == true)) {
 				return false;
 			}
