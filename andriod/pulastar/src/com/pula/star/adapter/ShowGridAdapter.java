@@ -79,7 +79,7 @@ public class ShowGridAdapter extends BaseAdapter {
 		imageUrl = "http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="+ workData.getFileId()+"&id="+ workData.getIconId(); 
 				
 		Picasso.with(context).load(imageUrl)
-				.placeholder(R.drawable.defaultcovers).error(R.drawable.defaultcovers)
+				.placeholder(R.drawable.white_cover).error(R.drawable.white_cover)
 				.into(show_waterfall_image);
 		
 		show_waterfall_text01.setText(workData.getWorkEffectDate());
