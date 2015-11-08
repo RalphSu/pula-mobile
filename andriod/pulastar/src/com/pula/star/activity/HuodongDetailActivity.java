@@ -40,6 +40,7 @@ public class HuodongDetailActivity extends Activity {
     TextView textView;
     ImageButton btn;
     //ProgressBar progressBar;
+    private String id;
     private String url;
     private String name;
     private String noticeId;
@@ -60,12 +61,14 @@ public class HuodongDetailActivity extends Activity {
         passWord = preference.getString("PASSWORD", "");
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        	
+        
+        id = getIntent().getStringExtra("id");
         url = getIntent().getStringExtra("url");
         name = getIntent().getStringExtra("name");
         price= getIntent().getIntExtra("price",1000);
         
         bundle = new Bundle();
+        bundle.putString("id",id);
         bundle.putString("shareUrl", url);
         bundle.putString("title", "普拉星球");
         bundle.putString("wxContent",name+"活动");
@@ -196,6 +199,7 @@ public class HuodongDetailActivity extends Activity {
             public void onClick(View v) {
                 // start buy activity
                 Intent intent = new Intent(HuodongDetailActivity.this, BuyHuodongActivity.class);
+                intent.putExtra("id", id);
                 intent.putExtra("noticeId", noticeId);
                 intent.putExtra("name", name);
                 intent.putExtra("price",price);

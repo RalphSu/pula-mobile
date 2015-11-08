@@ -195,7 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="\t亲，购买后会有短信通知您，请按时参加课程，有疑问请咨询普拉星球客服人员，谢谢。"
+                    android:text="\t亲，请按时参加课程，有疑问请咨询普拉星球客服人员，谢谢。"
                     android:textColor="#BFBFBF" 
                     android:lineSpacingExtra="5dp"/>
             </LinearLayout>

@@ -1,10 +1,7 @@
-package com.pula.star.activity.buy;
+package com.pula.star.pay.wechat;
 
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,174 +10,94 @@ import java.util.Random;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.util.Xml;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.pula.star.activity.BaseActivity;
-import com.pula.star.activity.LoginWelcomeActivity;
-import com.pula.star.activity.buy.BuyHuodongActivity;
-import com.pula.star.pay.wechat.Constants;
-import com.pula.star.pay.wechat.MD5;
-import com.pula.star.pay.wechat.Util;
-import com.pula.star.utils.StaticStrings;
 import com.pula.star.R;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
-/** 购买课程 **/
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.util.Xml;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class BuyHuodongActivity extends BaseActivity {
+public class PayActivityBk extends Activity {
 
-	private String userInfoNo;
-	private SharedPreferences preference;
-	private TextView buynotice_nouse;
-	private TextView buynotice_total_payable;
-	private ImageView buynotice_reduction;
-	private TextView buynotice_num;
-	private ImageView buynotice_plus_selected;
-	private RelativeLayout rela_wechat;
-	private ImageView wechat_image;
-
-	private Bundle bundle;
-	private Button payNowButton;
-
-	private TextView noticesName;
-	// 子线程更新UI
-	private Handler handler;
-	private int noticeStatus;
-	private int price;
-	private String id;
-	private String noticeName;
-
-	// 微信支付
 	private static final String TAG = "MicroMsg.SDKSample.PayActivity";
+
 	PayReq req;
 	final IWXAPI msgApi = WXAPIFactory.createWXAPI(this, null);
 	TextView show;
 	Map<String, String> resultunifiedorder;
-	StringBuffer sb;//
-	private TextView buynoticePrice;
-	private String xmlstring;
-	private String type;
-	private ProgressDialog dialog;
+	StringBuffer sb;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
 
-	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
-		setContentView(R.layout.activity_buyhuodong);
-		init();
-
-		handler = new Handler() {
-			@Override
-			public void handleMessage(Message msg) {
-
-				super.handleMessage(msg);
-				String message = (String) msg.obj;
-
-				if (message == "zhifu") {
-					try {
-						/*
-						 * Thread.sleep(100);
-						 */
-						genPayReq();
-						
-						if (dialog != null) {
-							dialog.dismiss();
-						}
-						
-						sendPayReq();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-
-			}
-
-		};
-		/* 微信支付代码 */
+		setContentView(R.layout.pay);
+		show = (TextView) findViewById(R.id.editText_prepay_id);
 		req = new PayReq();
 		sb = new StringBuffer();
 		msgApi.registerApp(Constants.APP_ID);
+		
+		
+		
+		// 生成prepay_id
+		Button payBtn = (Button) findViewById(R.id.unifiedorder_btn);
+		payBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
 
-	}
-
-	private void init() {
-		rela_wechat = (RelativeLayout) findViewById(R.id.rela_wechat);
-		wechat_image = (ImageView) findViewById(R.id.wechat_image);
-		buynotice_total_payable = (TextView) findViewById(R.id.buynotice_total_payable);
-		payNowButton = (Button) findViewById(R.id.btn_buynotice);
-		noticesName = (TextView) findViewById(R.id.buynotice_context);
-		preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS,
-				MODE_PRIVATE);
-		userInfoNo = preference.getString("USER_INFO_NO", "USER_INFO_NO");
-		id = getIntent().getExtras().getString("id");
-		noticeStatus = getIntent().getIntExtra("status", 1);
-		price = getIntent().getIntExtra("price", 1000);
-		noticeName = getIntent().getExtras().getString("name");
-
-		noticesName.setText(noticeName);
-		buynotice_total_payable.setText(String.valueOf(price));
-
-		/*
-		 * if (noticeStatus==1) { buynotice_nouse.setText("有可用"); }
-		 */
-
-		Intent intent = this.getIntent(); // 获取已有的intent对象
-		bundle = intent.getExtras(); // 获取intent里面的bundle对象
-
-		payNowButton.setOnClickListener(new OnClickListener() {
+			}
+		});
+		Button appayBtn = (Button) findViewById(R.id.appay_btn);
+		appayBtn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
-				if (userInfoNo.equals("USER_INFO_NO")) {
-
-					Intent intent = new Intent(BuyHuodongActivity.this,
-							LoginWelcomeActivity.class);
-
-					startActivity(intent);
-				} else {
-
-					if (bundle != null && price >= 0) {
-
-						try {
-							GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
-							getPrepayId.execute();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-
-				}
+				genPayReq();
+				sendPayReq();
 			}
 		});
 
+		// 生成签名参数
+		Button appay_pre_btn = (Button) findViewById(R.id.appay_pre_btn);
+		appay_pre_btn.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
+
+		String packageSign = MD5.getMessageDigest(sb.toString().getBytes())
+				.toUpperCase();
+		try {
+
+			GetPrepayIdTask getPrepayId = new GetPrepayIdTask();
+			getPrepayId.execute();
+			genPayReq();
+			sendPayReq();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
-	/* 微信支付代码 */
+	/**
+	 * 生成签名
+	 */
+
 	private String genPackageSign(List<NameValuePair> params) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < params.size(); i++) {
@@ -209,6 +126,7 @@ public class BuyHuodongActivity extends BaseActivity {
 		}
 		sb.append("key=");
 		sb.append(Constants.API_KEY);
+
 		this.sb.append("sign str\n" + sb.toString() + "\n\n");
 		String appSign = MD5.getMessageDigest(sb.toString().getBytes())
 				.toUpperCase();
@@ -226,11 +144,14 @@ public class BuyHuodongActivity extends BaseActivity {
 			sb.append("</" + params.get(i).getName() + ">");
 		}
 		sb.append("</xml>");
+
 		Log.e("orion", sb.toString());
+		// return sb.toString();
 		// 将得到的xml结果转码。否则订单描述存在汉字时 签名出错。
 		try {
 			return new String(sb.toString().getBytes(), "ISO8859-1");
 		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";
@@ -239,29 +160,25 @@ public class BuyHuodongActivity extends BaseActivity {
 	private class GetPrepayIdTask extends
 			AsyncTask<Void, Void, Map<String, String>> {
 
-		
+		private ProgressDialog dialog;
 
 		@Override
 		protected void onPreExecute() {
-			dialog = ProgressDialog.show(BuyHuodongActivity.this,
+			dialog = ProgressDialog.show(PayActivityBk.this,
 					getString(R.string.app_tip),
 					getString(R.string.getting_prepayid));
 		}
 
 		@Override
 		protected void onPostExecute(Map<String, String> result) {
-			/*
 			if (dialog != null) {
 				dialog.dismiss();
 			}
-			*/
 			sb.append("prepay_id\n" + result.get("prepay_id") + "\n\n");
+			show.setText(sb.toString());
 
 			resultunifiedorder = result;
-			Message message = Message.obtain();
-			String send = "zhifu";
-			message.obj = send;
-			handler.sendMessage(message);
+
 		}
 
 		@Override
@@ -275,6 +192,7 @@ public class BuyHuodongActivity extends BaseActivity {
 			String url = String
 					.format("https://api.mch.weixin.qq.com/pay/unifiedorder");
 			String entity = genProductArgs();
+
 			Log.e("orion", entity);
 
 			byte[] buf = Util.httpPost(url, entity);
@@ -338,13 +256,16 @@ public class BuyHuodongActivity extends BaseActivity {
 				.getBytes());
 	}
 
+	//
 	private String genProductArgs() {
 		StringBuffer xml = new StringBuffer();
-		// String out_trade_no = "timecourse" + id;
-		// String out_trade_no = Long.toString(System.currentTimeMillis()) +
-		// "timecourse"+ id;
-		String out_trade_no = new SimpleDateFormat("yyyyMMddHHmmssSS")
-				.format(System.currentTimeMillis());
+		Intent intent=getIntent();
+		Bundle bundle = intent.getExtras(); 
+		String subject1=bundle.getString("name");
+		String price1=bundle.getString("price");
+		
+		String body1=bundle.getString("subject");
+		String number = bundle.getString("number");
 
 		try {
 			String nonceStr = genNonceStr();
@@ -352,34 +273,29 @@ public class BuyHuodongActivity extends BaseActivity {
 			List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
 			packageParams
 					.add(new BasicNameValuePair("appid", Constants.APP_ID));
-			packageParams.add(new BasicNameValuePair("attach", userInfoNo));
-			packageParams.add(new BasicNameValuePair("body", noticeName));
+			packageParams.add(new BasicNameValuePair("body", subject1));
 			packageParams
 					.add(new BasicNameValuePair("mch_id", Constants.MCH_ID));
 			packageParams.add(new BasicNameValuePair("nonce_str", nonceStr));
 			packageParams.add(new BasicNameValuePair("notify_url",
 					"http://121.40.35.3/test"));
 			packageParams.add(new BasicNameValuePair("out_trade_no",
-					out_trade_no));
+					genOutTradNo()));
 			packageParams.add(new BasicNameValuePair("spbill_create_ip",
 					"127.0.0.1"));
-			// packageParams.add(new BasicNameValuePair("total_fee",
-			// Integer.toString(price)));
-			packageParams.add(new BasicNameValuePair("total_fee", Integer
-					.toString(price*100)));
-
+			packageParams.add(new BasicNameValuePair("total_fee", price1));
 			packageParams.add(new BasicNameValuePair("trade_type", "APP"));
-			// packageParams.add(new BasicNameValuePair("openid", userInfoNo));
-		
+
 			String sign = genPackageSign(packageParams);
-			packageParams.add(new BasicNameValuePair("sign", sign));			
-			xmlstring = toXml(packageParams);
+			packageParams.add(new BasicNameValuePair("sign", sign));
+
+			String xmlstring = toXml(packageParams);
 
 			return xmlstring;
 
 		} catch (Exception e) {
 			Log.e(TAG, "genProductArgs fail, ex = " + e.getMessage());
-			return xmlstring;
+			return null;
 		}
 
 	}
@@ -392,6 +308,7 @@ public class BuyHuodongActivity extends BaseActivity {
 		req.packageValue = "Sign=WXPay";
 		req.nonceStr = genNonceStr();
 		req.timeStamp = String.valueOf(genTimeStamp());
+
 		List<NameValuePair> signParams = new LinkedList<NameValuePair>();
 		signParams.add(new BasicNameValuePair("appid", req.appId));
 		signParams.add(new BasicNameValuePair("noncestr", req.nonceStr));
@@ -404,7 +321,10 @@ public class BuyHuodongActivity extends BaseActivity {
 
 		sb.append("sign\n" + req.sign + "\n\n");
 
+		show.setText(sb.toString());
+
 		Log.e("orion", signParams.toString());
+
 	}
 
 	private void sendPayReq() {
@@ -413,12 +333,4 @@ public class BuyHuodongActivity extends BaseActivity {
 		msgApi.sendReq(req);
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (isFinishing()) {
-			overridePendingTransition(R.anim.slide_right_in,
-					R.anim.slide_right_out);
-		}
-	}
 }

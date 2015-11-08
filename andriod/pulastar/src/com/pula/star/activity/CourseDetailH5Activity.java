@@ -90,6 +90,7 @@ public class CourseDetailH5Activity extends BaseActivity {
 
         url = String.format(COURSE_DETIAL_GET, SearchId, courseNo);
         bundle = new Bundle();
+        bundle.putString("id", SearchId);
         bundle.putString("shareUrl", url);
         bundle.putString("title", "普拉星球");
         bundle.putString("wxContent",name+"课程");
@@ -236,6 +237,7 @@ public class CourseDetailH5Activity extends BaseActivity {
             public void onClick(View v) {
                 // start buy activity
                 Intent intent = new Intent(CourseDetailH5Activity.this, BuyCourseActivity.class);
+                intent.putExtra("id", SearchId);
                 intent.putExtra("courseNo", courseNo);
                 intent.putExtra("courseName",name);
                 intent.putExtra("price",price);
