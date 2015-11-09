@@ -343,8 +343,8 @@ public class BuyHuodongActivity extends BaseActivity {
 		// String out_trade_no = "timecourse" + id;
 		// String out_trade_no = Long.toString(System.currentTimeMillis()) +
 		// "timecourse"+ id;
-		String out_trade_no = new SimpleDateFormat("yyyyMMddHHmmssSS")
-				.format(System.currentTimeMillis());
+		String date = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis());
+		String out_trade_no = userInfoNo + "ZZ" + date;
 
 		try {
 			String nonceStr = genNonceStr();
