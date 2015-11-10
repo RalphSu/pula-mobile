@@ -2,9 +2,7 @@ package com.pula.star.activity.buy;
 
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,17 +11,11 @@ import java.util.Random;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,16 +28,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.pula.star.R;
 import com.pula.star.activity.BaseActivity;
 import com.pula.star.activity.LoginWelcomeActivity;
-import com.pula.star.activity.buy.BuyHuodongActivity;
 import com.pula.star.pay.wechat.Constants;
 import com.pula.star.pay.wechat.MD5;
 import com.pula.star.pay.wechat.Util;
 import com.pula.star.utils.StaticStrings;
-import com.pula.star.R;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -74,6 +64,7 @@ public class BuyHuodongActivity extends BaseActivity {
 	private int price;
 	private String id;
 	private String noticeName;
+	private String noticeNo;
 
 	// 微信支付
 	private static final String TAG = "MicroMsg.SDKSample.PayActivity";
@@ -140,6 +131,7 @@ public class BuyHuodongActivity extends BaseActivity {
 		noticeStatus = getIntent().getIntExtra("status", 1);
 		price = getIntent().getIntExtra("price", 1000);
 		noticeName = getIntent().getExtras().getString("name");
+		noticeNo = getIntent().getExtras().getString("noticeNo");
 
 		noticesName.setText(noticeName);
 		buynotice_total_payable.setText(String.valueOf(price));
@@ -352,13 +344,13 @@ public class BuyHuodongActivity extends BaseActivity {
 			List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
 			packageParams
 					.add(new BasicNameValuePair("appid", Constants.APP_ID));
-			packageParams.add(new BasicNameValuePair("attach", userInfoNo));
+			packageParams.add(new BasicNameValuePair("attach", userInfoNo + "@nt@" + noticeNo));
 			packageParams.add(new BasicNameValuePair("body", noticeName));
 			packageParams
 					.add(new BasicNameValuePair("mch_id", Constants.MCH_ID));
 			packageParams.add(new BasicNameValuePair("nonce_str", nonceStr));
 			packageParams.add(new BasicNameValuePair("notify_url",
-					"http://121.40.35.3/test"));
+					"http://121.40.151.183:8080/pula-sys/app/weixinpay/wechatPayNotify"));
 			packageParams.add(new BasicNameValuePair("out_trade_no",
 					out_trade_no));
 			packageParams.add(new BasicNameValuePair("spbill_create_ip",

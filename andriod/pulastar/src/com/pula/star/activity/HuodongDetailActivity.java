@@ -44,6 +44,7 @@ public class HuodongDetailActivity extends Activity {
     private String url;
     private String name;
     private String noticeId;
+    private String noticeNo;
     private Bundle bundle;
     private SharedPreferences preference;
     private String userName;
@@ -66,6 +67,7 @@ public class HuodongDetailActivity extends Activity {
         url = getIntent().getStringExtra("url");
         name = getIntent().getStringExtra("name");
         price= getIntent().getIntExtra("price",1000);
+        noticeNo = getIntent().getStringExtra("no");
         
         bundle = new Bundle();
         bundle.putString("id",id);
@@ -201,6 +203,7 @@ public class HuodongDetailActivity extends Activity {
                 Intent intent = new Intent(HuodongDetailActivity.this, BuyHuodongActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("noticeId", noticeId);
+                intent.putExtra("noticeNo", noticeNo);
                 intent.putExtra("name", name);
                 intent.putExtra("price",price);
                 
