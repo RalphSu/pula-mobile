@@ -369,8 +369,11 @@ public class BuyCourseActivity extends BaseActivity {
 					"127.0.0.1"));
 			// packageParams.add(new BasicNameValuePair("total_fee",
 			// Integer.toString(price)));
+			//packageParams.add(new BasicNameValuePair("total_fee", Integer
+			//		.toString(price*100)));
+
 			packageParams.add(new BasicNameValuePair("total_fee", Integer
-					.toString(price*100)));
+					.toString(1)));
 
 			packageParams.add(new BasicNameValuePair("trade_type", "APP"));
 			
