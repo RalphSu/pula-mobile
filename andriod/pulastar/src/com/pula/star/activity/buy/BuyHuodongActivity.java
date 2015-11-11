@@ -98,10 +98,7 @@ public class BuyHuodongActivity extends BaseActivity {
 						 */
 						genPayReq();
 						
-						if (dialog != null) {
-							dialog.dismiss();
-						}
-						
+
 						sendPayReq();
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -402,6 +399,10 @@ public class BuyHuodongActivity extends BaseActivity {
 	private void sendPayReq() {
 
 		msgApi.registerApp(Constants.APP_ID);
+		if (dialog != null) {
+			dialog.dismiss();
+		}
+		
 		msgApi.sendReq(req);
 	}
 

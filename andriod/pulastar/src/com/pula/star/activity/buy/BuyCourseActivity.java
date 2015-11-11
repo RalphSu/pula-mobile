@@ -98,11 +98,9 @@ public class BuyCourseActivity extends BaseActivity {
 						 */
 						genPayReq();
 						
-						if (dialog != null) {
-							dialog.dismiss();
-						}
-						
+
 						sendPayReq();
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -359,11 +357,11 @@ public class BuyCourseActivity extends BaseActivity {
 					"127.0.0.1"));
 			// packageParams.add(new BasicNameValuePair("total_fee",
 			// Integer.toString(price)));
-			//packageParams.add(new BasicNameValuePair("total_fee", Integer
-			//		.toString(price*100)));
-
 			packageParams.add(new BasicNameValuePair("total_fee", Integer
-					.toString(1)));
+					.toString(price*100)));
+
+			//packageParams.add(new BasicNameValuePair("total_fee", Integer
+			//		.toString(1)));
 
 			packageParams.add(new BasicNameValuePair("trade_type", "APP"));
 			
@@ -409,6 +407,11 @@ public class BuyCourseActivity extends BaseActivity {
 	private void sendPayReq() {
 
 		msgApi.registerApp(Constants.APP_ID);
+		
+		if (dialog != null) {
+			dialog.dismiss();
+		}
+		
 		msgApi.sendReq(req);
 	}
 
