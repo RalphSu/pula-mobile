@@ -58,6 +58,11 @@ public class BuyHuodongActivity extends BaseActivity {
 	private Button payNowButton;
 
 	private TextView noticesName;
+
+	private ImageView buyhuodong_reduction;
+	private TextView buyhuodong_num;
+	private ImageView buyhuodong_plus_selected;
+	private int huodong_num;
 	// 子线程更新UI
 	private Handler handler;
 	private int noticeStatus;
@@ -97,7 +102,6 @@ public class BuyHuodongActivity extends BaseActivity {
 						 * Thread.sleep(100);
 						 */
 						genPayReq();
-						
 
 						sendPayReq();
 					} catch (Exception e) {
@@ -121,6 +125,13 @@ public class BuyHuodongActivity extends BaseActivity {
 		buynotice_total_payable = (TextView) findViewById(R.id.buynotice_total_payable);
 		payNowButton = (Button) findViewById(R.id.btn_buynotice);
 		noticesName = (TextView) findViewById(R.id.buynotice_context);
+
+		buyhuodong_reduction = (ImageView) findViewById(R.id.buyhuodong_reduction);
+		buyhuodong_num = (TextView) findViewById(R.id.buyhuodong_num);
+		huodong_num = 1;
+		buyhuodong_num.setText(String.valueOf(huodong_num));
+		buyhuodong_plus_selected = (ImageView) findViewById(R.id.buyhuodong_plus_selected);
+
 		preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS,
 				MODE_PRIVATE);
 		userInfoNo = preference.getString("USER_INFO_NO", "USER_INFO_NO");
@@ -131,6 +142,7 @@ public class BuyHuodongActivity extends BaseActivity {
 		noticeNo = getIntent().getExtras().getString("noticeNo");
 
 		noticesName.setText(noticeName);
+
 		buynotice_total_payable.setText(String.valueOf(price));
 
 		/*
@@ -165,6 +177,31 @@ public class BuyHuodongActivity extends BaseActivity {
 
 				}
 			}
+		});
+
+		buyhuodong_reduction.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (huodong_num > 1) {
+					huodong_num = huodong_num - 1;
+					buyhuodong_num.setText(String.valueOf(huodong_num));
+					buynotice_total_payable.setText(String.valueOf(price * huodong_num ));
+				}
+			}
+
+		});
+
+		buyhuodong_plus_selected.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				    huodong_num = huodong_num + 1;
+					buyhuodong_num.setText(String.valueOf(huodong_num));
+					buynotice_total_payable.setText(String.valueOf(price * huodong_num ));
+				
+			}
+
 		});
 
 	}
@@ -228,8 +265,6 @@ public class BuyHuodongActivity extends BaseActivity {
 	private class GetPrepayIdTask extends
 			AsyncTask<Void, Void, Map<String, String>> {
 
-		
-
 		@Override
 		protected void onPreExecute() {
 			dialog = ProgressDialog.show(BuyHuodongActivity.this,
@@ -240,10 +275,8 @@ public class BuyHuodongActivity extends BaseActivity {
 		@Override
 		protected void onPostExecute(Map<String, String> result) {
 			/*
-			if (dialog != null) {
-				dialog.dismiss();
-			}
-			*/
+			 * if (dialog != null) { dialog.dismiss(); }
+			 */
 			sb.append("prepay_id\n" + result.get("prepay_id") + "\n\n");
 
 			resultunifiedorder = result;
@@ -332,7 +365,8 @@ public class BuyHuodongActivity extends BaseActivity {
 		// String out_trade_no = "timecourse" + id;
 		// String out_trade_no = Long.toString(System.currentTimeMillis()) +
 		// "timecourse"+ id;
-		String date = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis());
+		String date = new SimpleDateFormat("yyyyMMddHHmmss").format(System
+				.currentTimeMillis());
 		String out_trade_no = userInfoNo + "ZZ" + date;
 
 		try {
@@ -341,13 +375,15 @@ public class BuyHuodongActivity extends BaseActivity {
 			List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
 			packageParams
 					.add(new BasicNameValuePair("appid", Constants.APP_ID));
-			packageParams.add(new BasicNameValuePair("attach", userInfoNo + "@nt@" + noticeNo));
+			packageParams.add(new BasicNameValuePair("attach", userInfoNo
+					+ "@nt@" + noticeNo + "@nt@" + huodong_num));
 			packageParams.add(new BasicNameValuePair("body", noticeName));
 			packageParams
 					.add(new BasicNameValuePair("mch_id", Constants.MCH_ID));
 			packageParams.add(new BasicNameValuePair("nonce_str", nonceStr));
-			packageParams.add(new BasicNameValuePair("notify_url",
-					"http://121.40.151.183:8080/pula-sys/app/weixinpay/wechatPayNotify"));
+			packageParams
+					.add(new BasicNameValuePair("notify_url",
+							"http://121.40.151.183:8080/pula-sys/app/weixinpay/wechatPayNotify"));
 			packageParams.add(new BasicNameValuePair("out_trade_no",
 					out_trade_no));
 			packageParams.add(new BasicNameValuePair("spbill_create_ip",
@@ -355,13 +391,13 @@ public class BuyHuodongActivity extends BaseActivity {
 			// packageParams.add(new BasicNameValuePair("total_fee",
 			// Integer.toString(price)));
 			packageParams.add(new BasicNameValuePair("total_fee", Integer
-					.toString(price*100)));
+					.toString(price * 100 * huodong_num)));
 
 			packageParams.add(new BasicNameValuePair("trade_type", "APP"));
 			// packageParams.add(new BasicNameValuePair("openid", userInfoNo));
-		
+
 			String sign = genPackageSign(packageParams);
-			packageParams.add(new BasicNameValuePair("sign", sign));			
+			packageParams.add(new BasicNameValuePair("sign", sign));
 			xmlstring = toXml(packageParams);
 
 			return xmlstring;
@@ -402,7 +438,7 @@ public class BuyHuodongActivity extends BaseActivity {
 		if (dialog != null) {
 			dialog.dismiss();
 		}
-		
+
 		msgApi.sendReq(req);
 	}
 

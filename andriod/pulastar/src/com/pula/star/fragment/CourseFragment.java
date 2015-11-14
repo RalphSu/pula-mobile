@@ -72,6 +72,7 @@ public class CourseFragment extends Fragment {
                     public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                         Intent intent = new Intent(getActivity(), CourseDetailH5Activity.class);
                         intent.putExtra("SearchId", result.get(position).getId());
+                        intent.putExtra("courseNo",result.get(position).getNo());
                         intent.putExtra("name", result.get(position).getName());
                         intent.putExtra("price",result.get(position).getPrice());
                         

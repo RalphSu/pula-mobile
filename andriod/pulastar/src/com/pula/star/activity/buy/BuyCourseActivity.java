@@ -48,15 +48,17 @@ public class BuyCourseActivity extends BaseActivity {
 	private SharedPreferences preference;
 	private TextView buycourse_nouse;
 	private TextView buycourse_total_payable;
-	private ImageView buycourse_reduction;
-	private TextView buycourse_num;
-	private ImageView buycourse_plus_selected;
+
 	private RelativeLayout rela_wechat;
 	private ImageView wechat_image;
 	private Bundle bundle;
 	private Button payNowButton;
 	private TextView coursesName;
 
+	private ImageView buycourse_reduction;
+	private TextView buycourse_num;
+	private ImageView buycourse_plus_selected;
+	private int course_num;
 	// 子线程更新UI
 	private Handler handler;
 	private int courseStatus;
@@ -123,6 +125,12 @@ public class BuyCourseActivity extends BaseActivity {
 		payNowButton = (Button) findViewById(R.id.btn_buycourse);
 		coursesName = (TextView) findViewById(R.id.buycourse_context);
 
+		buycourse_reduction = (ImageView) findViewById(R.id.buycourse_reduction);
+		buycourse_num = (TextView) findViewById(R.id.buycourse_num);
+		course_num = 1;
+		buycourse_num.setText(String.valueOf(course_num));
+		buycourse_plus_selected = (ImageView) findViewById(R.id.buycourse_plus_selected);
+		
 		preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS,
 				MODE_PRIVATE);
 		userInfoNo = preference.getString("USER_INFO_NO", "USER_INFO_NO");
@@ -166,6 +174,30 @@ public class BuyCourseActivity extends BaseActivity {
 						}
 					}
 				}
+			}
+		});
+
+		buycourse_reduction.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (course_num > 1) {
+					course_num = course_num - 1;
+					buycourse_num.setText(String.valueOf(course_num));
+					buycourse_total_payable.setText(String.valueOf(price * course_num ));
+				}
+			}
+
+		});
+
+		buycourse_plus_selected.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				    course_num = course_num + 1;
+					buycourse_num.setText(String.valueOf(course_num));
+					buycourse_total_payable.setText(String.valueOf(price * course_num ));
+				
 			}
 		});
 
@@ -344,7 +376,7 @@ public class BuyCourseActivity extends BaseActivity {
 			List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
 			packageParams
 					.add(new BasicNameValuePair("appid", Constants.APP_ID));
-			packageParams.add(new BasicNameValuePair("attach", userInfoNo + "@tc@"+ courseNo));
+			packageParams.add(new BasicNameValuePair("attach", userInfoNo + "@tc@"+ courseNo + "@tc@" + course_num ));
 			packageParams.add(new BasicNameValuePair("body", courseName));
 			packageParams
 					.add(new BasicNameValuePair("mch_id", Constants.MCH_ID));
@@ -358,7 +390,7 @@ public class BuyCourseActivity extends BaseActivity {
 			// packageParams.add(new BasicNameValuePair("total_fee",
 			// Integer.toString(price)));
 			packageParams.add(new BasicNameValuePair("total_fee", Integer
-					.toString(price*100)));
+					.toString(price*100 * course_num)));
 
 			//packageParams.add(new BasicNameValuePair("total_fee", Integer
 			//		.toString(1)));

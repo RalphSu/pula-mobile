@@ -36,9 +36,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:layout_toRightOf="@+id/buycourse_image"
                     android:text="普拉星球课程购买" />
+                
+                  <TextView
+                    android:id="@+id/num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/buycourse_image"
+                    android:text="数量：" />
+
+                <ImageView
+                    android:id="@+id/buycourse_reduction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/num"
+                    android:background="@drawable/my_shopping_cart_reduction_icon" />
+
+                <TextView
+                    android:id="@+id/buycourse_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/buycourse_reduction"
+                    android:text="1" />
+
+                <ImageView
+                    android:id="@+id/buycourse_plus_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/buycourse_num"
+                    android:background="@drawable/my_shopping_cart_plus_selected_icon" />
                 <!--  
                 <ImageView 
                     android:layout_width="wrap_content"
