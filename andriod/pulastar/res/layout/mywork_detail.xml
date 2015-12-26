@@ -6,6 +6,12 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
+     <include
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title" />
+     
     <ImageView
         android:id="@+id/show_waterfall_image"
         android:layout_width="fill_parent"

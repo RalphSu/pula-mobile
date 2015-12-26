@@ -21,13 +21,16 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pula.star.R;
+import com.pula.star.ShareDialog;
 import com.pula.star.clients.ClientApi;
 import com.pula.star.utils.HttpTools;
 import com.pula.star.utils.StaticStrings;
@@ -38,23 +41,41 @@ public class MyWorkDetailActivity extends Activity {
 	String workEffectDate;
 	String comments;
 	int rate;
-
+    private Bundle bundle;
+    private ImageButton btnShare;
+    String student_name;
+    private SharedPreferences preference;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
-		getWindow().requestFeature(Window.FEATURE_PROGRESS);
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mywork_detail);
-		setTitle("普拉星球 - 作品详情");
+		
+		  preference = getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
+		  student_name = preference.getString("USER_INFO_NAME", "");
+	        
+	        
 		imageUrl = getIntent().getStringExtra("imgUrl");
 		workEffectDate = getIntent().getStringExtra("date");
 		comments = getIntent().getStringExtra("comments");
         rate = getIntent().getIntExtra("rate",1);
         
+        bundle = new Bundle();
+        bundle.putString("shareUrl", imageUrl);
+        bundle.putString("title", "普拉星球");
+        bundle.putString("wxContent",student_name + "小朋友作品");
+        bundle.putString("otherContent","少儿艺术创造力研发中心");
+        
+        
 		ImageView show_waterfall_image = (ImageView) findViewById(R.id.show_waterfall_image);
 		TextView show_waterfall_text01 = (TextView) findViewById(R.id.show_waterfall_text01); // for
 																								// date
+		btnShare = (ImageButton)findViewById(R.id.btn_share);
+		 
 		ImageView star_image = (ImageView)findViewById(R.id.star_image);
 		
 		if (imageUrl != null) {
@@ -85,6 +106,19 @@ public class MyWorkDetailActivity extends Activity {
 		if (indentify > 0) {
 			star_image.setImageResource(indentify);
 		}
+		
+		  btnShare.setOnClickListener( new OnClickListener()
+	         {
+	            public void onClick(View v)
+
+	            {
+
+	            	ShareDialog shareDialog = new ShareDialog(MyWorkDetailActivity.this, bundle);
+	    			shareDialog.show();             
+
+	            }   
+	         }
+	        );
 		/*
 		if (comments != null) {
 			show_waterfall_text02.setText(comments);
