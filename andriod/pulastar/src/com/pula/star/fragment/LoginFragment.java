@@ -48,6 +48,7 @@ public class LoginFragment extends Fragment {
 	private TextView userName; // 用户姓名
 	private String userNameValue;// 用户姓名
 	private LinearLayout userInfoLinearLayout;
+	private LinearLayout myselfDataLinearLayout;
 	private RelativeLayout bookingRelativeLayout;
 	private RelativeLayout aboutUsRelativeLayout;
 	private Button aboutUsButton;
@@ -72,8 +73,9 @@ public class LoginFragment extends Fragment {
 		// 获得实例对象
 		sp = this.getActivity().getSharedPreferences("userInfo",
 				Context.MODE_PRIVATE);
-
+		
 		userName = (TextView) view.findViewById(R.id.user_name);
+		myselfDataLinearLayout = (LinearLayout) view.findViewById(R.id.myself_data);
 		userInfoLinearLayout = (LinearLayout) view.findViewById(R.id.user_info);
 		bookingRelativeLayout = (RelativeLayout) view
 				.findViewById(R.id.booking);
@@ -106,6 +108,7 @@ public class LoginFragment extends Fragment {
 
 		}
 
+		
 		imgMyInfo.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -148,7 +151,17 @@ public class LoginFragment extends Fragment {
 				startActivity(intent_my_point);
 			}
 		});
+		
+		myselfDataLinearLayout.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				Intent intent_my_point = new Intent(LoginFragment.this
+						.getActivity(), LoginWelcomeActivity.class);
+				startActivity(intent_my_point);
+			}
+		});
+		
 		imgEnterNext.setOnClickListener(new OnClickListener() {
 
 			@Override

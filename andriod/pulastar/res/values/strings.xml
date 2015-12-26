@@ -181,7 +181,7 @@
 	<string name="Sat">六</string>
 	<string name="Sun">日</string>
 	
-	<string name="publish_date_value">2015-10-01</string>
+	<string name="publish_date_value">2015-12-24</string>
 	
 		<!-- WXPayEntryActivity -->
 	<string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
