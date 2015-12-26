@@ -26,6 +26,7 @@ import com.pula.star.fragment.CourseFragment;
 import com.pula.star.fragment.HuodongFragment;
 import com.pula.star.fragment.LoginFragment;
 import com.pula.star.fragment.MallFragment;
+import com.pula.star.fragment.TongGaoFragment;
 
 /**
  * @name MainActivity
@@ -45,6 +46,8 @@ public class MainActivity extends FragmentActivity implements
 	private HuodongFragment huodongFragment;
 	private CourseFragment courseFragment;
 	private LoginFragment loginFragment;
+	private TongGaoFragment tongGaoFragment;
+	
 	private ArrayList<Fragment> fragments;
 	private RadioGroup group;
 
@@ -61,7 +64,8 @@ public class MainActivity extends FragmentActivity implements
         
         fragments.add(huodongFragment);
         fragments.add(courseFragment);
-        fragments.add(mallFragment);
+        //fragments.add(mallFragment);
+        fragments.add(tongGaoFragment);
         fragments.add(loginFragment);
         
         if (getIntent().getIntExtra("FragmentType", 0) == 3) {
@@ -82,10 +86,11 @@ public class MainActivity extends FragmentActivity implements
 
     private void initViews() {
         mallFragment = new MallFragment();
+        tongGaoFragment = new TongGaoFragment();
         courseFragment = new CourseFragment();
         huodongFragment = new HuodongFragment();
         loginFragment = new LoginFragment();
-       
+        
     }
 
     @Override

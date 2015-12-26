@@ -35,6 +35,7 @@ import com.pula.star.bean.JingXuanData;
 import com.pula.star.bean.JingxuanDetailData;
 import com.pula.star.bean.MyPoints;
 import com.pula.star.bean.MyWorkData;
+import com.pula.star.bean.TongGaoData;
 import com.pula.star.bean.UserHuoDongData;
 import com.pula.star.bean.UserInfo;
 import com.pula.star.bean.UserInfoData;
@@ -224,6 +225,36 @@ public class ClientApi {
 
 	}
 	
+	
+	
+	
+	
+    public static ArrayList<TongGaoData> getTongGaoDatas() {
+		String gonggaoUrl = "http://121.40.151.183:8080/pula-sys/app/image/listDir?sub=gonggao";
+		JSONObject json = ParseJson(gonggaoUrl, "utf-8");
+		ArrayList<TongGaoData> result = new ArrayList<TongGaoData>();
+        if (json == null) {
+            return null;
+        } else {
+            try {
+            	
+				JSONArray Data = json.getJSONArray("data");			
+				for (int i = 0; i < Data.length(); i++) {
+				    JSONObject data = Data.getJSONObject(i);
+                    TongGaoData tongGaoData = new TongGaoData();
+                    tongGaoData.setSub(data.getString("sub"));
+                    tongGaoData.setImage(data.getString("fp"));                 
+					result.add(tongGaoData);
+				}            	                        	
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+	}
+
+    
+    
 	/**
 	 * 瑙ｆ瀽瀹炰綋鐨凧son鏁版嵁
 	 * 

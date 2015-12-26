@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="#CCE66D1E"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- <ImageView
+        android:id="@+id/course_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription"/> -->
+        
+    <ImageView
+        android:id="@+id/tonggao_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:contentDescription="@string/nul"
+        android:layout_marginLeft="0dp"
+        android:src="@drawable/deer"
+        android:scaleType="fitXY"
+        />
+
+  
+
+</RelativeLayout>

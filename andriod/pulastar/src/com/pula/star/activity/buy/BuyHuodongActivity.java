@@ -179,6 +179,7 @@ public class BuyHuodongActivity extends BaseActivity {
 			}
 		});
 
+		/*
 		buyhuodong_reduction.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -203,6 +204,8 @@ public class BuyHuodongActivity extends BaseActivity {
 			}
 
 		});
+		
+		*/
 
 	}
 
