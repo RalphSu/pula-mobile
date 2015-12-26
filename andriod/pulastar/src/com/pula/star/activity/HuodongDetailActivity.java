@@ -38,6 +38,7 @@ public class HuodongDetailActivity extends Activity {
     Handler handler;
     WebView webView;
     TextView textView;
+    TextView textViewBlank;
     ImageButton btn;
     //ProgressBar progressBar;
     private String id;
@@ -94,8 +95,10 @@ public class HuodongDetailActivity extends Activity {
         
         webView = new WebView(this);
         
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);         
-        params.setMargins(15, 0, 15, 15);  
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,1100);         
+        params.setMargins(15, 0, 15, 15); 
+        
+        
         webView.setLayoutParams(params);  
         
         webView.setBackgroundColor(0x44D7B704);
@@ -105,6 +108,13 @@ public class HuodongDetailActivity extends Activity {
         
         addBuyNowButton(rootViewLayout);
 
+   
+        
+        textViewBlank = new TextView(this);
+        
+        rootViewLayout.addView(textViewBlank);
+        
+        
         setContentView(rootViewLayout);
         btnShare = (ImageButton)findViewById(R.id.btn_share);
         
@@ -188,7 +198,7 @@ public class HuodongDetailActivity extends Activity {
        // btn.setText("马上购买!");
 
         
-        LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
         
         params.gravity = Gravity.CENTER;
         btn.setBackgroundResource(R.drawable.notice_buy);

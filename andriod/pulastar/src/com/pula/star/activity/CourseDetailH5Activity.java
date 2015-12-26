@@ -134,7 +134,7 @@ public class CourseDetailH5Activity extends BaseActivity {
         
         webView = new WebView(this);
         
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);         
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,1100);         
         params.setMargins(15, 0, 15, 15);  
         webView.setLayoutParams(params);  
         
