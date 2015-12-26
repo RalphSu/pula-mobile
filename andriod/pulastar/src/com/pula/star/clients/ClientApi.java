@@ -571,6 +571,7 @@ public class ClientApi {
                       myWorkDataInfo.setWorkEffectDate(data.optString("workEffectDate"));
                       myWorkDataInfo.setId(data.optInt("id"));
                       myWorkDataInfo.setRate(data.optInt("rate"));
+                      myWorkDataInfo.setNo(data.optString("no"));
                       myWorkDataInfo.setCourseNo(data.optString("courseNo"));
                       myWorkDataInfo.setBranchNo(data.optString("branchNo"));
                       myWorkDataInfo.setComments(data.optString("comments"));

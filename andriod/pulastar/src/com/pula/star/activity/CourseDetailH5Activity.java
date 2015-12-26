@@ -139,7 +139,7 @@ public class CourseDetailH5Activity extends BaseActivity {
         webView.setLayoutParams(params);  
         
         //rootViewLayout.addView(progressBar);
-        rootViewLayout.addView(textView);
+        //rootViewLayout.addView(textView);
         rootViewLayout.addView(webView);
 
         addBuyNowButton(rootViewLayout);

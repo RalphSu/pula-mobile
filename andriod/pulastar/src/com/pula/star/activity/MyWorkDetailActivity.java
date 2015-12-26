@@ -38,6 +38,8 @@ import com.squareup.picasso.Picasso;
 
 public class MyWorkDetailActivity extends Activity {
 	String imageUrl;
+	String no;
+	String shareUrl;
 	String workEffectDate;
 	String comments;
 	int rate;
@@ -60,12 +62,13 @@ public class MyWorkDetailActivity extends Activity {
 	        
 	        
 		imageUrl = getIntent().getStringExtra("imgUrl");
+		shareUrl = "http://121.40.151.183:8080/pula-sys/app/timecoursework/appshow?no="+getIntent().getStringExtra("no");
 		workEffectDate = getIntent().getStringExtra("date");
 		comments = getIntent().getStringExtra("comments");
         rate = getIntent().getIntExtra("rate",1);
         
         bundle = new Bundle();
-        bundle.putString("shareUrl", imageUrl);
+        bundle.putString("shareUrl", shareUrl);
         bundle.putString("title", "普拉星球");
         bundle.putString("wxContent",student_name + "小朋友作品");
         bundle.putString("otherContent","少儿艺术创造力研发中心");

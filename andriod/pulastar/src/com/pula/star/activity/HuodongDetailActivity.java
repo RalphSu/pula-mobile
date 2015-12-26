@@ -90,7 +90,8 @@ public class HuodongDetailActivity extends Activity {
         
         textView.setLayoutParams(textParams);  
         
-        textView.setVisibility(View.GONE);        
+        textView.setVisibility(View.GONE);
+        
         webView = new WebView(this);
         
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);         
@@ -99,7 +100,7 @@ public class HuodongDetailActivity extends Activity {
         
         webView.setBackgroundColor(0x44D7B704);
         //rootViewLayout.addView(progressBar);
-        rootViewLayout.addView(textView);
+        //rootViewLayout.addView(textView);
         rootViewLayout.addView(webView);
         
         addBuyNowButton(rootViewLayout);

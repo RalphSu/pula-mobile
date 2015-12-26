@@ -82,7 +82,7 @@ public class ShowGridAdapter extends BaseAdapter {
 
 		imageUrl = "http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="
 				+ workData.getFileId() + "&id=" + workData.getIconId();
-
+		
 		Picasso.with(context).load(imageUrl)
 				.placeholder(R.drawable.white_cover)
 				.error(R.drawable.white_cover).into(show_waterfall_image);
@@ -129,6 +129,7 @@ public class ShowGridAdapter extends BaseAdapter {
 						"http://121.40.151.183:8080/pula-sys/app/timecoursework/icon?fp="
 								+ workData.getFileId() + "&id="
 								+ workData.getIconId());
+				intent.putExtra("no",workData.getNo());
 				intent.putExtra("date", workData.getWorkEffectDate());
 				intent.putExtra("rate", workData.getRate());
 				intent.putExtra("comments", workData.getComments());

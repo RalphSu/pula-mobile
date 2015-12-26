@@ -12,7 +12,14 @@ public class MyWorkData {
 	String branchNo;
 	String comments;
 	int rate;
+	String no;
 	
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
+	}
 	public int getRate() {
 		return rate;
 	}
