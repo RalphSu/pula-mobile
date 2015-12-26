@@ -59,19 +59,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="评语："
+            android:text="点评："
             android:textColor="#DB6A24" />
-
-        <TextView
-            android:id="@+id/show_waterfall_text03"
+        
+         <ImageView
+            android:id="@+id/star_image"     
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="画得很好！"
-
-            android:textColor="#DB6A24"
-            android:textSize="14sp" />
+            android:layout_weight="2"  
+            android:layout_marginTop="2dp"  
+            android:src="@drawable/star1"
+            />
+      
     </LinearLayout>
 
 </LinearLayout>

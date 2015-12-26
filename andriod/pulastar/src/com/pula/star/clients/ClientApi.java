@@ -561,9 +561,7 @@ public class ClientApi {
       JSONObject json = ParseJson(url, "utf-8");
       if (json != null) {
           try {
-          	
-          	 
-          	  
+          	      	  
               JSONArray records = json.getJSONArray("records");
               if (records != null) {
                   for (int i = 0; i < records.length(); i++) {
@@ -572,13 +570,14 @@ public class ClientApi {
                       
                       myWorkDataInfo.setWorkEffectDate(data.optString("workEffectDate"));
                       myWorkDataInfo.setId(data.optInt("id"));
+                      myWorkDataInfo.setRate(data.optInt("rate"));
                       myWorkDataInfo.setCourseNo(data.optString("courseNo"));
                       myWorkDataInfo.setBranchNo(data.optString("branchNo"));
                       myWorkDataInfo.setComments(data.optString("comments"));
                       myWorkDataInfo.setIconId(data.getJSONObject("icon").optInt("id"));                     
                       myWorkDataInfo.setFileId(data.getJSONObject("icon").optString("fileId"));
                       myWorkDataInfo.setFileName(data.getJSONObject("icon").optString("name"));
-                                          
+                                                               
                       myWorkDataInfoList.add(myWorkDataInfo);
                   }
               }

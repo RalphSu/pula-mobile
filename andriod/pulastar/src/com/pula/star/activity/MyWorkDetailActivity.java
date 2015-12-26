@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,6 +37,7 @@ public class MyWorkDetailActivity extends Activity {
 	String imageUrl;
 	String workEffectDate;
 	String comments;
+	int rate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,13 @@ public class MyWorkDetailActivity extends Activity {
 		imageUrl = getIntent().getStringExtra("imgUrl");
 		workEffectDate = getIntent().getStringExtra("date");
 		comments = getIntent().getStringExtra("comments");
-
+        rate = getIntent().getIntExtra("rate",1);
+        
 		ImageView show_waterfall_image = (ImageView) findViewById(R.id.show_waterfall_image);
 		TextView show_waterfall_text01 = (TextView) findViewById(R.id.show_waterfall_text01); // for
 																								// date
-		TextView show_waterfall_text02 = (TextView) findViewById(R.id.show_waterfall_text03); // for
-																								// comments
-
+		ImageView star_image = (ImageView)findViewById(R.id.star_image);
+		
 		if (imageUrl != null) {
 			Picasso.with(MyWorkDetailActivity.this).load(imageUrl)
 					.placeholder(R.drawable.defaultcovers)
@@ -65,6 +67,25 @@ public class MyWorkDetailActivity extends Activity {
 			show_waterfall_text01.setText(workEffectDate);
 		}
 
+		
+		if (rate == 0)
+			rate = 1;
+
+		rate = rate % 5;
+		
+		String image_name;
+
+		image_name = "star" + rate;
+
+		Resources resources = getResources();
+
+		int indentify = resources.getIdentifier(getPackageName()
+				+ ":drawable/" + image_name, null, null);
+
+		if (indentify > 0) {
+			star_image.setImageResource(indentify);
+		}
+		/*
 		if (comments != null) {
 			show_waterfall_text02.setText(comments);
 
@@ -74,6 +95,7 @@ public class MyWorkDetailActivity extends Activity {
 			show_waterfall_text02.setTypeface(tf);// 设置字体
 			show_waterfall_text02.getPaint().setFakeBoldText(true);
 		}
+		*/
 	}
 
 	@Override

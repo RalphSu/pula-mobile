@@ -11,14 +11,21 @@ public class MyWorkData {
 	String courseNo;
 	String branchNo;
 	String comments;
+	int rate;
 	
-	
+	public int getRate() {
+		return rate;
+	}
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
 	public int getIconId() {
 		return iconId;
 	}
 	public void setIconId(int iconId) {
 		this.iconId = iconId;
 	}
+	
 	public String getFileId() {
 		return fileId;
 	}
