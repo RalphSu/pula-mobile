@@ -79,6 +79,16 @@
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@+id/buycourse_num"
                     android:background="@drawable/my_shopping_cart_plus_selected_icon" />
+                
+                  <TextView
+                    android:id="@+id/num_limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/buycourse_plus_selected"
+                    android:text="(限购数量：1)" />
                 <!--  
                 <ImageView 
                     android:layout_width="wrap_content"

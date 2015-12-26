@@ -177,6 +177,7 @@ public class BuyCourseActivity extends BaseActivity {
 			}
 		});
 
+		/*
 		buycourse_reduction.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -200,6 +201,8 @@ public class BuyCourseActivity extends BaseActivity {
 				
 			}
 		});
+		
+		*/
 
 	}
 
