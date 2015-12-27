@@ -152,7 +152,7 @@ public class CourseDetailH5Activity extends BaseActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
        
-        webView.setBackgroundColor(0xffffcc99);  
+        //webView.setBackgroundColor(0xffffcc99);  
         
         webView.setWebViewClient(new WebViewClient() {
             @Override

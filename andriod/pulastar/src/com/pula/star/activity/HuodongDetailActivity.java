@@ -101,7 +101,7 @@ public class HuodongDetailActivity extends Activity {
         
         webView.setLayoutParams(params);  
         
-        webView.setBackgroundColor(0x44D7B704);
+        //webView.setBackgroundColor(0x44D7B704);
         //rootViewLayout.addView(progressBar);
         //rootViewLayout.addView(textView);
         rootViewLayout.addView(webView);

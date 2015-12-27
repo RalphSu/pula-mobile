@@ -18,10 +18,9 @@
         android:layout_height="300dp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        
+        android:layout_marginRight="5dp"      
         android:scaleType="fitCenter"  
-        android:src="@drawable/aaa" />
+        android:background="@color/white" />
 
     <LinearLayout
         android:layout_width="fill_parent"
