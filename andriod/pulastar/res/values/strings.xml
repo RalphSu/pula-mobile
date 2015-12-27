@@ -3,6 +3,8 @@
 
     <string name="app_name">普拉星球</string>
     <string name="app_desc">少儿艺术创造力研发中心</string>
+    <string name="publish_date_value">2015-12-27</string>
+    
     <string name="head">这里是HeadView</string>
     <string name="pull_to_refresh">下拉刷新</string>
     <string name="release_to_refresh">释放立即刷新</string>
@@ -181,7 +183,7 @@
 	<string name="Sat">六</string>
 	<string name="Sun">日</string>
 	
-	<string name="publish_date_value">2015-12-24</string>
+	
 	
 		<!-- WXPayEntryActivity -->
 	<string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
