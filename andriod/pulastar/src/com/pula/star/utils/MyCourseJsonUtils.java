@@ -20,7 +20,7 @@ public class MyCourseJsonUtils {
 		JSONObject obj;
 		try {
 			obj = new JSONObject(str);
-			JSONArray arr = obj.getJSONArray("data");
+			JSONArray arr = obj.getJSONArray("records");
 			for (int i = 0; i < arr.length(); i++) {
 				tools = new MyCourseJsonTools();
 

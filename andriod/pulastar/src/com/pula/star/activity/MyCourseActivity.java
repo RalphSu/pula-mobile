@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.pula.star.R;
 import com.pula.star.adapter.MyCourseListAdapter;
+import com.pula.star.bean.MyCourseData;
 import com.pula.star.bean.MyCourseJsonTools;
 import com.pula.star.clients.ClientApi;
 import com.pula.star.utils.HttpTools;
@@ -71,6 +72,10 @@ public class MyCourseActivity extends Activity {
     private int userLevel = 4;
     private String courseProgress = "0%";
     
+    
+    private MyCourseData courseData;
+    private MyCourseData courseDataGet;
+    
     private TextView userGrade;
     private TextView progress;
     private TextView courseTime;
@@ -78,6 +83,9 @@ public class MyCourseActivity extends Activity {
     private ProgressBar courseProgressBar;
     
 	
+    
+    
+    
 	String[] week = new String[] { "每期一", "每期二", "每期三", "每期四", "每期五", "每期六",
 			"每期日", };
 
@@ -145,22 +153,17 @@ public class MyCourseActivity extends Activity {
 		new Thread() {
 			public void run() {
 				Log.i("username=", "" + userName);
-				InputStream is = HttpTools
-						.getInputStream("http://121.40.151.183:8080/pula-sys/app/studentinterface/listTimeCourses?studentNo="
-								+ userName);
-				// InputStream is =
-				// HttpTools.getInputStream("http://121.40.151.183:8080/pula-sys/app/studentinterface/listTimeCourses?studentNo=PD0D00002");
+				
+				courseData = ClientApi.getMyCourseData(userName);
+				
+				if (courseData != null) {
 
-				Log.i("is=", "" + is);
-				if (is != null) {
-
-					String str = HttpTools.GetStringByInputStream(is);
-					Log.i("str=", str);
 					Message msg = Message.obtain();
 					msg.what = 2;
-					msg.obj = str;
+					msg.obj = courseData;
 					handler.sendMessage(msg);
 				}else {
+					
 					String str = null;
 					Message msg = Message.obtain();
 					msg.what = 2;
@@ -207,26 +210,7 @@ public class MyCourseActivity extends Activity {
 	}
 
 	private void initListener() {
-		/*
-		 * viewLeft.setOnSelectListener(new LeftFilterView.OnSelectListener() {
-		 * 
-		 * @Override public void getValue(String distance, String showText) {
-		 * onRefresh(viewLeft, showText); } });
-		 * 
-		 * viewMiddle.setOnSelectListener(new
-		 * MiddleFilterView.OnItemSelectListener() {
-		 * 
-		 * @Override public void getValue(String showText) {
-		 * onRefresh(viewMiddle, showText);
-		 * 
-		 * } });
-		 * 
-		 * viewRight.setOnSelectListener(new RightFilterView.OnSelectListener()
-		 * {
-		 * 
-		 * @Override public void getValue(String distance, String showText) {
-		 * onRefresh(viewRight, showText); } });
-		 */
+		
 	}
 
 	private Handler handler = new Handler() {
@@ -234,110 +218,88 @@ public class MyCourseActivity extends Activity {
 			my_course_list.onRefreshComplete();
 			switch (msg.what) {
 			case 2:
-				jj = new MyCourseJsonUtils();
-				list = new ArrayList<MyCourseJsonTools>();
-				course_field_value = new ArrayList<String>();
+				courseDataGet = new MyCourseData();
 
+				course_field_value = new ArrayList<String>();
+				
 				if (msg.obj != null) {
-					Log.i("msg.obj =", "" + msg.obj.toString());
-					list = jj.PutData(msg.obj.toString());
-				}
+					courseDataGet = (MyCourseData)(msg.obj);
+				
 
 		
+				courseSysCoursePaidCnt = courseDataGet.getPaidCount();
+				courseSysCourseUsedCnt = courseDataGet.getUsedCount();
+				courseSpeCoursePaidCnt = courseDataGet.getSpecialCourseCount();
+				courseSpeCourseUsedCnt = courseDataGet.getUsedSpecialCourseCount();
 				
-				if (list.size() > 0) {
-					
-					for(int i=0; i < list.size();i++)
-					{
-						 courseSysCoursePaidCnt = courseSysCoursePaidCnt + list.get(i).getPaid_count();
-						 courseSysCourseUsedCnt = courseSysCourseUsedCnt + list.get(i).getUsed_count();
-						    
-						 courseSpeCoursePaidCnt = courseSpeCoursePaidCnt + list.get(i).getSpec_count();
-						 courseSpeCourseUsedCnt = courseSpeCourseUsedCnt + list.get(i).getUsed_spec_count();
-							
-						 gongfangCoursePaidCnt = gongfangCoursePaidCnt + list.get(i).getGongfang_count();
-						 gongfangCourseUsedCnt = gongfangCourseUsedCnt + list.get(i).getUsed_gongfang_count();
-							
-						 memActCoursePaidCnt = memActCoursePaidCnt + list.get(i).getHuodong_count();
-						 memActCourseUsedCnt = memActCourseUsedCnt + list.get(i).getUsed_huodong_count();
-					}
-					//course_field_value.add(userName);
-					//course_field_value.add(userNameInfo);
-					
-					courseValidityPeriodDesc = list.get(0).getStart_time() + "至" + list.get(0).getEnd_time(); 
-					course_field_value.add(courseValidityPeriodDesc);
-					
-					courseSysCourseDesc = "总课券"+courseSysCoursePaidCnt+"次,已使用"+courseSysCourseUsedCnt+"次";
-					course_field_value.add(courseSysCourseDesc);
-					
-					userLevel = list.get(0).getLevel();
-					
-					userLevel = (userLevel>5)? 5:userLevel;
-					
-					userGrade.setText("您的等级为:"+" "+userLevel+"级");
-					
-					if(list.get(0).getPaid_count() != 0)
-					{	
-						 NumberFormat numberFormat = NumberFormat.getInstance();  
-						 numberFormat.setMaximumFractionDigits(0);  
-						 courseProgress = numberFormat.format((float) courseSysCourseUsedCnt / (float) courseSysCoursePaidCnt * 100);  
-						 
-						 						
-					}
-					else
-					{
-						courseProgress = "0";
-					}
-					
-					progress.setText(courseProgress+"%");
-					
-					courseProgressBar.setProgress(Integer.parseInt(courseProgress));
-					
-					
-					courseSpeCourseDesc= "总课券"+courseSpeCoursePaidCnt+"次,已使用"+courseSpeCourseUsedCnt+"次";
-					
-					course_field_value.add(courseSpeCourseDesc);
-					
-					gongfangCourseDesc= "总课券"+gongfangCoursePaidCnt+"次,已使用"+gongfangCourseUsedCnt+"次";
-					
-					course_field_value.add(gongfangCourseDesc);
-					
-					memActCourseDesc = "总课券"+memActCoursePaidCnt+"次,已使用"+memActCourseUsedCnt+"次";
-					
-					course_field_value.add(memActCourseDesc);
-					
-					int weekday = Integer.parseInt(list.get(0).getStart_weekday());
-					
-					String duration_time = list.get(0).getDuration_minute();
-					
-					int hour;
-					int min;
-					
-					hour = (Integer.parseInt(list.get(0).getStart_hour())*60 + Integer.parseInt(list.get(0).getStart_minute())+ Integer.parseInt(duration_time))/60;
-					min = (Integer.parseInt(list.get(0).getStart_hour())*60 + Integer.parseInt(list.get(0).getStart_minute())+ Integer.parseInt(duration_time))%60;
-					
-					courseTimeString = "上课时间:"+ week[weekday%7]+ list.get(0).getStart_hour()+":"+list.get(0).getStart_minute()+"-"+hour+":"+min;
-					courseTime.setText(courseTimeString);
-					
-					
-					/*
-					weekday = Integer.parseInt(list.get(0).getStart_weekday());
-					course_field_value.add(week[weekday] + " "
-							+ list.get(0).getStart_hour() + ":"
-							+ list.get(0).getStart_minute());
-							*/
-					
-				} else {
-
-					course_field_value.add(" ");
-					course_field_value.add(" ");
-					course_field_value.add(" ");
-					course_field_value.add(" ");
-					course_field_value.add(" ");
-					
+				gongfangCoursePaidCnt = courseDataGet.getGongfangCount();			
+				gongfangCourseUsedCnt = courseDataGet.getUsedGongFangCount();
+				
+				memActCoursePaidCnt = courseDataGet.getHuodongCount();
+				
+				memActCourseUsedCnt = courseDataGet.getUsedHuodongCount();
+				
+				courseValidityPeriodDesc = courseDataGet.getUpdateTime();
+				
+				course_field_value.add(courseValidityPeriodDesc);
+				
+				courseSysCourseDesc = "总课券"+courseSysCoursePaidCnt+"次,已使用"+courseSysCourseUsedCnt+"次";
+				
+				course_field_value.add(courseSysCourseDesc);
+				
+				userLevel = courseDataGet.getLevel();
+				
+				userLevel = (userLevel>5)? 5:userLevel;
+				
+				userGrade.setText("您的等级为:"+" "+userLevel+"级");
+				
+				if(courseSysCoursePaidCnt != 0)
+				{	
+					 NumberFormat numberFormat = NumberFormat.getInstance();  
+					 numberFormat.setMaximumFractionDigits(0);  
+					 courseProgress = numberFormat.format((float) courseSysCourseUsedCnt / (float) courseSysCoursePaidCnt * 100);  
+					 
+					 						
 				}
-
+				else
+				{
+					courseProgress = "0";
+				}
 				
+				progress.setText(courseProgress+"%");
+				
+				courseProgressBar.setProgress(Integer.parseInt(courseProgress));
+				
+				
+				courseSpeCourseDesc= "总课券"+courseSpeCoursePaidCnt+"次,已使用"+courseSpeCourseUsedCnt+"次";
+				
+				course_field_value.add(courseSpeCourseDesc);
+				
+				gongfangCourseDesc= "总课券"+gongfangCoursePaidCnt+"次,已使用"+gongfangCourseUsedCnt+"次";
+				
+				course_field_value.add(gongfangCourseDesc);
+				
+				memActCourseDesc = "总课券"+memActCoursePaidCnt+"次,已使用"+memActCourseUsedCnt+"次";
+				
+				course_field_value.add(memActCourseDesc);
+				
+				
+				courseTimeString = courseDataGet.getCourseTime();
+				courseTime.setText(courseTimeString);
+				
+				
+				}
+				else
+				{
+					course_field_value.add(" ");
+					course_field_value.add(" ");
+					course_field_value.add(" ");
+					course_field_value.add(" ");
+					course_field_value.add(" ");
+				}
+					
+					
+			
 				pb.setVisibility(View.GONE);
 
 				
@@ -349,33 +311,6 @@ public class MyCourseActivity extends Activity {
 				// list列表点击事件
 				img_bottom.setVisibility(View.VISIBLE);
 				
-				 /*
-				my_course_list
-						.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-							@Override
-							public void onItemClick(AdapterView<?> parent,
-									View view, int position, long id) {
-                              
-								System.out.println(position);
-
-								position = position - 1;
-
-								MyCourseJsonTools to = list.get(position);
-								Intent intent = new Intent(
-										MyCourseActivity.this,
-										CourseDetailH5Activity.class);
-
-								intent.putExtra("courseNo", to.getCourse_no());
-								// Log.i("course no  =", "" +
-								// to.getCourse_no());
-								// intent.putExtra("SearchId","1");
-								intent.putExtra("name", to.getName());
-								startActivity(intent);
-							
-							}
-						});
-                   */
 				break;
 
 			}

@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,8 @@ public class CourseDetailH5Activity extends BaseActivity {
     private Bundle bundle;
     private InputStream is;
     private Bitmap bitmap;
+    private Display display;
+    private int itemHeight;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -134,7 +137,12 @@ public class CourseDetailH5Activity extends BaseActivity {
         
         webView = new WebView(this);
         
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,1100);         
+        
+        display = this.getWindowManager().getDefaultDisplay();
+        itemHeight = (int) (display.getHeight() * 0.7);// 根据屏幕大小计算webview的高度
+		
+        
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,itemHeight);         
         params.setMargins(15, 0, 15, 15);  
         webView.setLayoutParams(params);  
         

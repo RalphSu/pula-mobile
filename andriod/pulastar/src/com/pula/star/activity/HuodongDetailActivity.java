@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,9 @@ public class HuodongDetailActivity extends Activity {
     private ImageButton btnShare;
     private int price;
     
+    private Display display;
+    private int itemHeight;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +99,10 @@ public class HuodongDetailActivity extends Activity {
         
         webView = new WebView(this);
         
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,1100);         
+        display = this.getWindowManager().getDefaultDisplay();
+        itemHeight = (int) (display.getHeight() * 0.7);// 根据屏幕大小计算webview的高度
+		
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,itemHeight);         
         params.setMargins(15, 0, 15, 15); 
         
         

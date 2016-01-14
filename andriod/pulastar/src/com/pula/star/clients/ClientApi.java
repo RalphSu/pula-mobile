@@ -33,6 +33,7 @@ import com.pula.star.bean.CourseData;
 import com.pula.star.bean.HuoDongData;
 import com.pula.star.bean.JingXuanData;
 import com.pula.star.bean.JingxuanDetailData;
+import com.pula.star.bean.MyCourseData;
 import com.pula.star.bean.MyPoints;
 import com.pula.star.bean.MyWorkData;
 import com.pula.star.bean.TongGaoData;
@@ -483,6 +484,47 @@ public class ClientApi {
 		return userInfo;
 	}
 
+	
+	public static  MyCourseData getMyCourseData(String studentNo){
+		String getMyCourseDataUrl = "http://121.40.151.183:8080/pula-sys/app/timecourseorder/list?condition.studentNo=" + studentNo;
+		
+		MyCourseData courseData = new MyCourseData();
+		
+		JSONObject json =  ParseJson(getMyCourseDataUrl, "utf-8");
+		
+		if(json != null){
+		  try{
+			  Log.i("ClientAPI.getMyCourseData", ""+ json);
+			  JSONArray records = json.getJSONArray("records");
+			  if(records != null){
+				  if(records.length() >= 1)
+				  { 
+					 JSONObject data = records.getJSONObject(0);
+					 
+					 courseData.setCreateTime(data.getString("createTime"));
+					 courseData.setCourseTime(data.getString("courseTime"));
+					 courseData.setUpdateTime(data.getString("updateTime"));
+					 courseData.setLevel(data.getInt("level"));
+					 courseData.setPaidCount(data.getInt("paiedCount"));
+					 courseData.setUsedCount(data.getInt("usedCount"));
+					 courseData.setSpecialCourseCount(data.getInt("specialCourseCount"));
+					 courseData.setUsedSpecialCourseCount(data.getInt("usedSpecialCourseCount"));
+					 courseData.setHuodongCount(data.getInt("huodongCount"));
+					 courseData.setUsedHuodongCount(data.getInt("usedHuodongCount"));
+					 courseData.setGongfangCount(data.getInt("gongfangCount"));
+					 courseData.setUsedGongFangCount(data.getInt("usedGongFangCount"));				 				 
+				  }
+			  }
+			  
+		  }
+		  catch (Exception e) {
+              Log.e("ClientAPI.getMyCourseData", "Fail to get my course data !", e);
+          }
+		}
+		
+		return courseData;
+	}
+	
     public static List<BookingData> getBookingList(String studentNo, String closeStatus) {
     	
         if (StringUtils.isEmpty(studentNo)) {
